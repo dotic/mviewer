@@ -264,12 +264,13 @@ Nœud enfant décrivant un thème
 
 ##### Prototype 
 
-	<theme name="" id="" collapsed="" icon="">
+	<theme name="" id="" collapsed="" icon="" url="">
 
 ##### Attributs
 	
 * **name**: Nom du thème
 * **id**: Identifiant du thème
+* **url**: URL de la thématique. Des thèmes externes (présents dans d'autres configuration peuvent être automatiquement chargés par référence au fichier xml utilisé (url=) et à l'id de la thématique (id=). Attention si la configuration externe est sur un autre domaine, il faut alors utiliser un proxy Ajax ou alors s'assurer que CORS est activé sur le serveur distant. Les thématiques externes peuvent utiliser des ressources particulières (templates, customLayer, sld...) si les URLs de ces ressources sont absolues et accessibles.
 * **icon*: "icone à utiliser pour symbolyser la thématique. Les icônes "free" de fontawesome peuvent être utilisée. Il faut alors utiliser la classe de l'icône exemple "fas fa-scholl". https://fontawesome.com/icons/school?style=solid. Une autre possibilité est d'uliser une classe css personnelle mobilisant une image. Il faut alors mettre la classe précédée d'un point comme valeur. exemple ".monicon-svg"
 * **colapsed**:  La thématique est condensée dans le panneau de gauche true ou false - defaut = true. Une seule thématique peut avoir la valeur false.
 
@@ -434,3 +435,5 @@ css/themes/geobretagne.css.
 mviewer/?wmc=demo/hydro.wmc
 * **popup**: true ou false. Si true, Une popup s'affiche sur la carte afin d'afficher le résultat de l'interrogation de 
 couches.
+* **mode**: Mode d'affichage à utiliser (d - default, s - simplifié, u - ultrasimplifié). Le mode simplifié ne dispose pas du panneau des thématiques et le mode ultra simplifié ne dispose pas de la barre de navigation.
+* **title**: Titre à utiliser. Seulement exploité en mode défault et simplifié.

@@ -74,19 +74,18 @@ mviewer = (function () {
 
     _events.registerOverLayersLoadedListener(function(val) {
         if (val === _events.overLayersTotal && _events.confLoaded === true) {
-            _overLayersReady();
+            $(document).trigger("layersLoaded");
         }
     });
 
     _events.registerConfLoadedListener(function(val) {
         if (_events.overLayersLoaded === _events.overLayersTotal && val === true) {
-            _overLayersReady();
+            $(document).trigger("layersLoaded");
         }
     });
 
     var _overLayersReady = function () {
         mviewer.init();
-        console.log(configuration.getThemes());
         mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
         _applyPermalink();
         _showCheckedLayers();
@@ -94,21 +93,21 @@ mviewer = (function () {
 
     var _applyPermalink = function () {
         //Get  x, y & z url parameters if exists
-        if (config.x && config.y && config.z) {
-            var center =   [parseFloat(config.x), parseFloat(config.y)];
-            var zoom = parseInt(config.z);
+        if (API.x && API.y && API.z) {
+            var center =   [parseFloat(API.x), parseFloat(API.y)];
+            var zoom = parseInt(API.z);
             _map.getView().setCenter(center);
             _map.getView().setZoom(zoom);
         }
         //Get backgroundlayer value if exists
-        if (config.lb && $.grep(_backgroundLayers, function (n) {
-            return n.get('blid') === config.lb;
+        if (API.lb && $.grep(_backgroundLayers, function (n) {
+            return n.get('blid') === API.lb;
         })[0]) {
-            mviewer.setBaseLayer(config.lb);
+            mviewer.setBaseLayer(API.lb);
         }
         //get visible layers
-        if (config.l) {
-            _setVisibleOverLayers(config.l);
+        if (API.l) {
+            _setVisibleOverLayers(API.l);
         }
     };
 
@@ -119,7 +118,7 @@ mviewer = (function () {
      *
      */
 
-    var _ajaxURL = function (url) {
+    var _ajaxURL = function (url, optionalProxy) {
         // relative path
         if (url.indexOf('http')!=0) {
             return url;
@@ -129,7 +128,9 @@ mviewer = (function () {
             return url;
         }
         else {
-            if (_proxy) {
+            if (optionalProxy) {
+                return  optionalProxy + encodeURIComponent(url);
+            } else if (_proxy) {
                 return  _proxy + encodeURIComponent(url);
             } else {
                 return url;
@@ -326,16 +327,18 @@ mviewer = (function () {
         if (layer.sld) {
             sld = '&SLD=' + encodeURIComponent(layer.sld);
         }
-        if (layer.legendurl && layer.styles && (layer.styles.split(",").length === 1)) {
+        if (layer.legendurl && !layer.styles) {
+            legendUrl = layer.legendurl;
+        } else if (layer.legendurl && layer.styles && (layer.styles.split(",").length === 1)) {
             legendUrl = layer.legendurl;
         } else if (layer.sld) {
             legendUrl = layer.url + '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0'+
             '&format=image%2Fpng&width=30&height=20&layer=' + layer.layername + '&style=' + sld+
-            '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10.5;dpi:96&TRANSPARENT=true';
+            '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10;dpi:96&TRANSPARENT=true';
         } else {
             legendUrl = layer.url + '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0'+
             '&format=image%2Fpng&width=30&height=20&layer=' + layer.layername + '&style=' + layer.style + sld+
-            '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10.5;dpi:96&TRANSPARENT=true';
+            '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10;dpi:96&TRANSPARENT=true';
         }
         if (layer.dynamiclegend) {
             if (!scale) {
@@ -479,6 +482,14 @@ mviewer = (function () {
         }
     };
 
+    var _initShare = function () {
+        var displayMode =  API.mode || 'd';
+        $("#mv-display-mode input").filter('[value="'+  displayMode +'"]').attr('checked', true);
+        $( "#mv-display-mode input" ).change(function() {
+            mviewer.setPermalink();
+        });
+    };
+
     /**
      * Private Method: _initPanelsPopup
      *
@@ -620,14 +631,22 @@ mviewer = (function () {
      *
      */
 
-    var _updateViewPort = function (s) {
+    var _updateViewPort = function (s, displayMode) {
         _mediaSize = s;
         if (s === "xs") {
             $("#wrapper, #main").removeClass("xl").addClass("xs");
             $("#menu").appendTo("#thematic-modal .modal-body");
             $("#legend").appendTo("#legend-modal .modal-body");
             configuration.getConfiguration().mobile = true;
-
+            if (displayMode) {
+                 $("#wrapper, #main").addClass("mode-" + displayMode);
+                 $("#page-content-wrapper").append(['<a id="btn-mode-su-menu" class="btn btn-default" ',
+                    'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
+                    '<span class="glyphicon glyphicon-menu-hamburger"></span></a>'].join(""));
+                 if (displayMode === "u") {
+                    $("#mv-navbar").remove();
+                 }
+            }
         } else {
             $("#wrapper, #main").removeClass("xs").addClass("xl");
             $("#menu").appendTo("#sidebar-wrapper");
@@ -637,12 +656,16 @@ mviewer = (function () {
     };
 
     /**
-     * Private Method: _initMobile
+     * Private Method: _initDisplayMode
      *
      */
 
-    var _initMobile = function () {
-        if ($(window).width() < 992 ) {
+    var _initDisplayMode = function () {
+        var displayMode = "d"; /* d :default, s: simple, u: ultrasimple */
+        if (API.mode && (API.mode === "s" || API.mode === "u")) {
+            displayMode = API.mode;
+        }
+        if ($(window).width() < 992 || displayMode !== "d") {
             _mediaSize = "xs";
             configuration.getConfiguration().mobile = true;
         } else {
@@ -650,26 +673,27 @@ mviewer = (function () {
             configuration.getConfiguration().mobile = false;
         }
         if (_mediaSize === "xs") {
-            _updateViewPort("xs");
+            _updateViewPort("xs", displayMode);
         }
-        $(window).resize(function() {
-            var w = $(this).width();
-            var s = "";
-            if (w < 768) {
-                s = 'xs';
-            } else if (w < 992) {
-                s = 'sm';
-            } else if (w < 1200) {
-                s = 'md';
-            } else if (w >= 1200) {
-                s = 'lg';
-            }
-            if (s !== _bsize) {
-                _bsize = s;
-                _updateMedia(_bsize);
-            }
-        });
-
+        if (displayMode === "d") {
+            $(window).resize(function() {
+                var w = $(this).width();
+                var s = "";
+                if (w < 768) {
+                    s = 'xs';
+                } else if (w < 992) {
+                    s = 'sm';
+                } else if (w < 1200) {
+                    s = 'md';
+                } else if (w >= 1200) {
+                    s = 'lg';
+                }
+                if (s !== _bsize) {
+                    _bsize = s;
+                    _updateMedia(_bsize);
+                }
+            });
+        }
         if (configuration.getConfiguration().mobile) {
             $("#thematic-modal .modal-body").append('<ul class="sidebar-nav nav-pills nav-stacked" id="menu"></ul>');
             $("#legend").appendTo("#legend-modal .modal-body");
@@ -1162,12 +1186,17 @@ mviewer = (function () {
                 oLayer.metadata = $(this).find('MetadataURL > OnlineResource').attr('xlink:href');
                 //fixme
                 if (oLayer.metadata && oLayer.metadata.search('geonetwork') > 1) {
-                    var mdid = oLayer.metadata.split('uuid=')[1];
+                    var mdid = oLayer.metadata.split('#/metadata/')[1];
                     oLayer.metadatacsw = oLayer.metadata.substring(0,oLayer.metadata.search('geonetwork')) +
                         'geonetwork/srv/eng/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&elementSetName=full&ID=' +
                         mdid;
                 }
                 oLayer.style = $(this).find("StyleList  > Style[current='1'] > Name").text();
+                oLayer.sld = ($(this).find("StyleList  > Style[current='1'] > SLD > OnlineResource").attr('xlink:href'));
+                if (!oLayer.sld && $(this).find("StyleList  > Style > Name").length > 1) {
+                    oLayer.styles = $(this).find("StyleList  > Style > Name").map(function (id,name) { return $(name).text(); }).toArray().join(",");
+                    oLayer.stylesalias = oLayer.styles;
+                }
                 oLayer.url = $(this).find('Server > OnlineResource').attr('xlink:href');
                 oLayer.queryable = true;
                 oLayer.infoformat = 'text/html';
@@ -1189,20 +1218,24 @@ mviewer = (function () {
                 }
 
                 oLayer.theme = wmcid;
-                console.log("wmc", oLayer);
                 themeLayers[oLayer.id] = oLayer;
+                var wms_params = {
+                    'LAYERS': oLayer.id,
+                    'STYLES':oLayer.style,
+                    'FORMAT': 'image/png',
+                    'TRANSPARENT': true
+                };
+                if (oLayer.sld) {
+                    wms_params['SLD'] = oLayer.sld;
+                }
                 var l = new ol.layer.Image({
                     source: new ol.source.ImageWMS({
                         url: oLayer.url,
                         crossOrigin: crossorigin,
-                        params: {
-                            'LAYERS': oLayer.id,
-                            'STYLES':oLayer.style,
-                            'FORMAT': 'image/png',
-                            'TRANSPARENT': true
-                        }
+                        params: wms_params
                     })
                 });
+
                 l.setVisible(oLayer.checked);
                 l.setOpacity(oLayer.opacity);
                 if (oLayer.scale && oLayer.scale.max) { l.setMaxResolution(_convertScale2Resolution(oLayer.scale.max)); }
@@ -1211,11 +1244,9 @@ mviewer = (function () {
                 l.set('mviewerid', oLayer.id);
                 themeLayers[oLayer.id].layer = l;
                 _overLayers[oLayer.id] = themeLayers[oLayer.id];
-                info.addQueryableLayer(_overLayers[oLayer.id]);
                 if (oLayer.scale) {
                     _scaledDependantLayers.push(oLayer);
                 }
-                _map.addLayer(l);
             }
 
         });
@@ -1290,8 +1321,9 @@ mviewer = (function () {
 
     var _getLonLatZfromGeometry = function (geometry, proj, maxzoom) {
         var xyz = {};
-        if (geometry.getType() === "Point") {
-            var coordinates = geometry.getCoordinates();
+        //For Point or multiPoints with one point
+        if (geometry.getType() === "Point" || geometry.getPoints().length === 1) {
+            var coordinates = geometry.getPoints()[0].flatCoordinates;
             xyz = { lon: coordinates[0],
                     lat: coordinates[1],
                     zoom: maxzoom || 15
@@ -1561,19 +1593,20 @@ mviewer = (function () {
         setPermalink: function () {
             var c = _map.getView().getCenter();
             var linkParams = {};
-            if (!config.wmc){
+            if (!API.wmc){
                 linkParams.x = encodeURIComponent(Math.round(c[0]));
                 linkParams.y = encodeURIComponent(Math.round(c[1]));
                 linkParams.z = encodeURIComponent(_map.getView().getZoom());
                 linkParams.l = encodeURIComponent(_getVisibleOverLayers());
             }
             linkParams.lb = encodeURIComponent(this.getActiveBaseLayer());
-            if (config.config) {
-                linkParams.config = config.config;
+            if (API.config) {
+                linkParams.config = API.config;
             }
-            if (config.wmc) {
-                linkParams.wmc = config.wmc;
+            if (API.wmc) {
+                linkParams.wmc = API.wmc;
             }
+            linkParams.mode = $('input[name=mv-display-mode]:checked').val();
 
             var url = window.location.href.split('?')[0].replace('#','') + '?' + $.param(linkParams);
             $("#permalinklink").attr('href',url).attr("target", "_blank");
@@ -1597,13 +1630,14 @@ mviewer = (function () {
 
         init: function () {
                 _setVariables();
-                _initMobile();
+                _initDisplayMode();
                 _initDataList();
                 _initVectorOverlay();
                 search.init(configuration.getConfiguration());
                 _initPanelsPopup();
                 _initGeolocation();
                 _initTools();
+                _initShare();
         },
 
         customLayers: {},
@@ -2145,10 +2179,10 @@ mviewer = (function () {
             $(el).closest("li").find(".mv-layer-options").slideToggle();
             //hack slider js
             $(el).closest("li").find(".mv-slider-timer").slider('relayout');
-            if ($(el).find("span").hasClass("glyphicon glyphicon-plus")) {
-                $(el).find("span").removeClass("glyphicon glyphicon-plus").addClass("glyphicon glyphicon-minus");
+            if ($(el).find("span.state-icon").hasClass("glyphicon glyphicon-plus")) {
+                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-plus").addClass("glyphicon glyphicon-minus");
             } else {
-                $(el).find("span").removeClass("glyphicon glyphicon-minus").addClass("glyphicon glyphicon-plus");
+                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-minus").addClass("glyphicon glyphicon-plus");
             }
         },
 
@@ -2457,6 +2491,8 @@ mviewer = (function () {
         createBaseLayer: _createBaseLayer,
 
         drawVectorLegend: _drawVectorLegend,
+
+        overLayersReady: _overLayersReady,
 
         events: function () { return _events; }
 
