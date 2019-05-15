@@ -10,20 +10,20 @@ var utils = (function () {
      * from http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#Zoom_levels
      *
      */
-    //Not used but great
+        //Not used but great
     var _lonlat2osmtile = function (lon, lat, zoom) {
-        var x = Math.floor((lon+180)/360*Math.pow(2,zoom));
-        var y = Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom));
-        var osmtile = 'http://tile.openstreetmap.org/' +zoom+'/'+x + '/'+y+'.png';
-        return osmtile;
-    };
+            var x = Math.floor((lon + 180) / 360 * Math.pow(2, zoom));
+            var y = Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom));
+            var osmtile = 'http://tile.openstreetmap.org/' + zoom + '/' + x + '/' + y + '.png';
+            return osmtile;
+        };
 
     var _tests = {};
 
     _tests.sld = function (layers) {
         var regexp = /^(?:http(s)?:\/\/)?[\w-./@]+.(sld|SLD)$/i;
         var test = 1;
-        layers.forEach(function(layer) {
+        layers.forEach(function (layer) {
             if (layer && layer.sld) {
                 var name = layer.name;
                 var slds = layer.sld.split(",");
@@ -40,7 +40,7 @@ var utils = (function () {
 
     _tests.icons = function (themes) {
         var test = 1;
-        themes.theme.forEach(function(theme) {
+        themes.theme.forEach(function (theme) {
             if (theme && theme.icon && theme.icon.indexOf(".") === -1) {
                 if (theme.icon.indexOf(" ") === -1) {
                     test = 0;
@@ -48,12 +48,13 @@ var utils = (function () {
                 }
             }
         });
+        return test;
     };
 
     _tests.layerNameDuplicates = function (layers) {
         var test = 1;
         var duplicates = [];
-        layers.forEach(function(layer) {
+        layers.forEach(function (layer) {
             if (layer) {
                 var name = layer.name;
                 if ($.inArray(name, duplicates)) {
@@ -70,7 +71,7 @@ var utils = (function () {
     _tests.oneBaseLayerVisible = function (baselayers) {
         var visibleBaseLayers = 0;
         var test = 1;
-        baselayers.baselayer.forEach(function(baselayer) {
+        baselayers.baselayer.forEach(function (baselayer) {
             if (baselayer.visible === "true") {
                 visibleBaseLayers += 1;
             }
@@ -80,9 +81,9 @@ var utils = (function () {
             console.log(visibleBaseLayers + " baselayer(s) visible(s)");
         }
         return test;
-    }
+    };
 
-     /**
+    /**
      * _testConfig
      * @param {xml} config xml to test
      */
@@ -120,14 +121,14 @@ var utils = (function () {
         nbtests += 1;
 
         //Résultats tests
-        console.log("tests config :" + ((score/nbtests)===1));
+        console.log("tests config : " + score + "/" + nbtests);
     };
 
     var _initWMTSMatrixsets = function (projection) {
         var projectionExtent = projection.getExtent();
         var size = ol.extent.getWidth(projectionExtent) / 256;
-        _WMTSTileMatrix = {'EPSG:3857': [], 'EPSG:4326': [],'EPSG:2154': [],'PM':[]};
-        _WMTSTileResolutions = {'EPSG:3857': [], 'EPSG:4326': [],'EPSG:2154': [],'PM':[]};
+        _WMTSTileMatrix = {'EPSG:3857': [], 'EPSG:4326': [], 'EPSG:2154': [], 'PM': []};
+        _WMTSTileResolutions = {'EPSG:3857': [], 'EPSG:4326': [], 'EPSG:2154': [], 'PM': []};
         for (var z = 0; z < 22; ++z) {
             // generate resolutions and matrixIds arrays for this GEOSERVER WMTS
             _WMTSTileResolutions['EPSG:3857'][z] = size / Math.pow(2, z);
@@ -156,8 +157,8 @@ var utils = (function () {
         lonlat2osmtile: _lonlat2osmtile,
         testConfiguration: _testConfiguration,
         initWMTSMatrixsets: _initWMTSMatrixsets,
-        getWMTSTileMatrix : _getWMTSTileMatrix,
-        getWMTSTileResolutions: _getWMTSTileResolutions
+        getWMTSTileMatrix: _getWMTSTileMatrix,
+        getWMTSTileResolutions: _getWMTSTileResolutions,
 
     };
 
