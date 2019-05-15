@@ -384,15 +384,24 @@ var info = (function () {
         };
 
         var ajaxFunction = function () {
+            var headers = {};
+            if(configuration.getConfiguration().basicAuthentication){
+                headers.authorization = configuration.getConfiguration().basicAuthentication
+            }
+
             urls.forEach(function (request) {
                 requests.push($.ajax({
                     url: mviewer.ajaxURL(request.url),
+                    headers: headers,
                     layer: request.layerinfos,
                     success: function (response, textStatus, request) {
                         featureInfoByLayer.push({
                             response: response, layerinfos: this.layer,
                             contenttype: request.getResponseHeader("Content-Type"),
                         });
+                    },
+                    error: function () {
+                        console.log("Error getFeatureInfo");
                     },
                 }));
             });
@@ -832,7 +841,7 @@ var info = (function () {
 
     /**
      * Public Method: addQueryableLayer
-     * @param el {oLayer}
+     * @param oLayer {oLayer}
      */
 
     var _addQueryableLayer = function (oLayer) {
