@@ -57,7 +57,7 @@ var search = (function () {
 
     var _searchableFuseLayers = [];
 
-        /**
+    /**
      * Property: _olsCompletionUrl
      * String. The OpenLs url used by the geocode control
      */
@@ -85,7 +85,7 @@ var search = (function () {
 
     var _elasticSearchGeometryfield = null;
 
-     /**
+    /**
      * Property: _elasticSearchDocTypes
      * String. The Elasticsearch document types to use in all search requests
      */
@@ -126,9 +126,9 @@ var search = (function () {
      * Enables properties the search
      */
 
-    var _searchparams = { localities : true, bbox: false, features: false, static: false};
+    var _searchparams = {localities: true, bbox: false, features: false, static: false};
 
-     /**
+    /**
      * Private Method: _clearSearchResults
      *
      */
@@ -160,7 +160,7 @@ var search = (function () {
             _sourceEls = new ol.source.Vector();
             var vector = new ol.layer.Vector({
                 source: _sourceEls,
-                style: mviewer.featureStyles.elsStyle
+                style: mviewer.featureStyles.elsStyle,
             });
             vector.set('mviewerid', 'elasticsearch');
             _map.addLayer(vector);
@@ -181,7 +181,7 @@ var search = (function () {
             }
             var chars = $(this).val().length;
             if (chars === 0) {
-            } else if ((chars >0) && (chars < 3)) {
+            } else if ((chars > 0) && (chars < 3)) {
                 $("#searchresults .list-group-item").remove();
             } else {
                 _search($(this).val());
@@ -203,7 +203,7 @@ var search = (function () {
                     data: {
                         text: value,
                         type: "StreetAddress,PositionOfInterest",
-                        ter: "5"
+                        ter: "5",
                     },
                     dataType: "jsonp",
                     success: function (data) {
@@ -212,7 +212,7 @@ var search = (function () {
                         var str = '<a class="geoportail list-group-item disabled">Localités</a>';
                         //var str = '';
                         for (var i = 0, len = res.length; i < len && i < 5; i++) {
-                             switch (res[i].classification) {
+                            switch (res[i].classification) {
                                 case 1:
                                 case 2:
                                     zoom = 13;
@@ -230,23 +230,23 @@ var search = (function () {
                                 case 7:
                                     zoom = 17;
                                     break;
-                                }
+                            }
                             str += '<a class="geoportail list-group-item" href="#" onclick="mviewer.zoomToLocation(' +
-                            res[i].x + ',' + res[i].y + ',' + zoom + ',\'' + res[i].fulltext.replace("'", "*") + '\');" '+
-                            'onmouseover="mviewer.flash('+'\'EPSG:4326\',' + res[i].x + ',' + res[i].y + ');"> ' +
-                            res[i].fulltext + '</a>';
+                                res[i].x + ',' + res[i].y + ',' + zoom + ',\'' + res[i].fulltext.replace("'", "*") + '\');" ' +
+                                'onmouseover="mviewer.flash(' + '\'EPSG:4326\',' + res[i].x + ',' + res[i].y + ');"> ' +
+                                res[i].fulltext + '</a>';
                         }
-                        $(".geoportail").remove()
+                        $(".geoportail").remove();
                         if (res.length > 0) {
-                             $("#searchresults").append(str).show();
+                            $("#searchresults").append(str).show();
                         }
-                    }
+                    },
                 });
             } else if (_olsCompletionType === "ban") { // BAN search
                 var parameters = {q: value, limit: 5};
                 if (_searchparams.bbox) {
                     var center = _map.getView().getCenter();
-                    var center = ol.proj.transform(center, _projection.getCode(), 'EPSG:4326')
+                    var center = ol.proj.transform(center, _projection.getCode(), 'EPSG:4326');
                     parameters.lon = center[0];
                     parameters.lat = center[1];
                 }
@@ -261,7 +261,7 @@ var search = (function () {
                         var res = data.features;
                         var str = '<a class="geoportail list-group-item disabled">Localités</a>';
                         for (var i = 0, len = res.length; i < len && i < 5; i++) {
-                            switch(res[i].properties.type) {
+                            switch (res[i].properties.type) {
                                 case 'city':
                                     zoom = 13;
                                     break;
@@ -281,15 +281,15 @@ var search = (function () {
                                     zoom = 14;
                             }
                             str += '<a class="geoportail list-group-item" href="#" title="' +
-                            res[i].properties.context+' - ' + res[i].properties.type +
-                            '" onclick="mviewer.zoomToLocation('+
-                            res[i].geometry.coordinates[0] + ',' +
-                            res[i].geometry.coordinates[1] + ',' + zoom + ',\'' +
-                            res[i].properties.name.replace("'", "*") + '\');">' + res[i].properties.label + '</a>';
+                                res[i].properties.context + ' - ' + res[i].properties.type +
+                                '" onclick="mviewer.zoomToLocation(' +
+                                res[i].geometry.coordinates[0] + ',' +
+                                res[i].geometry.coordinates[1] + ',' + zoom + ',\'' +
+                                res[i].properties.name.replace("'", "*") + '\');">' + res[i].properties.label + '</a>';
                         }
                         $(".geoportail").remove();
                         $("#searchresults").append(str).show();
-                    }
+                    },
                 });
             }
         }
@@ -305,32 +305,31 @@ var search = (function () {
         }
     };
 
-    var _shapeToPoint = function (geometry){
-        var point=[];
-        var position = Math.floor(geometry.coordinates.length /2);
+    var _shapeToPoint = function (geometry) {
+        var point = [];
+        var position = Math.floor(geometry.coordinates.length / 2);
         if (geometry == null)
             return;
-        switch (geometry.type)
-        {
+        switch (geometry.type) {
             case "MultiPoint":
-                point[0]=geometry.coordinates[position][0];
-                point[1]=geometry.coordinates[position][1];
+                point[0] = geometry.coordinates[position][0];
+                point[1] = geometry.coordinates[position][1];
                 break;
             case "MultiLineString":
-                point[0]=geometry.coordinates[0][0][0];
-                point[1]=geometry.coordinates[0][0][1];
-            break;
+                point[0] = geometry.coordinates[0][0][0];
+                point[1] = geometry.coordinates[0][0][1];
+                break;
             case "LineString":
-                point[0]=geometry.coordinates[position][0];
-                point[1]=geometry.coordinates[position][1];
+                point[0] = geometry.coordinates[position][0];
+                point[1] = geometry.coordinates[position][1];
                 break;
             case "MultiPolygon":
             case "Polygon":
                 point = ol.extent.getCenter(new ol.format.GeoJSON().readGeometry(geometry).getExtent());
                 break;
             default:
-                point[0]=geometry.coordinates[0];
-                point[1]=geometry.coordinates[1];
+                point[0] = geometry.coordinates[0];
+                point[1] = geometry.coordinates[1];
                 break;
         }
         return point;
@@ -343,7 +342,7 @@ var search = (function () {
     var _sendFuseRequest = function (val) {
         $(".fuse").remove();
 
-        var searchableLayers =  $.grep( _searchableFuseLayers, function( l, i ) {
+        var searchableLayers = $.grep(_searchableFuseLayers, function (l, i) {
             return l.getVisible();
         });
 
@@ -351,7 +350,7 @@ var search = (function () {
 
             var layername = searchableLayers[i].get('name');
             var layerid = searchableLayers[i].get('mviewerid');
-
+            console.log({layerid, _fuseSearchData});
             var results = _fuseSearchData[layerid].search(val);
             var zoom = 15;
             var max_results = 5;
@@ -361,7 +360,7 @@ var search = (function () {
                 results = results.slice(0, max_results);
 
                 str = '<a class="fuse list-group-item disabled">' + layername + '</a>';
-                results.forEach(function(element){
+                results.forEach(function (element) {
                     /*
                      * 2 cases, one specific field or a Mustache template for combining fields in a string. Examples:
                      * - name of a field: name
@@ -369,7 +368,7 @@ var search = (function () {
                      * - other Mustache template : {{name}}{{#city}} ({{city}}){{/city}}
                      */
                     var _fuseSearchResult = element.fusesearchresult;
-                    if (_fuseSearchResult.indexOf('{{')  === -1 && _fuseSearchResult.indexOf('}}')  === -1) {
+                    if (_fuseSearchResult.indexOf('{{') === -1 && _fuseSearchResult.indexOf('}}') === -1) {
                         // one specific field
                         result_label = element[element.fusesearchresult];
                     } else {
@@ -381,7 +380,7 @@ var search = (function () {
                     str += '<a class="fuse list-group-item" title="' + result_label + '" ' +
                         'href="#" onclick="mviewer.zoomToLocation('
                         + xyz.lon + ',' + xyz.lat + ',' + xyz.zoom + ');mviewer.showLocation(\'EPSG:4326\','
-                        + xyz.lon + ',' + xyz.lat +');" '
+                        + xyz.lon + ',' + xyz.lat + ');" '
                         + 'onmouseover="mviewer.flash(\'EPSG:4326\',' + xyz.lon + ',' + xyz.lat + ');" >'
                         + result_label + '</a>';
                 });
@@ -397,7 +396,7 @@ var search = (function () {
 
     var _sendElasticsearchRequest = function (val) {
         var sendQuery = true;
-        var searchableLayers =  $.grep( _searchableElasticsearchLayers, function( l, i ) {
+        var searchableLayers = $.grep(_searchableElasticsearchLayers, function (l, i) {
             return l.getVisible();
         });
         if (searchableLayers.length > 0 || (_searchparams.static && _elasticSearchDocTypes)) {
@@ -405,29 +404,29 @@ var search = (function () {
             var currentExtent = _map.getView().calculateExtent(_map.getSize());
             var pe = ol.proj.transformExtent(currentExtent, _projection.getCode(), 'EPSG:4326');
             for (var i = 0; i < searchableLayers.length; i++) {
-                queryLayers.push({"type":{"value": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                queryLayers.push({"type": {"value": searchableLayers[i].getSource().getParams()['LAYERS']}});
             }
             if (_searchparams.static && _elasticSearchDocTypes) {
                 var doctypes = _elasticSearchDocTypes.split(",");
                 for (var i = 0; i < doctypes.length; i++) {
-                    queryLayers.push({"type":{"value": doctypes[i]}});
+                    queryLayers.push({"type": {"value": doctypes[i]}});
                 }
             }
             var query;
             var mode = _elasticSearchQuerymode;
             var queryFilter = "";
-            if (val.substring(0,1) === "#") {
-                    mode = "term";
-                    val = val.substring(1,val.length);
-                }
-                if (val.slice(0,1) === "\"") {
-                    sendQuery = false;
-                }
-                if ((val.slice(0,1) === "\"") && (val.slice(-1) === "\"")) {
-                    mode = "phrase";
-                    val = val.substring(1,val.length-1);
-                    sendQuery = true;
-                }
+            if (val.substring(0, 1) === "#") {
+                mode = "term";
+                val = val.substring(1, val.length);
+            }
+            if (val.slice(0, 1) === "\"") {
+                sendQuery = false;
+            }
+            if ((val.slice(0, 1) === "\"") && (val.slice(-1) === "\"")) {
+                mode = "phrase";
+                val = val.substring(1, val.length - 1);
+                sendQuery = true;
+            }
             if (_elasticSearchVersion === "1.4") {
                 switch (mode) {
                     case "term":
@@ -437,27 +436,28 @@ var search = (function () {
                         query = {"match_phrase": {"_all": val}};
                         break;
                     case "match":
-                        query = {"fuzzy_like_this" : {"like_text" : val, "max_query_terms" : 12, "fuzziness":0.7}};
+                        query = {"fuzzy_like_this": {"like_text": val, "max_query_terms": 12, "fuzziness": 0.7}};
                         break;
                     default:
-                        query = {"fuzzy_like_this" : {"like_text" : val, "max_query_terms" : 12, "fuzziness":0.7}};
+                        query = {"fuzzy_like_this": {"like_text": val, "max_query_terms": 12, "fuzziness": 0.7}};
                 }
 
                 queryFilter = {
                     "query": {
-                        "filtered" : {
-                            "query" : query,
-                            "filter" :  {
+                        "filtered": {
+                            "query": query,
+                            "filter": {
                                 "and": {
                                     "filters": [
-                                        {"or" :
-                                            {"filters": queryLayers}
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
+                                        {
+                                            "or":
+                                                {"filters": queryLayers},
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    },
                 };
 
             } else {
@@ -469,10 +469,10 @@ var search = (function () {
                         query = {"match_phrase": {"_all": val}};
                         break;
                     case "match":
-                         query = {"match":{"_all": {"query": val,"fuzziness": "AUTO"}}};
+                        query = {"match": {"_all": {"query": val, "fuzziness": "AUTO"}}};
                         break;
                     default:
-                        query = {"match":{"_all": {"query": val,"fuzziness": "AUTO"}}};
+                        query = {"match": {"_all": {"query": val, "fuzziness": "AUTO"}}};
                 }
                 queryFilter = {
                     "query": {
@@ -481,20 +481,33 @@ var search = (function () {
                                 query,
                                 {
                                     "bool": {
-                                        "should": queryLayers
-                                    }
-                                }
-                             ]
-                        }
-                    }
+                                        "should": queryLayers,
+                                    },
+                                },
+                            ],
+                        },
+                    },
                 };
             }
 
             if (_searchparams.bbox) {
                 var geometryfield = _elasticSearchGeometryfield || "location";
                 var geofilter = {"geo_shape": {}};
-                geofilter.geo_shape[geometryfield] = {"shape": {"type": "envelope",
-                    "coordinates" : [[ pe[0], pe[3] ],[ pe[2], pe[1] ]]}};
+                geofilter.geo_shape[geometryfield] = {
+                    "shape": {
+                        "type": "envelope",
+                        "coordinates": [
+                            [
+                                pe[0],
+                                pe[3],
+                            ],
+                            [
+                                pe[2],
+                                pe[1],
+                            ],
+                        ],
+                    },
+                };
                 if (_elasticSearchVersion === "1.4") {
                     queryFilter.query.filtered.filter.and.filters.push(geofilter);
                 } else {
@@ -516,38 +529,43 @@ var search = (function () {
                         var str = '<a class="elasticsearch list-group-item disabled" >Entités</a>';
                         var format = new ol.format.GeoJSON();
                         var nb = data.hits.hits.length;
-                        for (var i = 0, nb ; i < nb && i < 5; i++) {
+                        for (var i = 0, nb; i < nb && i < 5; i++) {
                             var point = _shapeToPoint(data.hits.hits[i]._source.geometry);
-                            var geom =  new ol.format.GeoJSON().readGeometry(data.hits.hits[i]._source.geometry);
+                            var geom = new ol.format.GeoJSON().readGeometry(data.hits.hits[i]._source.geometry);
                             var geomtype = geom.getType();
                             var action_click = "";
                             var action_over = "";
                             var icon = "img/star.svg";
-                            var title =   data.hits.hits[i]._source.title;
+                            var title = data.hits.hits[i]._source.title;
                             if (geomtype !== 'Point') {
-                                var feature = new ol.Feature({geometry: geom.transform('EPSG:4326','EPSG:3857'), title:title});
-                                action_click = 'mviewer.zoomToFeature(\'feature.'+i+'\');';
-                                feature.setId( "feature." +i);
+                                var feature = new ol.Feature({
+                                    geometry: geom.transform('EPSG:4326', 'EPSG:3857'),
+                                    title: title,
+                                });
+                                action_click = 'mviewer.zoomToFeature(\'feature.' + i + '\');';
+                                feature.setId("feature." + i);
                                 _sourceEls.addFeature(feature);
-                                action_over = 'mviewer.showFeature(\'feature.'+i+'\');';
+                                action_over = 'mviewer.showFeature(\'feature.' + i + '\');';
                             } else {
-                                action_click = 'mviewer.zoomToLocation('  + point[0] + ',' + point[1]  + ',14);';
-                                action_over = 'mviewer.flash('+'\'EPSG:4326\',' + point[0] + ',' + point[1] + ');';
+                                action_click = 'mviewer.zoomToLocation(' + point[0] + ',' + point[1] + ',14);';
+                                action_over = 'mviewer.flash(' + '\'EPSG:4326\',' + point[0] + ',' + point[1] + ');';
                             }
-                            if  (_overLayers[data.hits.hits[i]._type] ) {
+                            if (_overLayers[data.hits.hits[i]._type]) {
                                 //icon = _overLayers[data.hits.hits[i]._type].iconsearch;
-                                action_click += 'mviewer.tools.info.queryLayer(' + point[0] + ',' + point[1] + ',\'EPSG:4326\',\''+
-                                data.hits.hits[i]._type+'\',\''+ data.hits.hits[i]._id+'\');';
-                                action_over = 'mviewer.flash('+'\'EPSG:4326\',' + point[0] + ',' + point[1] + ');';
+                                action_click += 'mviewer.tools.info.queryLayer(' + point[0] + ',' + point[1] + ',\'EPSG:4326\',\'' +
+                                    data.hits.hits[i]._type + '\',\'' + data.hits.hits[i]._id + '\');';
+                                action_over = 'mviewer.flash(' + '\'EPSG:4326\',' + point[0] + ',' + point[1] + ');';
                             }
 
                             str += '<a class="elasticsearch list-group-item" href="#" ' +
-                            'onclick="'+action_click+ '" ' +
-                            'onmouseover="'+action_over+'" ' +
-                            'title="('+ data.hits.hits[i]._type + ') ' +
-                            $.map(data.hits.hits[i]._source, function(el) {
-                                if (typeof(el)==='string') {return el};
-                            }).join(", \n")+'">' + title + '</a>';
+                                'onclick="' + action_click + '" ' +
+                                'onmouseover="' + action_over + '" ' +
+                                'title="(' + data.hits.hits[i]._type + ') ' +
+                                $.map(data.hits.hits[i]._source, function (el) {
+                                    if (typeof (el) === 'string') {
+                                        return el;
+                                    }
+                                }).join(", \n") + '">' + title + '</a>';
                         }
                         $(".elasticsearch").remove();
                         if (nb > 0) {
@@ -555,11 +573,11 @@ var search = (function () {
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
-                        mviewer.alert("Problème avec l'instance Elasticsearch.\n" +  thrownError + "\n Désactivation du service.", "alert-warning");
+                        mviewer.alert("Problème avec l'instance Elasticsearch.\n" + thrownError + "\n Désactivation du service.", "alert-warning");
                         _searchparams.features = false;
                         _searchparams.static = false;
                         $('#param_search_features span').removeClass('mv-checked').addClass('mv-unchecked');
-                    }
+                    },
                 });
             }
         }
@@ -568,7 +586,7 @@ var search = (function () {
         oLayer.queryable = ($(this).attr("queryable") == "true") ? true : false;*/
 
     var _configSearchableLayer = function (oLayer, params) {
-        oLayer.searchid = (params.searchid)? params.searchid : _elasticSearchLinkid;
+        oLayer.searchid = (params.searchid) ? params.searchid : _elasticSearchLinkid;
         oLayer.searchengine = (params.searchengine) ? params.searchengine : 'elasticsearch';
         oLayer.fusesearchkeys = (params.fusesearchkeys) ? params.fusesearchkeys : '';
         oLayer.fusesearchresult = (params.fusesearchresult) ? params.fusesearchresult : '';
@@ -587,7 +605,7 @@ var search = (function () {
                     distance: 100,
                     maxPatternLength: 32,
                     minMatchCharLength: 2,
-                    keys: oLayer.fusesearchkeys.split(',')
+                    keys: oLayer.fusesearchkeys.split(','),
                 };
 
 
@@ -595,17 +613,17 @@ var search = (function () {
                 if (l.getSource().source) {/* clusters */
                     layerSource = l.getSource().getSource();
                 }
-                layerSource.on('change', function(event) {
+                layerSource.on('change', function (event) {
                     var source = event.target;
 
-                    if (source.getState() === "ready" && !_fuseSearchData[oLayer.id] ) {
+                    if (source.getState() === "ready" && !_fuseSearchData[oLayer.id]) {
                         var features = source.getFeatures();
                         var geojsonFormat = new ol.format.GeoJSON();
                         var mapProj = _map.getView().getProjection();
 
                         var j = [];
 
-                        features.forEach(function(feature) {
+                        features.forEach(function (feature) {
 
                             var geojsonFeature = geojsonFormat.writeFeatureObject(feature);
                             var wgs84Geom = feature.getGeometry().clone().transform(mapProj, "EPSG:4326");
@@ -617,7 +635,9 @@ var search = (function () {
                             j.push(prop);
                         });
 
-                        var list = $.map(j, function(el) { return el });
+                        var list = $.map(j, function (el) {
+                            return el;
+                        });
                         _fuseSearchData[oLayer.id] = new Fuse(list, options);
                     }
                 });
@@ -649,7 +669,7 @@ var search = (function () {
             _elasticSearchLinkid = configuration.elasticsearch.linkid || "featureid";
         }
 
-        if (!_olsCompletionUrl)  {
+        if (!_olsCompletionUrl) {
             _searchparams.localities = false;
         }
         if (configuration.searchparameters && configuration.searchparameters.bbox &&
@@ -659,7 +679,7 @@ var search = (function () {
             _searchparams.features = (configuration.searchparameters.features === "true");
             _searchparams.static = (configuration.searchparameters.static === "true");
         }
-        if (_searchparams.localities===false && _searchparams.features===false) {
+        if (_searchparams.localities === false && _searchparams.features === false) {
             $("#searchtool").remove();
         }
         if (_searchparams.bbox) {
@@ -679,7 +699,7 @@ var search = (function () {
         if (_searchparams.features === false) {
             $('#searchparameters .searchfeatures').remove('.searchfeatures');
         } else {
-            $("#searchfield").attr("placeholder", "Rechercher...").attr("title", "Rechercher...")
+            $("#searchfield").attr("placeholder", "Rechercher...").attr("title", "Rechercher...");
         }
         _initSearch();
     };
@@ -687,7 +707,7 @@ var search = (function () {
     var _toggleParameter = function (li) {
         var span = $(li).find("span");
         var parameter = false;
-        if (span.hasClass('mv-unchecked') === true ) {
+        if (span.hasClass('mv-unchecked') === true) {
             span.removeClass('mv-unchecked').addClass('mv-checked');
             parameter = true;
         } else {
@@ -707,7 +727,7 @@ var search = (function () {
 
     };
 
-     var _showFeature = function (featureid) {
+    var _showFeature = function (featureid) {
         var feature = _sourceEls.getFeatureById(featureid).clone();
         _sourceOverlay.clear();
         _sourceOverlay.addFeature(feature);
@@ -732,13 +752,21 @@ var search = (function () {
         _sourceOverlay.addFeature(feature);
         var boundingExtent = feature.getGeometry().getExtent();
         var duration = 2000;
-        _map.getView().fit(boundingExtent, { size: _map.getSize(),
-            padding: [0, $("#sidebar-wrapper").width(), 0, 0], duration: duration});
+        _map.getView().fit(boundingExtent, {
+            size: _map.getSize(),
+            padding: [
+                0,
+                $("#sidebar-wrapper").width(),
+                0,
+                0,
+            ], duration: duration,
+        });
 
         function clear() {
             _sourceOverlay.clear();
         }
-        setTimeout(clear, duration*2);
+
+        setTimeout(clear, duration * 2);
 
     };
 
@@ -753,7 +781,7 @@ var search = (function () {
         showFeature: _showFeature,
         zoomToFeature: _zoomToFeature,
         clear: _clear,
-        clearSearchField: _clearSearchField
+        clearSearchField: _clearSearchField,
     };
 
 })();
