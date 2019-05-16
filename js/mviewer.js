@@ -1898,6 +1898,17 @@ mviewer = (function () {
                 timeControl: false,
             };
 
+            if (configuration.getConfiguration().basicAuthentication && view.legendurl) {
+                // To avoid a failed HTTP request to the secured server
+                // Replace scr by a transparent GIF in base64 to avoid empty src
+                view.legendurl = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                configuration.getImageFromBasicAuthURL(layer.legendurl, configuration.getConfiguration().basicAuthentication, function (res) {
+                    if (res) {
+                        view.legendurl = res;
+                    }
+                });
+            }
+
             if (layer.type === 'customlayer' && layer.tooltip) {
                 view.tooltipControl = true;
             }
