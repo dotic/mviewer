@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="lib/simple-slidebar/simple_slidebar.css">
     <link rel="stylesheet" href="lib/bootstrap-datepicker-1.6.1/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="lib/bootstrap-slider/9.1.3/css/bootstrap-slider.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
     <link rel="stylesheet" href="lib/font-awesome-5.6.3/css/all.min.css" type="text/css"/>
     <link rel="stylesheet" href="lib/openlayers/5.3.0/ol.css"/>
     <link rel="stylesheet" href="css/mviewer.css"/>
@@ -71,7 +72,8 @@
             }
         }
     </style>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     <script type="text/javascript" src="lib/proj4js/2.3.6/proj4.js"></script>
     <script type="text/javascript" src="lib/jquery/base/1.10.2/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="lib/openlayers/5.3.0/ol.js"></script>
@@ -83,7 +85,8 @@
     <script type="text/javascript" src="lib/bootstrap-slider/9.1.3/bootstrap-slider.min.js"></script>
     <script type="text/javascript" src="lib/typeahead/typeahead.bundle.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap-typeahead/bootstrap3-typeahead.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript" src="lib/fuse/fuse.min.js"></script>
     <script type="text/javascript" src="js/extend.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
@@ -113,7 +116,7 @@
                 if (fragment) {
                     configFile = fragment;
                     if (!configFile.startsWith("/")) {
-                        configFile = "/".concat(configFile)
+                        configFile = "/".concat(configFile);
                     }
                     configFile = "apps".concat(configFile);
                     if (!configFile.endsWith(".xml")) {
@@ -128,6 +131,16 @@
             }
 
             var theme = (API.theme) ? API.theme : null;
+            var globalLayerURL = (API.globalLayerURL) ? API.globalLayerURL : null;
+            var geoserverURL = (API.geoserverURL) ? API.geoserverURL : null;
+            var geoserverPort = (API.geoserverPort) ? API.geoserverPort : false;
+            var geoserverSecure = (API.geoserverSecure) ? API.geoserverSecure : false;
+            var workspace = (API.workspace) ? API.workspace : null;
+            var idDeposit = (API.idDeposit) ? API.idDeposit : undefined;
+            var company = (API.company) ? API.company : null;
+            var username = (API.username) ? API.username : undefined;
+            var password = (API.password) ? API.password : undefined;
+            var token = (API.token) ? API.token : ((username && password) ? window.btoa(username + ':' + password) : undefined);
 
             $.ajax({
                 url: configFile + '?_dc=' + (new Date()).getTime(),
@@ -152,6 +165,20 @@
                             title = _conf.application.title;
                             $("#loader-subtitle").text(title);
                         }
+                        if (company) {
+                            _conf.application.company = company;
+                        }
+                        if (globalLayerURL) {
+                            _conf.globalLayerURL = globalLayerURL;
+                        } else if (geoserverURL) {
+                            _conf.globalLayerURL = `http${geoserverSecure ? 's' : ''}://${geoserverURL}${geoserverPort ? ':' + geoserverPort : ''}/geoserver/${workspace}/wms`;
+                        }
+                        if (idDeposit) {
+                            _conf.filters = "id_livrable = '" + idDeposit + "'";
+                        }
+                        if (token) {
+                            _conf.basicAuthentication = 'Basic ' + token;
+                        }
                         configuration.load(_conf);
                         setTimeout(function () {
                             $("#loading-page").hide();
@@ -167,7 +194,7 @@
                 }, // fin success config
                 error: function (request, status, error) {
                     mviewer.alert("Fichier de configuration : " + configFile + " non trouvé ou incorrect !", "alert-danger");
-                }
+                },
             });
 
             Sortable.create(document.getElementById('layers-container'), {
@@ -177,7 +204,7 @@
                     var actionMove = {
                         layerName: $(evt.item).attr("data-layerid"),
                         layerRef: "",
-                        action: ""
+                        action: "",
                     };
                     var itemsList = $(evt.from).find(".list-group-item");
                     //New position in the list
@@ -185,18 +212,18 @@
                     if (newPos < itemsList.length - 1) {
                         //Get the under layer name
                         actionMove.layerRef = $(itemsList[newPos + 1]).attr("data-layerid");
-                        actionMove.action = "up"
+                        actionMove.action = "up";
                     } else {
                         //Get the over layer name
                         actionMove.layerRef = $(itemsList[newPos - 1]).attr("data-layerid");
                         actionMove.action = "down";
                     }
                     mviewer.orderLayer(actionMove);
-                }
+                },
             });
 
             $("#right-panel .close,#bottom-panel .mv-close").click(function () {
-                mviewer.hideLocation()
+                mviewer.hideLocation();
             });
 
         });
@@ -217,19 +244,23 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default no-margin navbar-fixed-top" id="mv-navbar">
         <div class="navbar-header fixed-brand">
-            <a type="button" class="navbar-brand menu-toggle" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            <a type="button" class="navbar-brand menu-toggle" href="#"><span
+                    class="glyphicon glyphicon-menu-hamburger"></span></a>
             <a class="navbar-brand" href="#">
                 <img alt="Logo" src="img/logo/earth-globe.svg" class="mv-logo">
             </a>
             <a class="navbar-brand mv-title" href="#">mViewer</a>
-            <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" href="#">
+            <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+               href="#">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mv-nav">
-                <li class="hidden-lg hidden-md"><a href="#" data-toggle="modal" data-target="#thematic-modal">Données</a></li>
-                <li class="hidden-lg hidden-md"><a href="#" data-toggle="modal" data-target="#legend-modal">Affichage</a></li>
+                <li class="hidden-lg hidden-md"><a href="#" data-toggle="modal"
+                                                   data-target="#thematic-modal">Données</a></li>
+                <li class="hidden-lg hidden-md"><a href="#" data-toggle="modal"
+                                                   data-target="#legend-modal">Affichage</a></li>
                 <li class="hidden-lg hidden-md"><a href="#" data-toggle="modal" data-target="#help">Aide</a></li>
                 <li class="hidden-xs hidden-sm hidden-md">
                     <div class="navbar-form navbar-left" id="coordinates">
@@ -253,7 +284,8 @@
                 </li>
                 <li class="hidden-xs hidden-sm">
                     <div class="nav navbar-nav">
-                        <button id="iconhelp" type="button" class="btn btn-default navbar-btn mv-navbar-btn" data-toggle="modal"
+                        <button id="iconhelp" type="button" class="btn btn-default navbar-btn mv-navbar-btn"
+                                data-toggle="modal"
                                 data-target="#help"><span class="fas fa-question"></span></button>
                     </div>
                 </li>
@@ -280,7 +312,8 @@
                             <div id="layers-container-box-header">
                                 <a onclick="mviewer.toggleLegend();" title="Afficher/masquer la légende" href="#"> <span
                                         class="glyphicon glyphicon-list"></span> </a>
-                                <a id="btn-remove-layers" onclick="mviewer.removeAllLayers();" title="Supprimer toutes les couches" href="#">
+                                <a id="btn-remove-layers" onclick="mviewer.removeAllLayers();"
+                                   title="Supprimer toutes les couches" href="#">
                                     <span class="glyphicon glyphicon-trash"></span> </a>
                             </div>
                             <ul id="layers-container" class="list-group"></ul>
@@ -298,7 +331,8 @@
                     <!-- RIGHT PANEL -->
                     <div id="right-panel">
                         <div class="mv-header"><h5>Informations</h5>
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="$('#right-panel').toggleClass('active')"
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close"
+                               onclick="$('#right-panel').toggleClass('active')"
                                title="Fermer">×</a>
                         </div>
                         <div class="popup-content"></div>
@@ -308,8 +342,10 @@
             <div id="mouse-position" class="container"></div>
             <!-- MARKER USED BY SEARCH IN FEATURES FUNCTIONNALITY, TO LOCATE SELECTED FEATURE ON THE MAP-->
             <!--<img id="els_marker" src="img/marker-pink.png" />-->
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="els_marker" x="0px" y="0px"
-                 viewBox="0 0 297 297" style="enable-background:new 0 0 297 297;" xml:space="preserve" width="30px" height="30px">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                 id="els_marker" x="0px" y="0px"
+                 viewBox="0 0 297 297" style="enable-background:new 0 0 297 297;" xml:space="preserve" width="30px"
+                 height="30px">
                 <path d="M148.5,0C85.646,0,34.511,51.136,34.511,113.989c0,25.11,8.008,48.926,23.157,68.873  c13.604,17.914,32.512,31.588,53.658,38.904l27.464,68.659c1.589,3.971,5.434,6.574,9.71,6.574c4.276,0,8.121-2.603,9.71-6.574  l27.464-68.659c21.146-7.316,40.054-20.99,53.658-38.904c15.149-19.947,23.157-43.763,23.157-68.873  C262.489,51.136,211.354,0,148.5,0z M148.5,72.682c22.777,0,41.308,18.53,41.308,41.308c0,22.777-18.53,41.309-41.308,41.309  c-22.777,0-41.308-18.531-41.308-41.309C107.192,91.212,125.723,72.682,148.5,72.682z"
                       fill="#F31541"/>
                 <g></g>
@@ -338,12 +374,14 @@
             </div>
             <!-- FIRST VERTICAL RIGHT TOOLBAR -->
             <div id="zoomtoolbar" class="btn-group-vertical btn-group-sm" role="group" aria-label="true">
-                <button href="#" onclick="mviewer.zoomIn();" title="Zoom avant (zoom fenêtre : shift + clic sur la carte)"
+                <button href="#" onclick="mviewer.zoomIn();"
+                        title="Zoom avant (zoom fenêtre : shift + clic sur la carte)"
                         class="btn btn-default btn-raised" tabindex="104" accesskey="4">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
                 <button href="#" id="toto" onclick="mviewer.zoomToInitialExtent();"
-                        title="Revenir à l'étendue géographique de départ" class="btn btn-default btn-raised" tabindex="105" accesskey="5">
+                        title="Revenir à l'étendue géographique de départ" class="btn btn-default btn-raised"
+                        tabindex="105" accesskey="5">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 </button>
                 <button href="#" onclick="mviewer.zoomOut();" title="Zoom arrière"
@@ -353,11 +391,13 @@
             </div>
             <!-- SECOND VERTICAL RIGHT TOOLBAR -->
             <div id="toolstoolbar" class="btn-group-vertical btn-group-sm" role="group" aria-label="true">
-                <a class="btn btn-default btn-raised" type="button" href="?login" id="login" title="Se connecter" tabindex="110" accesskey="10"
+                <a class="btn btn-default btn-raised" type="button" href="?login" id="login" title="Se connecter"
+                   tabindex="110" accesskey="10"
                    style="display:none;">
                     <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                 </a>
-                <button data-toggle="modal" data-target="#sharepanel" onclick="mviewer.mapShare();" id="sharebtn" title="Partager cette carte"
+                <button data-toggle="modal" data-target="#sharepanel" onclick="mviewer.mapShare();" id="sharebtn"
+                        title="Partager cette carte"
                         tabindex="111" accesskey="11" class="btn btn-default btn-raised">
                     <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                 </button>
@@ -374,8 +414,10 @@
                     <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
                 </a>
             </div>
-            <div id="backgroundlayerstoolbar-default" class="btn-group-vertical btn-group-sm" role="group" aria-label="true">
-                <button href="#" onclick="mviewer.nextBackgroundLayer();" id="backgroundlayersbtn" title="Changer de fond de carte"
+            <div id="backgroundlayerstoolbar-default" class="btn-group-vertical btn-group-sm" role="group"
+                 aria-label="true">
+                <button href="#" onclick="mviewer.nextBackgroundLayer();" id="backgroundlayersbtn"
+                        title="Changer de fond de carte"
                         tabindex="103" accesskey="3"
                         class="btn-lg btn-default btn-raised">
                     <!--<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>-->
@@ -431,15 +473,18 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group" id="mv-display-mode">
-                                <label class="radio-inline"><input type="radio" value="d" name="mv-display-mode" checked>Normal</label>
+                                <label class="radio-inline"><input type="radio" value="d" name="mv-display-mode"
+                                                                   checked>Normal</label>
                                 <label class="radio-inline"><input type="radio" name="mv-display-mode" value="s">Simplifié</label>
-                                <label class="radio-inline"><input type="radio" name="mv-display-mode" value="u">Ultra simplifié</label>
+                                <label class="radio-inline"><input type="radio" name="mv-display-mode" value="u">Ultra
+                                    simplifié</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <a type="button" class="btn btn-default" id="permalinklink" href="#" title="Lien permanent vers la carte"><img
+                            <a type="button" class="btn btn-default" id="permalinklink" href="#"
+                               title="Lien permanent vers la carte"><img
                                     src="img/share/share_link.png" height="100px"></a>
                         </div>
                         <div id='share' class="col-md-6 col-sm-6 col-xs-6">
@@ -461,7 +506,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <img class="popphoto center-block" src="img/blank.gif" style="max-height:512px;" alt="image">
+                            <img class="popphoto center-block" src="img/blank.gif" style="max-height:512px;"
+                                 alt="image">
                         </div>
                     </div>
                 </div>

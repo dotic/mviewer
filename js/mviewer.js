@@ -2150,7 +2150,15 @@ mviewer = (function () {
                 var refStyle = activeStyle;
                 //update legend image if nec.
                 var legendUrl = _getlegendurl(layer);
-                $("#legend-" + layer.layerid).attr("src", legendUrl);
+                if (configuration.getConfiguration().basicAuthentication) {
+                    configuration.getImageFromBasicAuthURL(legendUrl, configuration.getConfiguration().basicAuthentication, function (res) {
+                        if (res) {
+                            $("#legend-" + layer.layerid).attr("src", res);
+                        }
+                    });
+                } else {
+                    $("#legend-" + layer.layerid).attr("src", legendUrl);
+                }
             }
             if (oLayer.styles) {
                 var selectCtrl = $("#" + layer.layerid + "-styles-selector")[0];
