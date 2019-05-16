@@ -350,7 +350,6 @@ var search = (function () {
 
             var layername = searchableLayers[i].get('name');
             var layerid = searchableLayers[i].get('mviewerid');
-            console.log({layerid, _fuseSearchData});
             var results = _fuseSearchData[layerid].search(val);
             var zoom = 15;
             var max_results = 5;

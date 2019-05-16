@@ -385,8 +385,8 @@ var info = (function () {
 
         var ajaxFunction = function () {
             var headers = {};
-            if(configuration.getConfiguration().basicAuthentication){
-                headers.authorization = configuration.getConfiguration().basicAuthentication
+            if (configuration.getConfiguration().basicAuthentication) {
+                headers.authorization = configuration.getConfiguration().basicAuthentication;
             }
 
             urls.forEach(function (request) {
