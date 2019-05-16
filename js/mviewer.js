@@ -2346,10 +2346,17 @@ mviewer = (function () {
             var _source = _layerDefinition.layer.getSource();
             if (attributeValue === 'all') {
                 delete _source.getParams()['CQL_FILTER'];
+                if (configuration.getConfiguration().filters) {
+                    _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters;
+                }
             } else {
                 var cql_filter = this.makeCQL_Filter(_layerDefinition.attributefield, _layerDefinition.attributeoperator,
                     attributeValue);
-                _source.getParams()['CQL_FILTER'] = cql_filter;
+                if (configuration.getConfiguration().filters) {
+                    _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters + " AND " + cql_filter;
+                } else {
+                    _source.getParams()['CQL_FILTER'] = cql_filter;
+                }
             }
             if (_layerDefinition.attributestylesync) {
                 //need update legend ad style applied to the layer
