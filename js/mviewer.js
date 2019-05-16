@@ -2537,7 +2537,7 @@ mviewer = (function () {
         },
 
         toggleAllThemeLayers: function (e) {
-            e.preventDefault;
+            e.preventDefault();
             var themeid = $(e.currentTarget).closest("li").attr("id").split("theme-layers-")[1];
             var theme = _themes[themeid];
             var status = _getThemeStatus(themeid);
