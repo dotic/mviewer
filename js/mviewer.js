@@ -1900,8 +1900,8 @@ mviewer = (function () {
 
             if (configuration.getConfiguration().basicAuthentication && view.legendurl) {
                 // To avoid a failed HTTP request to the secured server
-                // Replace scr by a transparent GIF in base64 to avoid empty src
-                view.legendurl = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                // Replace scr by a transparent img to avoid empty src
+                view.legendurl = '/img/no_logo.svg';
                 configuration.getImageFromBasicAuthURL(layer.legendurl, configuration.getConfiguration().basicAuthentication, function (res) {
                     if (res) {
                         view.legendurl = res;
@@ -2336,7 +2336,15 @@ mviewer = (function () {
             var legendUrl = _getlegendurl(_layerDefinition);
             $("#legend-" + layerid).fadeOut("slow", function () {
                 // Animation complete
-                $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                if (configuration.getConfiguration().basicAuthentication) {
+                    configuration.getImageFromBasicAuthURL(legendUrl, configuration.getConfiguration().basicAuthentication, function (res) {
+                        if (res) {
+                            $("#legend-" + layerid).attr("src", res).fadeIn();
+                        }
+                    });
+                } else {
+                    $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                }
             });
             $('.mv-nav-item[data-layerid="' + layerid + '"]').attr("data-legendurl", legendUrl).data("legendurl", legendUrl);
 
