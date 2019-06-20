@@ -63,7 +63,6 @@ var configuration = (function () {
                     };
                 } else {
                     callback(null, xhr.status);
-                    w;
                 }
             }
         };
