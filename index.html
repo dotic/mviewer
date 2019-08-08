@@ -266,7 +266,8 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default no-margin navbar-fixed-top" id="mv-navbar">
         <div class="navbar-header fixed-brand">
-            <a type="button" class="navbar-brand menu-toggle" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            <a type="button" class="navbar-brand menu-toggle" href="#"><span
+                    class="glyphicon glyphicon-menu-hamburger"></span></a>
             <a class="navbar-brand" href="#" target='_blank'>
                 <img alt="Logo" src="img/logo/earth-globe.svg" class="mv-logo">
             </a>
@@ -293,7 +294,8 @@
                 <li>
                     <div class="navbar-form" role="search" id="searchtool">
                         <div class="form-group input-group">
-                            <input type="text" class="form-control" placeholder="Rechercher" id="searchfield">
+                            <input type="text" class="form-control" placeholder="Rechercher une adresse"
+                                   id="searchfield">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default" aria-label="Help" data-toggle="modal"
                                         data-target="#parameterspanel">
@@ -444,7 +446,7 @@
                     <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                 </button>
                 <a href="#" id="exportpng" title="Exporter carte au format image" download="carte.png"
-                   class="btn btn-default btn-raised"  tabindex="113" accesskey="13" style="display:none;">
+                   class="btn btn-default btn-raised" tabindex="113" accesskey="13" style="display:none;">
                     <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
                 </a>
             </div>
@@ -492,38 +494,49 @@
             </div>
         </div>
         <!-- SHARE PANEL -->
-        <div id="sharepanel" class="modal fade" tabindex="-1" role="dialog" >
+        <div id="sharepanel" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><center>Partager cette carte</center></h4>
+                        <h4 class="modal-title">
+                            <center>Partager cette carte</center>
+                        </h4>
                     </div>
-                    <div class="modal-body" >
+                    <div class="modal-body">
                         <h6 class="modal-share-title"><strong>Mode d'affichage</strong></h6>
                         <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12" >
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group" id="mv-display-mode">
-                                    <label class="radio-inline"><input type="radio" value="d" name="mv-display-mode" checked>Normal</label>
+                                    <label class="radio-inline"><input type="radio" value="d" name="mv-display-mode"
+                                                                       checked>Normal</label>
                                     <label class="radio-inline"><input type="radio" name="mv-display-mode" value="s">Simplifié</label>
-                                    <label class="radio-inline"><input type="radio" name="mv-display-mode" value="u">Ultra simplifié</label>
+                                    <label class="radio-inline"><input type="radio" name="mv-display-mode" value="u">Ultra
+                                        simplifié</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6" >
-                                <a type="button" class="btn btn-default" id="permalinklink" href="#" title="Lien permanent vers la carte"><img src="img/share/share_link.png" height="100px"></a>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <a type="button" class="btn btn-default" id="permalinklink" href="#"
+                                   title="Lien permanent vers la carte"><img src="img/share/share_link.png"
+                                                                             height="100px"></a>
                             </div>
                             <div id='share' class="col-md-6 col-sm-6 col-xs-6">
-                                <img id="permaqr" src="img/blank.gif" title="QR code vers la carte" alt="QR code" />
+                                <img id="permaqr" src="img/blank.gif" title="QR code vers la carte" alt="QR code"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-10 form-inline">
-                                <button id="shareToMapfish" type="button" class="btn btn-md btn-default" onclick="mviewer.sendToGeorchestra();"><span class="fas fa-share-square"></span></button>Afficher dans Mapfishapp
-                                <form id="georchestraForm" target="_blank" method="post" action="#" style="display:none;">
-                                    <input type="hidden" id="georchestraFormData" name="data" value="" />
-                                    <input type="submit" data-role="button" data-mini="true" data-iconpos="right" value="geOrchestra" />
+                                <button id="shareToMapfish" type="button" class="btn btn-md btn-default"
+                                        onclick="mviewer.sendToGeorchestra();"><span class="fas fa-share-square"></span>
+                                </button>
+                                Afficher dans Mapfishapp
+                                <form id="georchestraForm" target="_blank" method="post" action="#"
+                                      style="display:none;">
+                                    <input type="hidden" id="georchestraFormData" name="data" value=""/>
+                                    <input type="submit" data-role="button" data-mini="true" data-iconpos="right"
+                                           value="geOrchestra"/>
                                 </form>
                             </div>
                         </div>
