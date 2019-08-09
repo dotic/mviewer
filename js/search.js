@@ -403,12 +403,20 @@ var search = (function () {
             var currentExtent = _map.getView().calculateExtent(_map.getSize());
             var pe = ol.proj.transformExtent(currentExtent, _projection.getCode(), 'EPSG:4326');
             for (var i = 0; i < searchableLayers.length; i++) {
-                queryLayers.push({"type": {"value": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                if (_elasticSearchVersion === "current") {
+                    queryLayers.push({"term": {"type": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                } else {
+                    queryLayers.push({"type": {"value": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                }
             }
             if (_searchparams.static && _elasticSearchDocTypes) {
                 var doctypes = _elasticSearchDocTypes.split(",");
                 for (var i = 0; i < doctypes.length; i++) {
-                    queryLayers.push({"type": {"value": doctypes[i]}});
+                    if (_elasticSearchVersion === "current") {
+                        queryLayers.push({"term": {"type": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                    } else {
+                        queryLayers.push({"type": {"value": doctypes[i]}});
+                    }
                 }
             }
             var query;
@@ -470,6 +478,9 @@ var search = (function () {
                     case "match":
                         query = {"match": {"_all": {"query": val, "fuzziness": "AUTO"}}};
                         break;
+                    case "multi_match":
+                        query = {"multi_match": {"query": val, "fuzziness": "AUTO"}};
+                        break;
                     default:
                         query = {"match": {"_all": {"query": val, "fuzziness": "AUTO"}}};
                 }
@@ -522,7 +533,7 @@ var search = (function () {
                     crossDomain: true,
                     data: JSON.stringify(queryFilter),
                     dataType: "json",
-                    //contentType: "application/json; charset=utf-8",
+                    contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         _sourceEls.clear();
                         var str = '<a class="elasticsearch list-group-item disabled" >Entités</a>';
