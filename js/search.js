@@ -481,6 +481,19 @@ var search = (function () {
                     case "multi_match":
                         query = {"multi_match": {"query": val, "fuzziness": "AUTO"}};
                         break;
+                    case "search_as_you_type":
+                        query = {
+                            "multi_match": {
+                                "query": val,
+                                "type": "cross_fields",
+                                "fields": [
+                                    "code^4",
+                                    "title^3",
+                                    "data_*^2",
+                                ],
+                            },
+                        };
+                        break;
                     default:
                         query = {"match": {"_all": {"query": val, "fuzziness": "AUTO"}}};
                 }
@@ -489,15 +502,23 @@ var search = (function () {
                         "bool": {
                             "must": [
                                 query,
+                            ],
+                            "filter": [
                                 {
-                                    "bool": {
-                                        "should": queryLayers,
-                                    },
+                                    "bool": {"should": queryLayers},
                                 },
                             ],
                         },
                     },
                 };
+                if (window && window.API) {
+                    if (window.API.workspace) {
+                        queryFilter.query.bool['filter'].push({term: {workspace: window.API.workspace}});
+                    }
+                    if (window.API.idDeposit) {
+                        queryFilter.query.bool['filter'].push({term: {idLivrable: window.API.idDeposit}});
+                    }
+                }
             }
 
             if (_searchparams.bbox) {
@@ -547,6 +568,45 @@ var search = (function () {
                             var action_over = "";
                             var icon = "img/star.svg";
                             var title = data.hits.hits[i]._source.title;
+                            if (data.hits.hits[i]._source.code) {
+                                title += ' - Code : ' + data.hits.hits[i]._source.code;
+                            }
+                            if (data.hits.hits[i]._source.data_externalCode) {
+                                title += ' - Code externe : ' + data.hits.hits[i]._source.data_externalCode;
+                            }
+                            if (data.hits.hits[i]._source.data_box) {
+                                title += ' - Dans la boite : ' + data.hits.hits[i]._source.data_box;
+                            }
+                            if (data.hits.hits[i]._source.data_rack) {
+                                title += ' - Dans la baie : ' + data.hits.hits[i]._source.data_rack;
+                            }
+                            if (data.hits.hits[i]._source.data_cable) {
+                                title += ' - Cable : ' + data.hits.hits[i]._source.data_cable;
+                            }
+                            if (data.hits.hits[i]._source.data_node) {
+                                title += ' - Noeud : ' + data.hits.hits[i]._source.data_node;
+                            }
+                            if (data.hits.hits[i]._source.data_roomCode) {
+                                title += ' - Code de la chambre : ' + data.hits.hits[i]._source.data_roomCode;
+                            }
+                            if (data.hits.hits[i]._source.data_roomFace) {
+                                title += ' - Face de la chambre : ' + data.hits.hits[i]._source.data_roomFace;
+                            }
+                            if (data.hits.hits[i]._source.data_orderNumber) {
+                                title += ' - Numéro ordre : ' + data.hits.hits[i]._source.data_orderNumber;
+                            }
+                            if (data.hits.hits[i]._source.data_streetName) {
+                                title += ' - Nom de la voie : ' + data.hits.hits[i]._source.data_streetName;
+                            }
+                            if (data.hits.hits[i]._source.data_streetNumber) {
+                                title += ' - Numéro : ' + data.hits.hits[i]._source.data_streetNumber;
+                            }
+                            if (data.hits.hits[i]._source.data_titleType) {
+                                title += ' - Type : ' + data.hits.hits[i]._source.data_titleType;
+                            }
+                            if (data.hits.hits[i]._source.data_address) {
+                                title += ' - Adresse : ' + data.hits.hits[i]._source.data_address;
+                            }
                             if (geomtype !== 'Point') {
                                 var feature = new ol.Feature({
                                     geometry: geom.transform('EPSG:4326', 'EPSG:3857'),

@@ -105,6 +105,7 @@
             if (window.location.search) {
                 $.extend(API, $.parseJSON('{"' + decodeURIComponent(window.location.search.substring(1)
                     .replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}'));
+                window.API = API;
             }
 
             // Search for a config param
@@ -300,7 +301,7 @@
     </nav>
     <div id="wrapper">
         <!-- LEFT MENU SIDEBAR -->
-        <div id="sidebar-wrapper"></div>
+        <div id="sidebar-wrapper" style="position: fixed;top: 60px;left: 0;"></div>
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid xyz">
