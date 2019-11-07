@@ -88,8 +88,15 @@ mviewer = (function () {
 
     var _overLayersReady = function () {
         mviewer.init();
-        mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
         _applyPermalink();
+        //Get backgroundlayer value if exists
+        if (API.lb && $.grep(_backgroundLayers, function (n) {
+            return n.get('blid') === API.lb;
+        })[0]) {
+            mviewer.setBaseLayer(API.lb);
+        } else {
+            mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
+        }
         _showCheckedLayers();
     };
 
@@ -103,12 +110,6 @@ mviewer = (function () {
             var zoom = parseInt(API.z);
             _map.getView().setCenter(center);
             _map.getView().setZoom(zoom);
-        }
-        //Get backgroundlayer value if exists
-        if (API.lb && $.grep(_backgroundLayers, function (n) {
-            return n.get('blid') === API.lb;
-        })[0]) {
-            mviewer.setBaseLayer(API.lb);
         }
         //get visible layers
         if (API.l) {
@@ -684,10 +685,9 @@ mviewer = (function () {
             configuration.getConfiguration().mobile = true;
             if (displayMode) {
                 $("#wrapper, #main").addClass("mode-" + displayMode);
-                $("#page-content-wrapper").append([
-                    '<a id="btn-mode-su-menu" class="btn btn-default" ',
-                    'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
-                    '<span class="glyphicon glyphicon-menu-hamburger"></span></a>',
+                $("#page-content-wrapper").append(['<a id="btn-mode-su-menu" class="btn btn-sm btn-default" ',
+                                                   'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
+                                                   '<span class="glyphicon glyphicon-menu-hamburger"></span></a>',
                 ].join(""));
                 if (displayMode === "u") {
                     $("#mv-navbar").remove();
@@ -765,8 +765,18 @@ mviewer = (function () {
         var reverse_themes = [];
         var crossorigin = '';
         _themes = configuration.getThemes();
+        var topics = false;
+        if (API.topics) {
+            topics = API.topics.split(",");
+        }
         $.each(_themes, function (id, theme) {
-            reverse_themes.push(theme);
+            if (topics) {
+                if (topics.indexOf(theme.id) >= 0) {
+                    reverse_themes.push(theme);
+                }
+            } else {
+                reverse_themes.push(theme);
+            }
         });
 
         $.each(reverse_themes.reverse(), function (id, theme) {
@@ -1383,7 +1393,7 @@ mviewer = (function () {
     var _getLonLatZfromGeometry = function (geometry, proj, maxzoom) {
         var xyz = {};
         //For Point or multiPoints with one point
-        if (geometry.getType() === "Point" || geometry.getPoints().length === 1) {
+        if (geometry.getType() === "Point" || (geometry.getType() === "MultiPoint" && geometry.getPoints().length === 1)) {
             var coordinates = geometry.getPoints()[0].flatCoordinates;
             xyz = {
                 lon: coordinates[0],
@@ -1596,7 +1606,7 @@ mviewer = (function () {
 
         bgtoogle: function () {
             $("#backgroundlayerstoolbar-gallery .no-active").toggle();
-            $("#backgroundlayerstoolbar-gallery .bglt-btn").toggleClass("mini");
+            //$("#backgroundlayerstoolbar-gallery .bglt-btn").toggleClass("mini");
         },
 
         /**
@@ -1650,6 +1660,22 @@ mviewer = (function () {
                     _map.getLayers().setAt(_map.getLayers().getArray().length, _overlayFeatureLayer);
                 }
                 _map.render();
+            }
+        },
+        /**
+         * Public Method: openStudio
+         */
+        openStudio: function() {
+            // get xml config file
+            var configFile = API.config ? API.config : 'config.xml';
+            // get domain url and clean
+            var splitStr = window.location.href.split('?')[0].replace('#','').split('/');
+            splitStr = splitStr.slice(0,splitStr.length-1).join('/');
+            // create absolute config file url
+            var url = splitStr + '/' + configFile;
+            // send config file to studio
+            if(url) {
+                window.open(configuration.getConfiguration().application.studio + url, '_blank');
             }
         },
 
@@ -1897,6 +1923,17 @@ mviewer = (function () {
                 attributeControl: false,
                 timeControl: false,
             };
+
+            if (configuration.getConfiguration().basicAuthentication && view.legendurl) {
+                // To avoid a failed HTTP request to the secured server
+                // Replace scr by a transparent img to avoid empty src
+                view.legendurl = '/img/no_logo.svg';
+                configuration.getImageFromBasicAuthURL(layer.legendurl, configuration.getConfiguration().basicAuthentication, function (res) {
+                    if (res) {
+                        view.legendurl = res;
+                    }
+                });
+            }
 
             if (layer.type === 'customlayer' && layer.tooltip) {
                 view.tooltipControl = true;
@@ -2281,10 +2318,10 @@ mviewer = (function () {
             $(el).closest("li").find(".mv-layer-options").slideToggle();
             //hack slider js
             $(el).closest("li").find(".mv-slider-timer").slider('relayout');
-            if ($(el).find("span.state-icon").hasClass("glyphicon glyphicon-plus")) {
-                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-plus").addClass("glyphicon glyphicon-minus");
+            if ($(el).find("span.state-icon").hasClass("glyphicon glyphicon-chevron-down")) {
+                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-chevron-down").addClass("glyphicon glyphicon-chevron-up");
             } else {
-                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-minus").addClass("glyphicon glyphicon-plus");
+                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-chevron-up").addClass("glyphicon glyphicon-chevron-down");
             }
         },
 
@@ -2325,7 +2362,15 @@ mviewer = (function () {
             var legendUrl = _getlegendurl(_layerDefinition);
             $("#legend-" + layerid).fadeOut("slow", function () {
                 // Animation complete
-                $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                if (configuration.getConfiguration().basicAuthentication) {
+                    configuration.getImageFromBasicAuthURL(legendUrl, configuration.getConfiguration().basicAuthentication, function (res) {
+                        if (res) {
+                            $("#legend-" + layerid).attr("src", res).fadeIn();
+                        }
+                    });
+                } else {
+                    $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                }
             });
             $('.mv-nav-item[data-layerid="' + layerid + '"]').attr("data-legendurl", legendUrl).data("legendurl", legendUrl);
 
@@ -2346,10 +2391,17 @@ mviewer = (function () {
             var _source = _layerDefinition.layer.getSource();
             if (attributeValue === 'all') {
                 delete _source.getParams()['CQL_FILTER'];
+                if (configuration.getConfiguration().filters) {
+                    _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters;
+                }
             } else {
                 var cql_filter = this.makeCQL_Filter(_layerDefinition.attributefield, _layerDefinition.attributeoperator,
                     attributeValue);
-                _source.getParams()['CQL_FILTER'] = cql_filter;
+                if (configuration.getConfiguration().filters) {
+                    _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters + " AND " + cql_filter;
+                } else {
+                    _source.getParams()['CQL_FILTER'] = cql_filter;
+                }
             }
             if (_layerDefinition.attributestylesync) {
                 //need update legend ad style applied to the layer
@@ -2530,7 +2582,7 @@ mviewer = (function () {
         },
 
         toggleAllThemeLayers: function (e) {
-            e.preventDefault;
+            e.preventDefault();
             var themeid = $(e.currentTarget).closest("li").attr("id").split("theme-layers-")[1];
             var theme = _themes[themeid];
             var status = _getThemeStatus(themeid);
