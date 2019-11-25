@@ -88,15 +88,18 @@ mviewer = (function () {
 
     var _overLayersReady = function () {
         mviewer.init();
+        // OLD VERSION
+        // ligne supprimée
+        mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
         _applyPermalink();
         //Get backgroundlayer value if exists
-        if (API.lb && $.grep(_backgroundLayers, function (n) {
-            return n.get('blid') === API.lb;
-        })[0]) {
-            mviewer.setBaseLayer(API.lb);
-        } else {
-            mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
-        }
+        // if (API.lb && $.grep(_backgroundLayers, function (n) {
+        //     return n.get('blid') === API.lb;
+        // })[0]) {
+        //     mviewer.setBaseLayer(API.lb);
+        // } else {
+        //     mviewer.setBaseLayer(configuration.getDefaultBaseLayer());
+        // }
         _showCheckedLayers();
     };
 
@@ -111,6 +114,13 @@ mviewer = (function () {
             _map.getView().setCenter(center);
             _map.getView().setZoom(zoom);
         }
+        // OLD VERSION
+        //Get backgroundlayer value if exists
+        // if (API.lb && $.grep(_backgroundLayers, function (n) {
+        //     return n.get('blid') === API.lb;
+        // })[0]) {
+        //     mviewer.setBaseLayer(API.lb);
+        // }
         //get visible layers
         if (API.l) {
             _setVisibleOverLayers(API.l);
@@ -685,6 +695,8 @@ mviewer = (function () {
             configuration.getConfiguration().mobile = true;
             if (displayMode) {
                 $("#wrapper, #main").addClass("mode-" + displayMode);
+                // OLD VERSION
+                // class btn-sm enlevée
                 $("#page-content-wrapper").append(['<a id="btn-mode-su-menu" class="btn btn-sm btn-default" ',
                                                    'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
                                                    '<span class="glyphicon glyphicon-menu-hamburger"></span></a>',
@@ -761,23 +773,49 @@ mviewer = (function () {
      */
 
     var _initDataList = function () {
+        // OLD VERSION
+        // var htmlListGroup = '';
+        // var reverse_themes = [];
+        // var crossorigin = '';
+        // _themes = configuration.getThemes();
+        // var topics = false;
+        // if (API.topics) {
+        //     topics = API.topics.split(",");
+        // }
+        // $.each(_themes, function (id, theme) {
+        //     if (topics) {
+        //         if (topics.indexOf(theme.id) >= 0) {
+        //             reverse_themes.push(theme);
+        //         }
+        //     } else {
+        //         reverse_themes.push(theme);
+        //     }
+        // });
+
+
         var htmlListGroup = '';
         var reverse_themes = [];
         var crossorigin = '';
         _themes = configuration.getThemes();
-        var topics = false;
-        if (API.topics) {
-            topics = API.topics.split(",");
-        }
         $.each(_themes, function (id, theme) {
-            if (topics) {
-                if (topics.indexOf(theme.id) >= 0) {
-                    reverse_themes.push(theme);
-                }
-            } else {
-                reverse_themes.push(theme);
-            }
+            reverse_themes.push(theme);
         });
+
+        // OLD VERSION
+        // _themes = configuration.getThemes();
+        // var topics = false;
+        // if (API.topics) {
+        //     topics = API.topics.split(",");
+        // }
+        // $.each(_themes, function (id, theme) {
+        //     if (topics) {
+        //         if (topics.indexOf(theme.id) >= 0) {
+        //             reverse_themes.push(theme);
+        //         }
+        //     } else {
+        //         reverse_themes.push(theme);
+        //     }
+        // });
 
         $.each(reverse_themes.reverse(), function (id, theme) {
             var reverse_layers = [];
@@ -1393,7 +1431,9 @@ mviewer = (function () {
     var _getLonLatZfromGeometry = function (geometry, proj, maxzoom) {
         var xyz = {};
         //For Point or multiPoints with one point
-        if (geometry.getType() === "Point" || (geometry.getType() === "MultiPoint" && geometry.getPoints().length === 1)) {
+        // OLD VERSION
+        // if (geometry.getType() === "Point" || (geometry.getType() === "MultiPoint" && geometry.getPoints().length === 1)) {
+        if (geometry.getType() === "Point" || geometry.getPoints().length === 1) {
             var coordinates = geometry.getPoints()[0].flatCoordinates;
             xyz = {
                 lon: coordinates[0],
@@ -1606,6 +1646,7 @@ mviewer = (function () {
 
         bgtoogle: function () {
             $("#backgroundlayerstoolbar-gallery .no-active").toggle();
+            // COMMENT HERE
             //$("#backgroundlayerstoolbar-gallery .bglt-btn").toggleClass("mini");
         },
 
@@ -2323,6 +2364,14 @@ mviewer = (function () {
             } else {
                 $(el).find("span.state-icon").removeClass("glyphicon glyphicon-chevron-up").addClass("glyphicon glyphicon-chevron-down");
             }
+
+            // OLD VERSION
+            // $(el).closest("li").find(".mv-slider-timer").slider('relayout');
+            // if ($(el).find("span.state-icon").hasClass("glyphicon glyphicon-plus")) {
+            //     $(el).find("span.state-icon").removeClass("glyphicon glyphicon-plus").addClass("glyphicon glyphicon-minus");
+            // } else {
+            //     $(el).find("span.state-icon").removeClass("glyphicon glyphicon-minus").addClass("glyphicon glyphicon-plus");
+            // }
         },
 
         setLayerStyle: function (layerid, style, selectCtrl) {

@@ -643,7 +643,6 @@ var configuration = (function () {
                                 wms_params['CQL_FILTER'] = oLayer.filter;
                             }
                             if (conf.filters) {
-                                console.log('f', conf.filters);
                                 if (wms_params['CQL_FILTER']) {
                                     wms_params['CQL_FILTER'] += 'AND ' + conf.filters;
                                 } else {
