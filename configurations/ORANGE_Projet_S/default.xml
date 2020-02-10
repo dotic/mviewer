@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-    <application title="Diffusion cartographique" help="mviewer_help.html" logo="/img/logo/companies/dotic.png"
+    <application title="Diffusion cartographique" help="mviewer_help.html" logo="/img/logo/companies/orange.png"
                  measuretools="true" exportpng="true" coordinates="true" togglealllayersfromtheme="true"
-                 style="css/themes/peter_river.css"/>
-    <configurations>
-        <configuration file="configurations/dotic/default.xml" name="Par défaut"/>
-        <configuration file="configurations/dotic/geobretagne.xml" name="Geobretagne"/>
-    </configurations>
+                 style="css/themes/black.css"/>
     <mapoptions maxzoom="19" projection="EPSG:3857" center="266648.59,5955321.72" zoom="6"
                 projextent="-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244"/>
 

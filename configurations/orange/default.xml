@@ -23,7 +23,7 @@
                    attribution="Map tiles by  &lt;a href='http://cartodb.com/attributions'>CartoDb &lt;/a>, under  &lt;a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0 &lt;/a>"/>
         <baselayer type="OSM" id="esriworldimagery" label="Esri world imagery" title="esriworldimagery"
                    thumbgallery="img/basemap/ortho.jpg"
-                   url="http://fas fa-server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/Mapfas fa-server/tile/{z}/{y}/{x}"
+                   url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
                    visible="false"
                    attribution="Esri world imagery"/>
     </baselayers>
