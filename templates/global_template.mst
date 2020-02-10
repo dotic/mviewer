@@ -1,0 +1,2532 @@
+{{#features}}
+	<li class="item" style="width:238px;">
+   <p class="text-feature">
+			{{#ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique de l'adresse:</span> {{ad_code}}<br/>
+{{/ad_code}}
+{{#ad_ban_id}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant Base Adresse Nationale :</span> {{ad_ban_id}}<br/>
+{{/ad_ban_id}}
+{{#ad_nomvoie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom de la voie :</span> {{ad_nomvoie}}<br/>
+{{/ad_nomvoie}}
+{{#ad_fantoir}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant  FANTOIR:</span> {{ad_fantoir}}<br/>
+{{/ad_fantoir}}
+{{#ad_numero}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro  éventuel  de  l’adresse  dans  la voie :</span> {{ad_numero}}<br/>
+{{/ad_numero}}
+{{#ad_rep}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Indice de répétition associé au numéro  :</span> {{ad_rep}}<br/>
+{{/ad_rep}}
+{{#ad_insee}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant INSEE  :</span> {{ad_insee}}<br/>
+{{/ad_insee}}
+{{#ad_postal}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code  postal  :</span> {{ad_postal}}<br/>
+{{/ad_postal}}
+{{#ad_alias}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Alias</span> {{ad_alias}}<br/>
+{{/ad_alias}}
+{{#ad_nom_ld}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom  du  lieu-dit  :</span> {{ad_nom_ld}}<br/>
+{{/ad_nom_ld}}
+{{#ad_x_ban}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">X en lambert 93 :</span> {{ad_x_ban}}<br/>
+{{/ad_x_ban}}
+{{#ad_y_ban}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Y en lambert 93 :</span> {{ad_y_ban}}<br/>
+{{/ad_y_ban}}
+{{#ad_commune}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom officiel de la commune :</span> {{ad_commune}}<br/>
+{{/ad_commune}}
+{{#ad_section}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Section cadastrale  :</span> {{ad_section}}<br/>
+{{/ad_section}}
+{{#ad_idpar}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la parcelle de référence. </span> {{ad_idpar}}<br/>
+{{/ad_idpar}}
+{{#ad_x_parc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">X en lambert 93  :</span> {{ad_x_parc}}<br/>
+{{/ad_x_parc}}
+{{#ad_y_parc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Y en lambert 93 :</span> {{ad_y_parc}}<br/>
+{{/ad_y_parc}}
+{{#ad_nat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Oui si le site n'est pas une propriété privée :</span> {{ad_nat}}<br/>
+{{/ad_nat}}
+{{#ad_nblhab}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de locaux d'habitations(foyers) :</span> {{ad_nblhab}}<br/>
+{{/ad_nblhab}}
+{{#ad_nblpro}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de locaux professionnels :</span> {{ad_nblpro}}<br/>
+{{/ad_nblpro}}
+{{#ad_nbprhab}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises habitation :</span> {{ad_nbprhab}}<br/>
+{{/ad_nbprhab}}
+{{#ad_nbprpro}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises professionnelles :</span> {{ad_nbprpro}}<br/>
+{{/ad_nbprpro}}
+{{#ad_rivoli}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code RIVOLI :</span> {{ad_rivoli}}<br/>
+{{/ad_rivoli}}
+{{#ad_hexacle}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code HEXACLE :</span> {{ad_hexacle}}<br/>
+{{/ad_hexacle}}
+{{#ad_hexaclv}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code HEXACLE Voie:</span> {{ad_hexaclv}}<br/>
+{{/ad_hexaclv}}
+{{#ad_distinf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Distance en mètres de l'infra mobilisable en distribution.:</span> {{ad_distinf}}<br/>
+{{/ad_distinf}}
+{{#ad_isole}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Pour distinguer les SUF considérés comme isolés :</span> {{ad_isole}}<br/>
+{{/ad_isole}}
+{{#ad_prio}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Le raccordement du site est-il prioritaire ? :</span> {{ad_prio}}<br/>
+{{/ad_prio}}
+{{#ad_racc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de raccordement du site :</span> {{ad_racc}}<br/>
+{{/ad_racc}}
+{{#ad_batcode}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du bâtiment externe :</span> {{ad_batcode}}<br/>
+{{/ad_batcode}}
+{{#ad_nombat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Ce champ correspond au nom du batiment  :</span> {{ad_nombat}}<br/>
+{{/ad_nombat}}
+{{#ad_ietat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Permet d'indiquer l'avancement du déploiement:</span> {{ad_ietat}}<br/>
+{{/ad_ietat}}
+{{#ad_itypeim}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type d'immeuble :</span> {{ad_itypeim}}<br/>
+{{/ad_itypeim}}
+{{#ad_imneuf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Habitat collectif ? :</span> {{ad_imneuf}}<br/>
+{{/ad_imneuf}}
+{{#ad_idatimn}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Ce champ est utilisé dans le cadre des immeubles neufs et facultatif :</span> {{ad_idatimn}}<br/>
+{{/ad_idatimn}}
+{{#ad_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire de l'immeuble  :</span> {{ad_prop}}<br/>
+{{/ad_prop}}
+{{#ad_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire d'immeuble  :</span> {{ad_gest}}<br/>
+{{/ad_gest}}
+{{#ad_idatsgn}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la signature de la convention avec le gestionnaire de l'immeuble:</span> {{ad_idatsgn}}<br/>
+{{/ad_idatsgn}}
+{{#ad_iaccgst}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Accord du gestionnaire d'immeuble pour le raccordement :</span> {{ad_iaccgst}}<br/>
+{{/ad_iaccgst}}
+{{#ad_idatcab}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date prévisionnelle ou effective du câblage de l'adresse.  :</span> {{ad_idatcab}}<br/>
+{{/ad_idatcab}}
+{{#ad_idatcom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de commercialisation de la ligne :</span> {{ad_idatcom}}<br/>
+{{/ad_idatcom}}
+{{#ad_typzone}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de zone de l'adresse desservie.  :</span> {{ad_typzone}}<br/>
+{{/ad_typzone}}
+{{#ad_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{ad_comment}}<br/>
+{{/ad_comment}}
+{{#ad_geolqlt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Précision du positionnement de l'objet, estimée en mètres.  :</span> {{ad_geolqlt}}<br/>
+{{/ad_geolqlt}}
+{{#ad_geolmod}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mode d'implantation de l'objet:</span> {{ad_geolmod}}<br/>
+{{/ad_geolmod}}
+{{#ad_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{ad_geolsrc}}<br/>
+{{/ad_geolsrc}}
+{{#ad_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{ad_creadat}}<br/>
+{{/ad_creadat}}
+{{#ad_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{ad_majdate}}<br/>
+{{/ad_majdate}}
+{{#ad_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{ad_majsrc}}<br/>
+{{/ad_majsrc}}
+{{#ad_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{ad_abddate}}<br/>
+{{/ad_abddate}}
+{{#ad_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{ad_abdsrc}}<br/>
+{{/ad_abdsrc}}
+{{#ba_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code baie ou ferme :</span> {{ba_code}}<br/>
+{{/ba_code}}
+{{#ba_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{ba_codeext}}<br/>
+{{/ba_codeext}}
+{{#ba_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{ba_etiquet}}<br/>
+{{/ba_etiquet}}
+{{#ba_lt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du local technique :</span> {{ba_lt_code}}<br/>
+{{/ba_lt_code}}
+{{#ba_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du tiroir:</span> {{ba_prop}}<br/>
+{{/ba_prop}}
+{{#ba_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire:</span> {{ba_gest}}<br/>
+{{/ba_gest}}
+{{#ba_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur :</span> {{ba_user}}<br/>
+{{/ba_user}}
+{{#ba_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{ba_proptyp}}<br/>
+{{/ba_proptyp}}
+{{#ba_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du statut de déploiement:</span> {{ba_statut}}<br/>
+{{/ba_statut}}
+{{#ba_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat de la BAIE :</span> {{ba_etat}}<br/>
+{{/ba_etat}}
+{{#ba_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la référence de la baie dans la table référence:</span> {{ba_rf_code}}<br/>
+{{/ba_rf_code}}
+{{#ba_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type du contenant selon qu'il s'agisse d'une BAIE ou d'une FERME:</span> {{ba_type}}<br/>
+{{/ba_type}}
+{{#ba_nb_u}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Taille de la baie en nombre de U :</span> {{ba_nb_u}}<br/>
+{{/ba_nb_u}}
+{{#ba_haut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Hauteur en mm :</span> {{ba_haut}}<br/>
+{{/ba_haut}}
+{{#ba_larg}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Largeur en mm :</span> {{ba_larg}}<br/>
+{{/ba_larg}}
+{{#ba_prof}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Profondeur en mm :</span> {{ba_prof}}<br/>
+{{/ba_prof}}
+{{#ba_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{ba_comment}}<br/>
+{{/ba_comment}}
+{{#ba_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{ba_creadat}}<br/>
+{{/ba_creadat}}
+{{#ba_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{ba_majdate}}<br/>
+{{/ba_majdate}}
+{{#ba_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{ba_majsrc}}<br/>
+{{/ba_majsrc}}
+{{#ba_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{ba_abddate}}<br/>
+{{/ba_abddate}}
+{{#ba_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{ba_abdsrc}}<br/>
+{{/ba_abdsrc}}
+{{#cc_cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code câble :</span> {{cc_cb_code}}<br/>
+{{/cc_cb_code}}
+{{#cc_cd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'une conduite accueillant le câble:</span> {{cc_cd_code}}<br/>
+{{/cc_cd_code}}
+{{#cc_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cc_creadat}}<br/>
+{{/cc_creadat}}
+{{#cc_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cc_majdate}}<br/>
+{{/cc_majdate}}
+{{#cc_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cc_majsrc}}<br/>
+{{/cc_majsrc}}
+{{#cc_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cc_abddate}}<br/>
+{{/cc_abddate}}
+{{#cc_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cc_abdsrc}}<br/>
+{{/cc_abdsrc}}
+{{#cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code câble :</span> {{cb_code}}<br/>
+{{/cb_code}}
+{{#cb_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{cb_codeext}}<br/>
+{{/cb_codeext}}
+{{#cb_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{cb_etiquet}}<br/>
+{{/cb_etiquet}}
+{{#cb_nd1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du noeud à l'extrêmité 1 du câble.  :</span> {{cb_nd1}}<br/>
+{{/cb_nd1}}
+{{#cb_nd2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du noeud à l'extrêmité 2 du câble.  :</span> {{cb_nd2}}<br/>
+{{/cb_nd2}}
+{{#cb_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{cb_r1_code}}<br/>
+{{/cb_r1_code}}
+{{#cb_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{cb_r2_code}}<br/>
+{{/cb_r2_code}}
+{{#cb_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{cb_r3_code}}<br/>
+{{/cb_r3_code}}
+{{#cb_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{cb_r4_code}}<br/>
+{{/cb_r4_code}}
+{{#cb_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire du câble :</span> {{cb_prop}}<br/>
+{{/cb_prop}}
+{{#cb_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire du câble :</span> {{cb_gest}}<br/>
+{{/cb_gest}}
+{{#cb_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur du câble :</span> {{cb_user}}<br/>
+{{/cb_user}}
+{{#cb_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{cb_proptyp}}<br/>
+{{/cb_proptyp}}
+{{#cb_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{cb_statut}}<br/>
+{{/cb_statut}}
+{{#cb_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du câble :</span> {{cb_etat}}<br/>
+{{/cb_etat}}
+{{#cb_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de pose du câble :</span> {{cb_dateins}}<br/>
+{{/cb_dateins}}
+{{#cb_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{cb_datemes}}<br/>
+{{/cb_datemes}}
+{{#cb_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{cb_avct}}<br/>
+{{/cb_avct}}
+{{#cb_tech}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Technologie du câble  :</span> {{cb_tech}}<br/>
+{{/cb_tech}}
+{{#cb_typephy}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type physique du câble:</span> {{cb_typephy}}<br/>
+{{/cb_typephy}}
+{{#cb_typelog}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type logique du câble :</span> {{cb_typelog}}<br/>
+{{/cb_typelog}}
+{{#cb_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la référence du câble dans la table référence:</span> {{cb_rf_code}}<br/>
+{{/cb_rf_code}}
+{{#cb_capafo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Capacité du câble  :</span> {{cb_capafo}}<br/>
+{{/cb_capafo}}
+{{#cb_fo_disp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de fibres présentes dans le câble et encore disponibles </span> {{cb_fo_disp}}<br/>
+{{/cb_fo_disp}}
+{{#cb_fo_util}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de fibres utiles  :</span> {{cb_fo_util}}<br/>
+{{/cb_fo_util}}
+{{#cb_modulo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de fibres par tube :</span> {{cb_modulo}}<br/>
+{{/cb_modulo}}
+{{#cb_diam}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Diamètre du câble en millimètres :</span> {{cb_diam}}<br/>
+{{/cb_diam}}
+{{#cb_color}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Couleur du câble :</span> {{cb_color}}<br/>
+{{/cb_color}}
+{{#cb_lgreel}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Longueur réelle du câble en mètres  :</span> {{cb_lgreel}}<br/>
+{{/cb_lgreel}}
+{{#cb_localis}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Localisation du câble lorsqu'il s'agit d'un cablage intrasite :</span> {{cb_localis}}<br/>
+{{/cb_localis}}
+{{#cb_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{cb_comment}}<br/>
+{{/cb_comment}}
+{{#cb_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cb_creadat}}<br/>
+{{/cb_creadat}}
+{{#cb_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cb_majdate}}<br/>
+{{/cb_majdate}}
+{{#cb_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cb_majsrc}}<br/>
+{{/cb_majsrc}}
+{{#cb_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cb_abddate}}<br/>
+{{/cb_abddate}}
+{{#cb_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cb_abdsrc}}<br/>
+{{/cb_abdsrc}}
+{{#cl_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique permettant d'identifier une géométrie modélisant un câble:</span> {{cl_code}}<br/>
+{{/cl_code}}
+{{#cl_cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique du câble tel que saisi dans cb_code:</span> {{cl_cb_code}}<br/>
+{{/cl_cb_code}}
+{{#cl_long}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Longueur totale du câble  :</span> {{cl_long}}<br/>
+{{/cl_long}}
+{{#cl_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{cl_comment}}<br/>
+{{/cl_comment}}
+{{#cl_dtclass}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Classe de précision au sens du décret DT-DICT :</span> {{cl_dtclass}}<br/>
+{{/cl_dtclass}}
+{{#cl_geolqlt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Précision du positionnement de l'objet, estimée en mètres  :</span> {{cl_geolqlt}}<br/>
+{{/cl_geolqlt}}
+{{#cl_geolmod}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mode d'implantation de l'objet :</span> {{cl_geolmod}}<br/>
+{{/cl_geolmod}}
+{{#cl_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{cl_geolsrc}}<br/>
+{{/cl_geolsrc}}
+{{#cl_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cl_creadat}}<br/>
+{{/cl_creadat}}
+{{#cl_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cl_majdate}}<br/>
+{{/cl_majdate}}
+{{#cl_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cl_majsrc}}<br/>
+{{/cl_majsrc}}
+{{#cl_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cl_abddate}}<br/>
+{{/cl_abddate}}
+{{#cl_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cl_abdsrc}}<br/>
+{{/cl_abdsrc}}
+{{#cs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique de la cassette:</span> {{cs_code}}<br/>
+{{/cs_code}}
+{{#cs_nb_pas}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Taille de la cassette lorsqu'elle est placée dans un BPE (en nombre de pas) :</span> {{cs_nb_pas}}<br/>
+{{/cs_nb_pas}}
+{{#cs_bp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du BPE à laquelle appartient la cassette :</span> {{cs_bp_code}}<br/>
+{{/cs_bp_code}}
+{{#cs_num}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de la cassette dans l'organiseur de la BPE:</span> {{cs_num}}<br/>
+{{/cs_num}}
+{{#cs_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de cassette :</span> {{cs_type}}<br/>
+{{/cs_type}}
+{{#cs_face}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Face du BPE sur laquelle est enfichée la cassette :</span> {{cs_face}}<br/>
+{{/cs_face}}
+{{#cs_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant dans la table référence:</span> {{cs_rf_code}}<br/>
+{{/cs_rf_code}}
+{{#cs_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{cs_comment}}<br/>
+{{/cs_comment}}
+{{#cs_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cs_creadat}}<br/>
+{{/cs_creadat}}
+{{#cs_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cs_majdate}}<br/>
+{{/cs_majdate}}
+{{#cs_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cs_majsrc}}<br/>
+{{/cs_majsrc}}
+{{#cs_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cs_abddate}}<br/>
+{{/cs_abddate}}
+{{#cs_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cs_abdsrc}}<br/>
+{{/cs_abdsrc}}
+{{#cm_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du cheminement:</span> {{cm_code}}<br/>
+{{/cm_code}}
+{{#cm_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{cm_codeext}}<br/>
+{{/cm_codeext}}
+{{#cm_ndcode1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du Noeud à une extrêmité des cheminements:</span> {{cm_ndcode1}}<br/>
+{{/cm_ndcode1}}
+{{#cm_ndcode2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du Noeud à l'autre extrêmité des cheminements:</span> {{cm_ndcode2}}<br/>
+{{/cm_ndcode2}}
+{{#cm_cm1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du cheminement à une extrêmité :</span> {{cm_cm1}}<br/>
+{{/cm_cm1}}
+{{#cm_cm2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du cheminement à l'autre extrêmité  :</span> {{cm_cm2}}<br/>
+{{/cm_cm2}}
+{{#cm_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{cm_r1_code}}<br/>
+{{/cm_r1_code}}
+{{#cm_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{cm_r2_code}}<br/>
+{{/cm_r2_code}}
+{{#cm_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{cm_r3_code}}<br/>
+{{/cm_r3_code}}
+{{#cm_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{cm_r4_code}}<br/>
+{{/cm_r4_code}}
+{{#cm_voie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom ou code de la voie  :</span> {{cm_voie}}<br/>
+{{/cm_voie}}
+{{#cm_gest_do}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire du domaine  :</span> {{cm_gest_do}}<br/>
+{{/cm_gest_do}}
+{{#cm_prop_do}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire du domaine  :</span> {{cm_prop_do}}<br/>
+{{/cm_prop_do}}
+{{#cm_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{cm_statut}}<br/>
+{{/cm_statut}}
+{{#cm_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat général de l'infrastructure :</span> {{cm_etat}}<br/>
+{{/cm_etat}}
+{{#cm_datcons}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de construction :</span> {{cm_datcons}}<br/>
+{{/cm_datcons}}
+{{#cm_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{cm_datemes}}<br/>
+{{/cm_datemes}}
+{{#cm_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{cm_avct}}<br/>
+{{/cm_avct}}
+{{#cm_typelog}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type logique de l'infrastructure :</span> {{cm_typelog}}<br/>
+{{/cm_typelog}}
+{{#cm_typ_imp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type d'implantation :</span> {{cm_typ_imp}}<br/>
+{{/cm_typ_imp}}
+{{#cm_nature}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nature :</span> {{cm_nature}}<br/>
+{{/cm_nature}}
+{{#cm_compo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut d'aggrégation décrivant la composition du multitubulaire :</span> {{cm_compo}}<br/>
+{{/cm_compo}}
+{{#cm_cddispo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de fourreaux disponibles dans l'artère:</span> {{cm_cddispo}}<br/>
+{{/cm_cddispo}}
+{{#cm_fo_util}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut d'aggrégation utile si le cablage n'est pas modélisé.  :</span> {{cm_fo_util}}<br/>
+{{/cm_fo_util}}
+{{#cm_mod_pos}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Technique mise en place pour faire la tranchée:</span> {{cm_mod_pos}}<br/>
+{{/cm_mod_pos}}
+{{#cm_passage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mode de passage:</span> {{cm_passage}}<br/>
+{{/cm_passage}}
+{{#cm_revet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de revêtement de la chaussée :</span> {{cm_revet}}<br/>
+{{/cm_revet}}
+{{#cm_remblai}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type du remblais:</span> {{cm_remblai}}<br/>
+{{/cm_remblai}}
+{{#cm_charge}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Profondeur en mètres les fourreaux et la surface du revêtement :</span> {{cm_charge}}<br/>
+{{/cm_charge}}
+{{#cm_larg}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Largeur de la tranchée en mètre :</span> {{cm_larg}}<br/>
+{{/cm_larg}}
+{{#cm_fildtec}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Présence ou non du fil de détection en fond de fouille dans la tranchée :</span> {{cm_fildtec}}<br/>
+{{/cm_fildtec}}
+{{#cm_mut_org}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom de l'entité à l'origine des travaux :</span> {{cm_mut_org}}<br/>
+{{/cm_mut_org}}
+{{#cm_long}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Longueur en mètres  :</span> {{cm_long}}<br/>
+{{/cm_long}}
+{{#cm_lgreel}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Longueur en mètres mesurée sur le terrain ou estimée:</span> {{cm_lgreel}}<br/>
+{{/cm_lgreel}}
+{{#cm_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaires :</span> {{cm_comment}}<br/>
+{{/cm_comment}}
+{{#cm_dtclass}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Classe de précision au sens du décret DT-DICT :</span> {{cm_dtclass}}<br/>
+{{/cm_dtclass}}
+{{#cm_geolqlt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Précision du positionnement de l'objet, estimée en mètres.  :</span> {{cm_geolqlt}}<br/>
+{{/cm_geolqlt}}
+{{#cm_geolmod}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mode d'implantation de l'objet:</span> {{cm_geolmod}}<br/>
+{{/cm_geolmod}}
+{{#cm_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{cm_geolsrc}}<br/>
+{{/cm_geolsrc}}
+{{#cm_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cm_creadat}}<br/>
+{{/cm_creadat}}
+{{#cm_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cm_majdate}}<br/>
+{{/cm_majdate}}
+{{#cm_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cm_majsrc}}<br/>
+{{/cm_majsrc}}
+{{#cm_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cm_abddate}}<br/>
+{{/cm_abddate}}
+{{#cm_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cm_abdsrc}}<br/>
+{{/cm_abdsrc}}
+{{#dm_cd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code conduite :</span> {{dm_cd_code}}<br/>
+{{/dm_cd_code}}
+{{#dm_cm_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de cheminement:</span> {{dm_cm_code}}<br/>
+{{/dm_cm_code}}
+{{#dm_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{dm_creadat}}<br/>
+{{/dm_creadat}}
+{{#dm_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{dm_majdate}}<br/>
+{{/dm_majdate}}
+{{#dm_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{dm_majsrc}}<br/>
+{{/dm_majsrc}}
+{{#dm_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{dm_abddate}}<br/>
+{{/dm_abddate}}
+{{#dm_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{dm_abdsrc}}<br/>
+{{/dm_abdsrc}}
+{{#cd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la conduite :</span> {{cd_code}}<br/>
+{{/cd_code}}
+{{#cd_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{cd_codeext}}<br/>
+{{/cd_codeext}}
+{{#cd_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{cd_etiquet}}<br/>
+{{/cd_etiquet}}
+{{#cd_cd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du fourreau qui accueille le fourreau si celui-ci est un sous-tube:</span> {{cd_cd_code}}<br/>
+{{/cd_cd_code}}
+{{#cd_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{cd_r1_code}}<br/>
+{{/cd_r1_code}}
+{{#cd_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{cd_r2_code}}<br/>
+{{/cd_r2_code}}
+{{#cd_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{cd_r3_code}}<br/>
+{{/cd_r3_code}}
+{{#cd_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{cd_r4_code}}<br/>
+{{/cd_r4_code}}
+{{#cd_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire du fourreau :</span> {{cd_prop}}<br/>
+{{/cd_prop}}
+{{#cd_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire du fourreau :</span> {{cd_gest}}<br/>
+{{/cd_gest}}
+{{#cd_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur du fourreau :</span> {{cd_user}}<br/>
+{{/cd_user}}
+{{#cd_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{cd_proptyp}}<br/>
+{{/cd_proptyp}}
+{{#cd_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{cd_statut}}<br/>
+{{/cd_statut}}
+{{#cd_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">État :</span> {{cd_etat}}<br/>
+{{/cd_etat}}
+{{#cd_dateaig}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la dernière opération d'aiguillage  :</span> {{cd_dateaig}}<br/>
+{{/cd_dateaig}}
+{{#cd_dateman}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la dernière opération de mandrinage :</span> {{cd_dateman}}<br/>
+{{/cd_dateman}}
+{{#cd_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{cd_datemes}}<br/>
+{{/cd_datemes}}
+{{#cd_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{cd_avct}}<br/>
+{{/cd_avct}}
+{{#cd_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de conduite:</span> {{cd_type}}<br/>
+{{/cd_type}}
+{{#cd_dia_int}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Diamètre intérieur du fourreau en mm :</span> {{cd_dia_int}}<br/>
+{{/cd_dia_int}}
+{{#cd_dia_ext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Diamètre extérieur du fourreau en mm :</span> {{cd_dia_ext}}<br/>
+{{/cd_dia_ext}}
+{{#cd_color}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Couleur du fourreau :</span> {{cd_color}}<br/>
+{{/cd_color}}
+{{#cd_long}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Longueur en mètres  :</span> {{cd_long}}<br/>
+{{/cd_long}}
+{{#cd_nbcable}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de câbles :</span> {{cd_nbcable}}<br/>
+{{/cd_nbcable}}
+{{#cd_occup}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Occupation du fourreau en pourcentage :</span> {{cd_occup}}<br/>
+{{/cd_occup}}
+{{#cd_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaires :</span> {{cd_comment}}<br/>
+{{/cd_comment}}
+{{#cd_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{cd_creadat}}<br/>
+{{/cd_creadat}}
+{{#cd_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{cd_majdate}}<br/>
+{{/cd_majdate}}
+{{#cd_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{cd_majsrc}}<br/>
+{{/cd_majsrc}}
+{{#cd_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{cd_abddate}}<br/>
+{{/cd_abddate}}
+{{#cd_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{cd_abdsrc}}<br/>
+{{/cd_abdsrc}}
+{{#od_id}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant  :</span> {{od_id}}<br/>
+{{/od_id}}
+{{#od_do_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du document :</span> {{od_do_code}}<br/>
+{{/od_do_code}}
+{{#od_tbltype}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du type d'objets auxquels sont rattachés des documents:</span> {{od_tbltype}}<br/>
+{{/od_tbltype}}
+{{#od_codeobj}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant objets:</span> {{od_codeobj}}<br/>
+{{/od_codeobj}}
+{{#od_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{od_creadat}}<br/>
+{{/od_creadat}}
+{{#od_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{od_majdate}}<br/>
+{{/od_majdate}}
+{{#od_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{od_majsrc}}<br/>
+{{/od_majsrc}}
+{{#od_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{od_abddate}}<br/>
+{{/od_abddate}}
+{{#od_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{od_abdsrc}}<br/>
+{{/od_abdsrc}}
+{{#do_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique :</span> {{do_code}}<br/>
+{{/do_code}}
+{{#do_ref}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence du document :</span> {{do_ref}}<br/>
+{{/do_ref}}
+{{#do_reftier}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence du document chez un tiers ou dans une autre base de données:</span> {{do_reftier}}<br/>
+{{/do_reftier}}
+{{#do_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{do_r1_code}}<br/>
+{{/do_r1_code}}
+{{#do_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{do_r2_code}}<br/>
+{{/do_r2_code}}
+{{#do_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{do_r3_code}}<br/>
+{{/do_r3_code}}
+{{#do_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{do_r4_code}}<br/>
+{{/do_r4_code}}
+{{#do_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de document :</span> {{do_type}}<br/>
+{{/do_type}}
+{{#do_indice}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Indice du document :</span> {{do_indice}}<br/>
+{{/do_indice}}
+{{#do_date}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de l'indice du document :</span> {{do_date}}<br/>
+{{/do_date}}
+{{#do_classe}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Classe de précision cartographique :</span> {{do_classe}}<br/>
+{{/do_classe}}
+{{#do_url1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">URL du fichier éditable :</span> {{do_url1}}<br/>
+{{/do_url1}}
+{{#do_url2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">URL du fichier publiable :</span> {{do_url2}}<br/>
+{{/do_url2}}
+{{#do_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{do_comment}}<br/>
+{{/do_comment}}
+{{#do_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{do_creadat}}<br/>
+{{/do_creadat}}
+{{#do_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{do_majdate}}<br/>
+{{/do_majdate}}
+{{#do_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{do_majsrc}}<br/>
+{{/do_majsrc}}
+{{#do_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{do_abddate}}<br/>
+{{/do_abddate}}
+{{#do_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{do_abdsrc}}<br/>
+{{/do_abdsrc}}
+{{#bp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la BPE, etc:</span> {{bp_code}}<br/>
+{{/bp_code}}
+{{#bp_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{bp_etiquet}}<br/>
+{{/bp_etiquet}}
+{{#bp_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{bp_codeext}}<br/>
+{{/bp_codeext}}
+{{#bp_pt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code point technique :</span> {{bp_pt_code}}<br/>
+{{/bp_pt_code}}
+{{#bp_lt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de local technique:</span> {{bp_lt_code}}<br/>
+{{/bp_lt_code}}
+{{#bp_sf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du SUF dans lequel est installée la PTO:</span> {{bp_sf_code}}<br/>
+{{/bp_sf_code}}
+{{#bp_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire de l'élément :</span> {{bp_prop}}<br/>
+{{/bp_prop}}
+{{#bp_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire de l'élément :</span> {{bp_gest}}<br/>
+{{/bp_gest}}
+{{#bp_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur de l'élément :</span> {{bp_user}}<br/>
+{{/bp_user}}
+{{#bp_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{bp_proptyp}}<br/>
+{{/bp_proptyp}}
+{{#bp_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{bp_statut}}<br/>
+{{/bp_statut}}
+{{#bp_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">État :</span> {{bp_etat}}<br/>
+{{/bp_etat}}
+{{#bp_occp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Occupation:</span> {{bp_occp}}<br/>
+{{/bp_occp}}
+{{#bp_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{bp_datemes}}<br/>
+{{/bp_datemes}}
+{{#bp_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{bp_avct}}<br/>
+{{/bp_avct}}
+{{#bp_typephy}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type physique d'EBP. Capacité de soudure:</span> {{bp_typephy}}<br/>
+{{/bp_typephy}}
+{{#bp_typelog}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de l'élément :</span> {{bp_typelog}}<br/>
+{{/bp_typelog}}
+{{#bp_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence:</span> {{bp_rf_code}}<br/>
+{{/bp_rf_code}}
+{{#bp_entrees}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre d'entrées de câbles:</span> {{bp_entrees}}<br/>
+{{/bp_entrees}}
+{{#bp_ref_kit}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence du kit d'entrée de câble utilisé :</span> {{bp_ref_kit}}<br/>
+{{/bp_ref_kit}}
+{{#bp_ca_nb}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de cassettes contenues dans le BPE :</span> {{bp_ca_nb}}<br/>
+{{/bp_ca_nb}}
+{{#bp_nb_pas}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de pas de l'organiseur du BPE :</span> {{bp_nb_pas}}<br/>
+{{/bp_nb_pas}}
+{{#bp_linecod}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'une ligne selon la nomenclature du régulateur:</span> {{bp_linecod}}<br/>
+{{/bp_linecod}}
+{{#bp_oc_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence OC de la prise terminale:</span> {{bp_oc_code}}<br/>
+{{/bp_oc_code}}
+{{#bp_racco}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Codification Interop de l'échec du raccordement  :</span> {{bp_racco}}<br/>
+{{/bp_racco}}
+{{#bp_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaires :</span> {{bp_comment}}<br/>
+{{/bp_comment}}
+{{#bp_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{bp_creadat}}<br/>
+{{/bp_creadat}}
+{{#bp_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{bp_majdate}}<br/>
+{{/bp_majdate}}
+{{#bp_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{bp_majsrc}}<br/>
+{{/bp_majsrc}}
+{{#bp_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{bp_abddate}}<br/>
+{{/bp_abddate}}
+{{#bp_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{bp_abdsrc}}<br/>
+{{/bp_abdsrc}}
+{{#em_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique pour une empreinte de document:</span> {{em_code}}<br/>
+{{/em_code}}
+{{#em_do_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un document:</span> {{em_do_code}}<br/>
+{{/em_do_code}}
+{{#em_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{em_geolsrc}}<br/>
+{{/em_geolsrc}}
+{{#em_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{em_creadat}}<br/>
+{{/em_creadat}}
+{{#em_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{em_majdate}}<br/>
+{{/em_majdate}}
+{{#em_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{em_majsrc}}<br/>
+{{/em_majsrc}}
+{{#em_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{em_abddate}}<br/>
+{{/em_abddate}}
+{{#em_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{em_abdsrc}}<br/>
+{{/em_abdsrc}}
+{{#eq_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Polygone d'empreinte du document :</span> {{eq_code}}<br/>
+{{/eq_code}}
+{{#eq_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{eq_codeext}}<br/>
+{{/eq_codeext}}
+{{#eq_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{eq_etiquet}}<br/>
+{{/eq_etiquet}}
+{{#eq_ba_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la BAIE contenant l'équipement :</span> {{eq_ba_code}}<br/>
+{{/eq_ba_code}}
+{{#eq_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire de l'équipement, :</span> {{eq_prop}}<br/>
+{{/eq_prop}}
+{{#eq_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant correspondant à la référence de l'équipement:</span> {{eq_rf_code}}<br/>
+{{/eq_rf_code}}
+{{#eq_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de pose de l'équipement :</span> {{eq_dateins}}<br/>
+{{/eq_dateins}}
+{{#eq_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{eq_datemes}}<br/>
+{{/eq_datemes}}
+{{#eq_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{eq_comment}}<br/>
+{{/eq_comment}}
+{{#eq_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{eq_creadat}}<br/>
+{{/eq_creadat}}
+{{#eq_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{eq_majdate}}<br/>
+{{/eq_majdate}}
+{{#eq_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{eq_majsrc}}<br/>
+{{/eq_majsrc}}
+{{#eq_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{eq_abddate}}<br/>
+{{/eq_abddate}}
+{{#eq_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{eq_abdsrc}}<br/>
+{{/eq_abdsrc}}
+{{#fo_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la fibre :</span> {{fo_code}}<br/>
+{{/fo_code}}
+{{#fo_code_ext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{fo_code_ext}}<br/>
+{{/fo_code_ext}}
+{{#fo_cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du câble auquel la fibre appartient :</span> {{fo_cb_code}}<br/>
+{{/fo_cb_code}}
+{{#fo_nincab}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de fibre dans le câble :</span> {{fo_nincab}}<br/>
+{{/fo_nincab}}
+{{#fo_numtub}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro du tube auquel appartient la fibre :</span> {{fo_numtub}}<br/>
+{{/fo_numtub}}
+{{#fo_nintub}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de la fibre dans le tube :</span> {{fo_nintub}}<br/>
+{{/fo_nintub}}
+{{#fo_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de fibre :</span> {{fo_type}}<br/>
+{{/fo_type}}
+{{#fo_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat de fonctionnement de la fibre:</span> {{fo_etat}}<br/>
+{{/fo_etat}}
+{{#fo_color}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de fibre selon le code couleur :</span> {{fo_color}}<br/>
+{{/fo_color}}
+{{#fo_reper}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Repérage du tube :</span> {{fo_reper}}<br/>
+{{/fo_reper}}
+{{#fo_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{fo_proptyp}}<br/>
+{{/fo_proptyp}}
+{{#fo_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{fo_comment}}<br/>
+{{/fo_comment}}
+{{#fo_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{fo_creadat}}<br/>
+{{/fo_creadat}}
+{{#fo_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{fo_majdate}}<br/>
+{{/fo_majdate}}
+{{#fo_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{fo_majsrc}}<br/>
+{{/fo_majsrc}}
+{{#fo_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{fo_abddate}}<br/>
+{{/fo_abddate}}
+{{#fo_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{fo_abdsrc}}<br/>
+{{/fo_abdsrc}}
+{{#lv_id}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant :</span> {{lv_id}}<br/>
+{{/lv_id}}
+{{#lv_cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du câble :</span> {{lv_cb_code}}<br/>
+{{/lv_cb_code}}
+{{#lv_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du nœud dans lequel est positionné ce love :</span> {{lv_nd_code}}<br/>
+{{/lv_nd_code}}
+{{#lv_long}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">longueur du love du câble dans le nœud en mètre :</span> {{lv_long}}<br/>
+{{/lv_long}}
+{{#lv_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{lv_creadat}}<br/>
+{{/lv_creadat}}
+{{#lv_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{lv_majdate}}<br/>
+{{/lv_majdate}}
+{{#lv_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{lv_majsrc}}<br/>
+{{/lv_majsrc}}
+{{#lv_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{lv_abddate}}<br/>
+{{/lv_abddate}}
+{{#lv_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{lv_abdsrc}}<br/>
+{{/lv_abdsrc}}
+{{#lt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code local technique :</span> {{lt_code}}<br/>
+{{/lt_code}}
+{{#lt_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{lt_codeext}}<br/>
+{{/lt_codeext}}
+{{#lt_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette terrain:</span> {{lt_etiquet}}<br/>
+{{/lt_etiquet}}
+{{#lt_st_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant contenu dans la table SITE_TECHNIQUE :</span> {{lt_st_code}}<br/>
+{{/lt_st_code}}
+{{#lt_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du local technique:</span> {{lt_prop}}<br/>
+{{/lt_prop}}
+{{#lt_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire:</span> {{lt_gest}}<br/>
+{{/lt_gest}}
+{{#lt_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de l'utilisateur :</span> {{lt_user}}<br/>
+{{/lt_user}}
+{{#lt_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{lt_proptyp}}<br/>
+{{/lt_proptyp}}
+{{#lt_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du statut de déploiement:</span> {{lt_statut}}<br/>
+{{/lt_statut}}
+{{#lt_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du local:</span> {{lt_etat}}<br/>
+{{/lt_etat}}
+{{#lt_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation :</span> {{lt_dateins}}<br/>
+{{/lt_dateins}}
+{{#lt_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service du local technique :</span> {{lt_datemes}}<br/>
+{{/lt_datemes}}
+{{#lt_local}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Informations de localisation :</span> {{lt_local}}<br/>
+{{/lt_local}}
+{{#lt_elec}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Présence d'une alimentation électrique :</span> {{lt_elec}}<br/>
+{{/lt_elec}}
+{{#lt_clim}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Présence Climatisation ?:</span> {{lt_clim}}<br/>
+{{/lt_clim}}
+{{#lt_occp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Occupation:</span> {{lt_occp}}<br/>
+{{/lt_occp}}
+{{#lt_idmajic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant MAJIC:</span> {{lt_idmajic}}<br/>
+{{/lt_idmajic}}
+{{#lt_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{lt_comment}}<br/>
+{{/lt_comment}}
+{{#lt_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{lt_creadat}}<br/>
+{{/lt_creadat}}
+{{#lt_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{lt_majdate}}<br/>
+{{/lt_majdate}}
+{{#lt_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{lt_majsrc}}<br/>
+{{/lt_majsrc}}
+{{#lt_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{lt_abddate}}<br/>
+{{/lt_abddate}}
+{{#lt_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{lt_abdsrc}}<br/>
+{{/lt_abdsrc}}
+{{#mq_id}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant:</span> {{mq_id}}<br/>
+{{/mq_id}}
+{{#mq_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la chambre à laquelle appartient le masque :</span> {{mq_nd_code}}<br/>
+{{/mq_nd_code}}
+{{#mq_face}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Face de la chambre :</span> {{mq_face}}<br/>
+{{/mq_face}}
+{{#mq_col}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de colonne de l'alvéole concernée :</span> {{mq_col}}<br/>
+{{/mq_col}}
+{{#mq_ligne}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de ligne de l'alvéole concernée :</span> {{mq_ligne}}<br/>
+{{/mq_ligne}}
+{{#mq_cd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la conduite attachée à l'alvéole du masque:</span> {{mq_cd_code}}<br/>
+{{/mq_cd_code}}
+{{#mq_qualinf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Qualité de l'information :</span> {{mq_qualinf}}<br/>
+{{/mq_qualinf}}
+{{#mq_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{mq_comment}}<br/>
+{{/mq_comment}}
+{{#mq_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{mq_creadat}}<br/>
+{{/mq_creadat}}
+{{#mq_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{mq_majdate}}<br/>
+{{/mq_majdate}}
+{{#mq_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{mq_majsrc}}<br/>
+{{/mq_majsrc}}
+{{#mq_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{mq_abddate}}<br/>
+{{/mq_abddate}}
+{{#mq_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{mq_abdsrc}}<br/>
+{{/mq_abdsrc}}
+{{#nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code noeud :</span> {{nd_code}}<br/>
+{{/nd_code}}
+{{#nd_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{nd_codeext}}<br/>
+{{/nd_codeext}}
+{{#nd_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom du nœud  :</span> {{nd_nom}}<br/>
+{{/nd_nom}}
+{{#nd_coderat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du noeud de rattachement:</span> {{nd_coderat}}<br/>
+{{/nd_coderat}}
+{{#nd_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{nd_r1_code}}<br/>
+{{/nd_r1_code}}
+{{#nd_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{nd_r2_code}}<br/>
+{{/nd_r2_code}}
+{{#nd_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{nd_r3_code}}<br/>
+{{/nd_r3_code}}
+{{#nd_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{nd_r4_code}}<br/>
+{{/nd_r4_code}}
+{{#nd_voie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Adresse de la voie dans laquelle est implanté le nœud  :</span> {{nd_voie}}<br/>
+{{/nd_voie}}
+{{#nd_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type du nœud  :</span> {{nd_type}}<br/>
+{{/nd_type}}
+{{#nd_type_ep}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Liste des technologies présentes:</span> {{nd_type_ep}}<br/>
+{{/nd_type_ep}}
+{{#nd_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaires :</span> {{nd_comment}}<br/>
+{{/nd_comment}}
+{{#nd_dtclass}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Classe de précision au sens du décret DT-DICT :</span> {{nd_dtclass}}<br/>
+{{/nd_dtclass}}
+{{#nd_geolqlt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Précision du positionnement de l'objet, estimée en mètres.  :</span> {{nd_geolqlt}}<br/>
+{{/nd_geolqlt}}
+{{#nd_geolmod}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mode d'implantation de l'objet:</span> {{nd_geolmod}}<br/>
+{{/nd_geolmod}}
+{{#nd_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{nd_geolsrc}}<br/>
+{{/nd_geolsrc}}
+{{#nd_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{nd_creadat}}<br/>
+{{/nd_creadat}}
+{{#nd_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{nd_majdate}}<br/>
+{{/nd_majdate}}
+{{#nd_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{nd_majsrc}}<br/>
+{{/nd_majsrc}}
+{{#nd_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{nd_abddate}}<br/>
+{{/nd_abddate}}
+{{#nd_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{nd_abdsrc}}<br/>
+{{/nd_abdsrc}}
+{{#or_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'organisme :</span> {{or_code}}<br/>
+{{/or_code}}
+{{#or_siren}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">numéro SIREN :</span> {{or_siren}}<br/>
+{{/or_siren}}
+{{#or_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom:</span> {{or_nom}}<br/>
+{{/or_nom}}
+{{#or_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Classification juridique:</span> {{or_type}}<br/>
+{{/or_type}}
+{{#or_activ}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Activité principale exercée:</span> {{or_activ}}<br/>
+{{/or_activ}}
+{{#or_l331}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code L33-1:</span> {{or_l331}}<br/>
+{{/or_l331}}
+{{#or_siret}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">numéro SIRET dans le cas d'un établissement  :</span> {{or_siret}}<br/>
+{{/or_siret}}
+{{#or_nometab}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom de l'établissement, de l'agence  :</span> {{or_nometab}}<br/>
+{{/or_nometab}}
+{{#or_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de l'adresse dans la table t_adresse:</span> {{or_ad_code}}<br/>
+{{/or_ad_code}}
+{{#or_nomvoie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom de la voie :</span> {{or_nomvoie}}<br/>
+{{/or_nomvoie}}
+{{#or_numero}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro  éventuel  de  l’adresse  dans  la voie :</span> {{or_numero}}<br/>
+{{/or_numero}}
+{{#or_rep}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Indice de répétition associé au numéro  :</span> {{or_rep}}<br/>
+{{/or_rep}}
+{{#or_local}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Complément d'adresse pour identifier le local:</span> {{or_local}}<br/>
+{{/or_local}}
+{{#or_postal}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code  postal  du  bureau  de  distribution de la voie :</span> {{or_postal}}<br/>
+{{/or_postal}}
+{{#or_commune}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom officiel de la commune :</span> {{or_commune}}<br/>
+{{/or_commune}}
+{{#or_telfixe}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Téléphone fixe :</span> {{or_telfixe}}<br/>
+{{/or_telfixe}}
+{{#or_mail}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Mail de contact générique :</span> {{or_mail}}<br/>
+{{/or_mail}}
+{{#or_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{or_comment}}<br/>
+{{/or_comment}}
+{{#or_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{or_creadat}}<br/>
+{{/or_creadat}}
+{{#or_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{or_majdate}}<br/>
+{{/or_majdate}}
+{{#or_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{or_majsrc}}<br/>
+{{/or_majsrc}}
+{{#or_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{or_abddate}}<br/>
+{{/or_abddate}}
+{{#or_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{or_abdsrc}}<br/>
+{{/or_abdsrc}}
+{{#ps_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique:</span> {{ps_code}}<br/>
+{{/ps_code}}
+{{#ps_numero}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Position  du smoove ou du connecteur :</span> {{ps_numero}}<br/>
+{{/ps_numero}}
+{{#ps_1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique d'une fibre de la table FIBRE.  :</span> {{ps_1}}<br/>
+{{/ps_1}}
+{{#ps_2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique d'une fibre de la table FIBRE.  :</span> {{ps_2}}<br/>
+{{/ps_2}}
+{{#ps_cs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la CASSETTE à laquelle appartient la position.  :</span> {{ps_cs_code}}<br/>
+{{/ps_cs_code}}
+{{#ps_ti_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du TIROIR / de la TCOP à laquelle appartient la position.  :</span> {{ps_ti_code}}<br/>
+{{/ps_ti_code}}
+{{#ps_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de connecteur / soudure:</span> {{ps_type}}<br/>
+{{/ps_type}}
+{{#ps_fonct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de connectorisation  :</span> {{ps_fonct}}<br/>
+{{/ps_fonct}}
+{{#ps_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat de fonctionnement de la position / du corps de traversée, :</span> {{ps_etat}}<br/>
+{{/ps_etat}}
+{{#ps_preaff}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Pré-affectation de la route optique au SUF de l'IP, IPE ou II:</span> {{ps_preaff}}<br/>
+{{/ps_preaff}}
+{{#ps_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{ps_comment}}<br/>
+{{/ps_comment}}
+{{#ps_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{ps_creadat}}<br/>
+{{/ps_creadat}}
+{{#ps_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{ps_majdate}}<br/>
+{{/ps_majdate}}
+{{#ps_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{ps_majsrc}}<br/>
+{{/ps_majsrc}}
+{{#ps_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{ps_abddate}}<br/>
+{{/ps_abddate}}
+{{#ps_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{ps_abdsrc}}<br/>
+{{/ps_abdsrc}}
+{{#pt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du point technique :</span> {{pt_code}}<br/>
+{{/pt_code}}
+{{#pt_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{pt_codeext}}<br/>
+{{/pt_codeext}}
+{{#pt_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{pt_etiquet}}<br/>
+{{/pt_etiquet}}
+{{#pt_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code noeud :</span> {{pt_nd_code}}<br/>
+{{/pt_nd_code}}
+{{#pt_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant contenu dans la table t_adresse:</span> {{pt_ad_code}}<br/>
+{{/pt_ad_code}}
+{{#pt_gest_do}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire de la voirie :</span> {{pt_gest_do}}<br/>
+{{/pt_gest_do}}
+{{#pt_prop_do}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire de la voirie :</span> {{pt_prop_do}}<br/>
+{{/pt_prop_do}}
+{{#pt_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire :</span> {{pt_prop}}<br/>
+{{/pt_prop}}
+{{#pt_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire :</span> {{pt_gest}}<br/>
+{{/pt_gest}}
+{{#pt_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur :</span> {{pt_user}}<br/>
+{{/pt_user}}
+{{#pt_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{pt_proptyp}}<br/>
+{{/pt_proptyp}}
+{{#pt_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{pt_statut}}<br/>
+{{/pt_statut}}
+{{#pt_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">État du point technique :</span> {{pt_etat}}<br/>
+{{/pt_etat}}
+{{#pt_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation :</span> {{pt_dateins}}<br/>
+{{/pt_dateins}}
+{{#pt_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{pt_datemes}}<br/>
+{{/pt_datemes}}
+{{#pt_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{pt_avct}}<br/>
+{{/pt_avct}}
+{{#pt_typephy}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de point technique :</span> {{pt_typephy}}<br/>
+{{/pt_typephy}}
+{{#pt_typelog}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Usage du point technique :</span> {{pt_typelog}}<br/>
+{{/pt_typelog}}
+{{#pt_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence:</span> {{pt_rf_code}}<br/>
+{{/pt_rf_code}}
+{{#pt_nature}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nature du point technique:</span> {{pt_nature}}<br/>
+{{/pt_nature}}
+{{#pt_secu}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Point technique équipé d'un système de verrouillage:</span> {{pt_secu}}<br/>
+{{/pt_secu}}
+{{#pt_occp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Occupation:</span> {{pt_occp}}<br/>
+{{/pt_occp}}
+{{#pt_a_dan}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Effort disponible après pose (exprimé en daN – décanewtons) :</span> {{pt_a_dan}}<br/>
+{{/pt_a_dan}}
+{{#pt_a_dtetu}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de l'étude de charge :</span> {{pt_a_dtetu}}<br/>
+{{/pt_a_dtetu}}
+{{#pt_a_struc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Simple, Moisé, Haubané, Couple, … :</span> {{pt_a_struc}}<br/>
+{{/pt_a_struc}}
+{{#pt_a_haut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Hauteur en mètre entre le sol et la base de l'infrastructure:</span> {{pt_a_haut}}<br/>
+{{/pt_a_haut}}
+{{#pt_a_passa}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">0 si uniquement pour passage de câbles :</span> {{pt_a_passa}}<br/>
+{{/pt_a_passa}}
+{{#pt_a_strat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Notion Orange disponible dans les PIT</span> {{pt_a_strat}}<br/>
+{{/pt_a_strat}}
+{{#pt_rotatio}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Angle du grand axe du point technique en degrés dans le sens retrograde à partir du Nord:</span> {{pt_rotatio}}<br/>
+{{/pt_rotatio}}
+{{#pt_detec}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Présence d'un boitier pour un fil de détection:</span> {{pt_detec}}<br/>
+{{/pt_detec}}
+{{#pt_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{pt_comment}}<br/>
+{{/pt_comment}}
+{{#pt_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{pt_creadat}}<br/>
+{{/pt_creadat}}
+{{#pt_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{pt_majdate}}<br/>
+{{/pt_majdate}}
+{{#pt_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{pt_majsrc}}<br/>
+{{/pt_majsrc}}
+{{#pt_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{pt_abddate}}<br/>
+{{/pt_abddate}}
+{{#pt_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{pt_abdsrc}}<br/>
+{{/pt_abdsrc}}
+{{#rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant la référence d'un matériel dans la base:</span> {{rf_code}}<br/>
+{{/rf_code}}
+{{#rf_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de matériel :</span> {{rf_type}}<br/>
+{{/rf_type}}
+{{#rf_fabric}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Fabricant :</span> {{rf_fabric}}<br/>
+{{/rf_fabric}}
+{{#rf_design}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Design :</span> {{rf_design}}<br/>
+{{/rf_design}}
+{{#rf_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Disponibilité de la référence :</span> {{rf_etat}}<br/>
+{{/rf_etat}}
+{{#rf_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaires :</span> {{rf_comment}}<br/>
+{{/rf_comment}}
+{{#rf_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{rf_creadat}}<br/>
+{{/rf_creadat}}
+{{#rf_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{rf_majdate}}<br/>
+{{/rf_majdate}}
+{{#rf_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{rf_majsrc}}<br/>
+{{/rf_majsrc}}
+{{#rf_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{rf_abddate}}<br/>
+{{/rf_abddate}}
+{{#rf_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{rf_abdsrc}}<br/>
+{{/rf_abdsrc}}
+{{#rt_id}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant  :</span> {{rt_id}}<br/>
+{{/rt_id}}
+{{#rt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la route optique</span> {{rt_code}}<br/>
+{{/rt_code}}
+{{#rt_code_ext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom de la route optique dans un système d'information externe:</span> {{rt_code_ext}}<br/>
+{{/rt_code_ext}}
+{{#rt_fo_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la fibre:</span> {{rt_fo_code}}<br/>
+{{/rt_fo_code}}
+{{#rt_fo_ordr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro d'ordre de la fibre pour la composition de la route optique:</span> {{rt_fo_ordr}}<br/>
+{{/rt_fo_ordr}}
+{{#rt_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{rt_comment}}<br/>
+{{/rt_comment}}
+{{#rt_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{rt_creadat}}<br/>
+{{/rt_creadat}}
+{{#rt_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{rt_majdate}}<br/>
+{{/rt_majdate}}
+{{#rt_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{rt_majsrc}}<br/>
+{{/rt_majsrc}}
+{{#rt_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{rt_abddate}}<br/>
+{{/rt_abddate}}
+{{#rt_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{rt_abdsrc}}<br/>
+{{/rt_abdsrc}}
+{{#se_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique d'un site radio:</span> {{se_code}}<br/>
+{{/se_code}}
+{{#se_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du noeud :</span> {{se_nd_code}}<br/>
+{{/se_nd_code}}
+{{#se_anfr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code délivré par l'ANFR :</span> {{se_anfr}}<br/>
+{{/se_anfr}}
+{{#se_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Propriétaire :</span> {{se_prop}}<br/>
+{{/se_prop}}
+{{#se_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Gestionnaire :</span> {{se_gest}}<br/>
+{{/se_gest}}
+{{#se_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur :</span> {{se_user}}<br/>
+{{/se_user}}
+{{#se_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{se_proptyp}}<br/>
+{{/se_proptyp}}
+{{#se_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du statut de déploiement:</span> {{se_statut}}<br/>
+{{/se_statut}}
+{{#se_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du site:</span> {{se_etat}}<br/>
+{{/se_etat}}
+{{#se_occp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Occupation:</span> {{se_occp}}<br/>
+{{/se_occp}}
+{{#se_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation :</span> {{se_dateins}}<br/>
+{{/se_dateins}}
+{{#se_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{se_datemes}}<br/>
+{{/se_datemes}}
+{{#se_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type du site d'émission :</span> {{se_type}}<br/>
+{{/se_type}}
+{{#se_haut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Hauteur en mètre entre le sol et la base de l'infrastructure:</span> {{se_haut}}<br/>
+{{/se_haut}}
+{{#se_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Adresse :</span> {{se_ad_code}}<br/>
+{{/se_ad_code}}
+{{#se_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{se_comment}}<br/>
+{{/se_comment}}
+{{#se_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{se_creadat}}<br/>
+{{/se_creadat}}
+{{#se_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{se_majdate}}<br/>
+{{/se_majdate}}
+{{#se_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{se_majsrc}}<br/>
+{{/se_majsrc}}
+{{#se_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{se_abddate}}<br/>
+{{/se_abddate}}
+{{#se_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{se_abdsrc}}<br/>
+{{/se_abdsrc}}
+{{#st_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du site :</span> {{st_code}}<br/>
+{{/st_code}}
+{{#st_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant contenu dans la table Noeud :</span> {{st_nd_code}}<br/>
+{{/st_nd_code}}
+{{#st_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{st_codeext}}<br/>
+{{/st_codeext}}
+{{#st_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom du site:</span> {{st_nom}}<br/>
+{{/st_nom}}
+{{#st_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du site:</span> {{st_prop}}<br/>
+{{/st_prop}}
+{{#st_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire du site:</span> {{st_gest}}<br/>
+{{/st_gest}}
+{{#st_user}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">utilisateur du site :</span> {{st_user}}<br/>
+{{/st_user}}
+{{#st_proptyp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de propriété :</span> {{st_proptyp}}<br/>
+{{/st_proptyp}}
+{{#st_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{st_statut}}<br/>
+{{/st_statut}}
+{{#st_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du site:</span> {{st_etat}}<br/>
+{{/st_etat}}
+{{#st_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation :</span> {{st_dateins}}<br/>
+{{/st_dateins}}
+{{#st_datemes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise en service :</span> {{st_datemes}}<br/>
+{{/st_datemes}}
+{{#st_avct}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Attribut synthétisant l'avancement.  :</span> {{st_avct}}<br/>
+{{/st_avct}}
+{{#st_typephy}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type physique du site :</span> {{st_typephy}}<br/>
+{{/st_typephy}}
+{{#st_typelog}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type logique du site :</span> {{st_typelog}}<br/>
+{{/st_typelog}}
+{{#st_nblines}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de lignes du site:</span> {{st_nblines}}<br/>
+{{/st_nblines}}
+{{#st_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant contenu dans la table ADRESSE :</span> {{st_ad_code}}<br/>
+{{/st_ad_code}}
+{{#st_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{st_comment}}<br/>
+{{/st_comment}}
+{{#st_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{st_creadat}}<br/>
+{{/st_creadat}}
+{{#st_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{st_majdate}}<br/>
+{{/st_majdate}}
+{{#st_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{st_majsrc}}<br/>
+{{/st_majsrc}}
+{{#st_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{st_abddate}}<br/>
+{{/st_abddate}}
+{{#st_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{st_abdsrc}}<br/>
+{{/st_abdsrc}}
+{{#sf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du SUF:</span> {{sf_code}}<br/>
+{{/sf_code}}
+{{#sf_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du nœud auquel se rattache le SUF :</span> {{sf_nd_code}}<br/>
+{{/sf_nd_code}}
+{{#sf_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la table ADRESSE:</span> {{sf_ad_code}}<br/>
+{{/sf_ad_code}}
+{{#sf_zp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la zone arrière de PBO couvrant le SUF:</span> {{sf_zp_code}}<br/>
+{{/sf_zp_code}}
+{{#sf_escal}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Escalier, pour les habitats collectifs:</span> {{sf_escal}}<br/>
+{{/sf_escal}}
+{{#sf_etage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etage, pour les habitats collectifs:</span> {{sf_etage}}<br/>
+{{/sf_etage}}
+{{#sf_oper}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de l'opérateur d'immeuble dans la table organisme:</span> {{sf_oper}}<br/>
+{{/sf_oper}}
+{{#sf_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de Site Utilisateur Final:</span> {{sf_type}}<br/>
+{{/sf_type}}
+{{#sf_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant le propriétaire dans la base de données interne:</span> {{sf_prop}}<br/>
+{{/sf_prop}}
+{{#sf_resid}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant le résidant dans la base de données interne:</span> {{sf_resid}}<br/>
+{{/sf_resid}}
+{{#sf_local}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Localisation SUF :</span> {{sf_local}}<br/>
+{{/sf_local}}
+{{#sf_racco}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du raccordement :</span> {{sf_racco}}<br/>
+{{/sf_racco}}
+{{#sf_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{sf_comment}}<br/>
+{{/sf_comment}}
+{{#sf_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{sf_creadat}}<br/>
+{{/sf_creadat}}
+{{#sf_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{sf_majdate}}<br/>
+{{/sf_majdate}}
+{{#sf_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{sf_majsrc}}<br/>
+{{/sf_majsrc}}
+{{#sf_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{sf_abddate}}<br/>
+{{/sf_abddate}}
+{{#sf_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{sf_abdsrc}}<br/>
+{{/sf_abdsrc}}
+{{#ti_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du tiroir optique :</span> {{ti_code}}<br/>
+{{/ti_code}}
+{{#ti_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe :</span> {{ti_codeext}}<br/>
+{{/ti_codeext}}
+{{#ti_etiquet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{ti_etiquet}}<br/>
+{{/ti_etiquet}}
+{{#ti_ba_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant contenu dans la table BAIE :</span> {{ti_ba_code}}<br/>
+{{/ti_ba_code}}
+{{#ti_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du tiroir:</span> {{ti_prop}}<br/>
+{{/ti_prop}}
+{{#ti_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du TIROIR :</span> {{ti_etat}}<br/>
+{{/ti_etat}}
+{{#ti_type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type du contenant selon qu'il s'agisse d'un TIROIR ou d'une TETE DE CABLE:</span> {{ti_type}}<br/>
+{{/ti_type}}
+{{#ti_rf_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant de la référence du tiroir dans la table référence:</span> {{ti_rf_code}}<br/>
+{{/ti_rf_code}}
+{{#ti_taille}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Taille du tiroir en nombre de U:</span> {{ti_taille}}<br/>
+{{/ti_taille}}
+{{#ti_placemt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Position du tiroir en nombre de U:</span> {{ti_placemt}}<br/>
+{{/ti_placemt}}
+{{#ti_localis}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Informations de localisation du tiroir :</span> {{ti_localis}}<br/>
+{{/ti_localis}}
+{{#ti_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{ti_comment}}<br/>
+{{/ti_comment}}
+{{#ti_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{ti_creadat}}<br/>
+{{/ti_creadat}}
+{{#ti_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{ti_majdate}}<br/>
+{{/ti_majdate}}
+{{#ti_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{ti_majsrc}}<br/>
+{{/ti_majsrc}}
+{{#ti_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{ti_abddate}}<br/>
+{{/ti_abddate}}
+{{#ti_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{ti_abdsrc}}<br/>
+{{/ti_abdsrc}}
+{{#zc_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code la zone de couverture de service cablé (COAX):</span> {{zc_code}}<br/>
+{{/zc_code}}
+{{#zc_codeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la zone dans une base de données externe:</span> {{zc_codeext}}<br/>
+{{/zc_codeext}}
+{{#zc_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code interne hérité du Noeud:</span> {{zc_nd_code}}<br/>
+{{/zc_nd_code}}
+{{#zc_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{zc_r1_code}}<br/>
+{{/zc_r1_code}}
+{{#zc_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{zc_r2_code}}<br/>
+{{/zc_r2_code}}
+{{#zc_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{zc_r3_code}}<br/>
+{{/zc_r3_code}}
+{{#zc_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{zc_r4_code}}<br/>
+{{/zc_r4_code}}
+{{#zc_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du site:</span> {{zc_prop}}<br/>
+{{/zc_prop}}
+{{#zc_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire du site:</span> {{zc_gest}}<br/>
+{{/zc_gest}}
+{{#zc_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{zc_statut}}<br/>
+{{/zc_statut}}
+{{#zc_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{zc_comment}}<br/>
+{{/zc_comment}}
+{{#zc_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{zc_geolsrc}}<br/>
+{{/zc_geolsrc}}
+{{#zc_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{zc_creadat}}<br/>
+{{/zc_creadat}}
+{{#zc_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{zc_majdate}}<br/>
+{{/zc_majdate}}
+{{#zc_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{zc_majsrc}}<br/>
+{{/zc_majsrc}}
+{{#zc_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{zc_abddate}}<br/>
+{{/zc_abddate}}
+{{#zc_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{zc_abdsrc}}<br/>
+{{/zc_abdsrc}}
+{{#zd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de zone de déploiement d'infrastructure:</span> {{zd_code}}<br/>
+{{/zd_code}}
+{{#zd_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code interne hérité du Noeud :</span> {{zd_nd_code}}<br/>
+{{/zd_nd_code}}
+{{#zd_zs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la Zone arrière de SRO parente s'il s'agit d'une subdivision :</span> {{zd_zs_code}}<br/>
+{{/zd_zs_code}}
+{{#zd_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{zd_r1_code}}<br/>
+{{/zd_r1_code}}
+{{#zd_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{zd_r2_code}}<br/>
+{{/zd_r2_code}}
+{{#zd_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{zd_r3_code}}<br/>
+{{/zd_r3_code}}
+{{#zd_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{zd_r4_code}}<br/>
+{{/zd_r4_code}}
+{{#zd_prop}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du propriétaire du site:</span> {{zd_prop}}<br/>
+{{/zd_prop}}
+{{#zd_gest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant du gestionnaire du site:</span> {{zd_gest}}<br/>
+{{/zd_gest}}
+{{#zd_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase d'avancement :</span> {{zd_statut}}<br/>
+{{/zd_statut}}
+{{#zd_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{zd_comment}}<br/>
+{{/zd_comment}}
+{{#zd_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{zd_geolsrc}}<br/>
+{{/zd_geolsrc}}
+{{#zd_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{zd_creadat}}<br/>
+{{/zd_creadat}}
+{{#zd_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{zd_majdate}}<br/>
+{{/zd_majdate}}
+{{#zd_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{zd_majsrc}}<br/>
+{{/zd_majsrc}}
+{{#zd_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{zd_abddate}}<br/>
+{{/zd_abddate}}
+{{#zd_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{zd_abdsrc}}<br/>
+{{/zd_abdsrc}}
+{{#zn_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code la zone arrière de NRO :</span> {{zn_code}}<br/>
+{{/zn_code}}
+{{#zn_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code interne hérité du Noeud :</span> {{zn_nd_code}}<br/>
+{{/zn_nd_code}}
+{{#zn_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{zn_r1_code}}<br/>
+{{/zn_r1_code}}
+{{#zn_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{zn_r2_code}}<br/>
+{{/zn_r2_code}}
+{{#zn_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{zn_r3_code}}<br/>
+{{/zn_r3_code}}
+{{#zn_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{zn_r4_code}}<br/>
+{{/zn_r4_code}}
+{{#zn_nroref}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence du NRO  :</span> {{zn_nroref}}<br/>
+{{/zn_nroref}}
+{{#zn_nrotype}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de NRO :</span> {{zn_nrotype}}<br/>
+{{/zn_nrotype}}
+{{#zn_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat d'avancement du NRO  :</span> {{zn_etat}}<br/>
+{{/zn_etat}}
+{{#zn_etatlpm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat d'avancement du lien entre le NRO et le SRO :</span> {{zn_etatlpm}}<br/>
+{{/zn_etatlpm}}
+{{#zn_datelpm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation du lien entre le NRO et le SRO  :</span> {{zn_datelpm}}<br/>
+{{/zn_datelpm}}
+{{#zn_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{zn_comment}}<br/>
+{{/zn_comment}}
+{{#zn_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{zn_geolsrc}}<br/>
+{{/zn_geolsrc}}
+{{#zn_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{zn_creadat}}<br/>
+{{/zn_creadat}}
+{{#zn_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{zn_majdate}}<br/>
+{{/zn_majdate}}
+{{#zn_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{zn_majsrc}}<br/>
+{{/zn_majsrc}}
+{{#zn_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{zn_abddate}}<br/>
+{{/zn_abddate}}
+{{#zn_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{zn_abdsrc}}<br/>
+{{/zn_abdsrc}}
+{{#zp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code la zone arrière de PBO :</span> {{zp_code}}<br/>
+{{/zp_code}}
+{{#zp_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code interne hérité du Noeud :</span> {{zp_nd_code}}<br/>
+{{/zp_nd_code}}
+{{#zp_zs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la Zone Arrière de SRO:</span> {{zp_zs_code}}<br/>
+{{/zp_zs_code}}
+{{#zp_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{zp_r1_code}}<br/>
+{{/zp_r1_code}}
+{{#zp_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{zp_r2_code}}<br/>
+{{/zp_r2_code}}
+{{#zp_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{zp_r3_code}}<br/>
+{{/zp_r3_code}}
+{{#zp_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{zp_r4_code}}<br/>
+{{/zp_r4_code}}
+{{#zp_capamax}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Capacité en nombre de lignes:</span> {{zp_capamax}}<br/>
+{{/zp_capamax}}
+{{#zp_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{zp_comment}}<br/>
+{{/zp_comment}}
+{{#zp_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{zp_geolsrc}}<br/>
+{{/zp_geolsrc}}
+{{#zp_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{zp_creadat}}<br/>
+{{/zp_creadat}}
+{{#zp_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{zp_majdate}}<br/>
+{{/zp_majdate}}
+{{#zp_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{zp_majsrc}}<br/>
+{{/zp_majsrc}}
+{{#zp_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{zp_abddate}}<br/>
+{{/zp_abddate}}
+{{#zp_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{zp_abdsrc}}<br/>
+{{/zp_abdsrc}}
+{{#zs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code la zone arrière de SRO :</span> {{zs_code}}<br/>
+{{/zs_code}}
+{{#zs_nd_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code interne hérité du Noeud :</span> {{zs_nd_code}}<br/>
+{{/zs_nd_code}}
+{{#zs_zn_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la Zone Arrière de NRO correspondante:</span> {{zs_zn_code}}<br/>
+{{/zs_zn_code}}
+{{#zs_r1_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 1  :</span> {{zs_r1_code}}<br/>
+{{/zs_r1_code}}
+{{#zs_r2_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 2  :</span> {{zs_r2_code}}<br/>
+{{/zs_r2_code}}
+{{#zs_r3_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 3  :</span> {{zs_r3_code}}<br/>
+{{/zs_r3_code}}
+{{#zs_r4_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code d'un référencement du réseau 4 :</span> {{zs_r4_code}}<br/>
+{{/zs_r4_code}}
+{{#zs_refpm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Référence PM propre à chaque OI et pérenne :</span> {{zs_refpm}}<br/>
+{{/zs_refpm}}
+{{#zs_etatpm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat :</span> {{zs_etatpm}}<br/>
+{{/zs_etatpm}}
+{{#zs_dateins}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'installation du PM :</span> {{zs_dateins}}<br/>
+{{/zs_dateins}}
+{{#zs_typeemp}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Localisation physique du PM :</span> {{zs_typeemp}}<br/>
+{{/zs_typeemp}}
+{{#zs_capamax}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Capacité maximum théorique du SRO:</span> {{zs_capamax}}<br/>
+{{/zs_capamax}}
+{{#zs_ad_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'adresse dans la table adresse:</span> {{zs_ad_code}}<br/>
+{{/zs_ad_code}}
+{{#zs_typeing}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type d'ingénierie :</span> {{zs_typeing}}<br/>
+{{/zs_typeing}}
+{{#zs_nblogmt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre total de logements :</span> {{zs_nblogmt}}<br/>
+{{/zs_nblogmt}}
+{{#zs_nbcolmt}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de colonnes montantes associées au PM IPE:</span> {{zs_nbcolmt}}<br/>
+{{/zs_nbcolmt}}
+{{#zs_datcomr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de commercialisation :</span> {{zs_datcomr}}<br/>
+{{/zs_datcomr}}
+{{#zs_actif}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Electricité ? :</span> {{zs_actif}}<br/>
+{{/zs_actif}}
+{{#zs_datemad}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Première Mise à Disposition du PM à un opérateur commercial:</span> {{zs_datemad}}<br/>
+{{/zs_datemad}}
+{{#zs_accgest}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Accord du gestionnaire d'immeuble est nécessaire ?:</span> {{zs_accgest}}<br/>
+{{/zs_accgest}}
+{{#zs_brassoi}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Ce commentaire a pour objectif d'informer les OC que sur ce PM, les OI n'autorisent que les brassages par lui meme (OI):</span> {{zs_brassoi}}<br/>
+{{/zs_brassoi}}
+{{#zs_comment}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{zs_comment}}<br/>
+{{/zs_comment}}
+{{#zs_geolsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source de la géolocalisation  :</span> {{zs_geolsrc}}<br/>
+{{/zs_geolsrc}}
+{{#zs_creadat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de création de l'objet en base  :</span> {{zs_creadat}}<br/>
+{{/zs_creadat}}
+{{#zs_majdate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de la mise à jour de l'objet en base  :</span> {{zs_majdate}}<br/>
+{{/zs_majdate}}
+{{#zs_majsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Source utilisée pour la mise à jour :</span> {{zs_majsrc}}<br/>
+{{/zs_majsrc}}
+{{#zs_abddate}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'abandon de l'objet :</span> {{zs_abddate}}<br/>
+{{/zs_abddate}}
+{{#zs_abdsrc}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Cause de l'abandon de l'objet :</span> {{zs_abdsrc}}<br/>
+{{/zs_abdsrc}}
+{{#cb_bp1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'ebp à l'extrémité 1 du câble:</span> {{cb_bp1}}<br/>
+{{/cb_bp1}}
+{{#cb_ba1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la baie à l'extrémité 1 du câble :</span> {{cb_ba1}}<br/>
+{{/cb_ba1}}
+{{#cb_bp2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'ebp à l'extrémité 2 du câble:</span> {{cb_bp2}}<br/>
+{{/cb_bp2}}
+{{#cb_ba2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la baie à l'extrémité 2 du câble :</span> {{cb_ba2}}<br/>
+{{/cb_ba2}}
+{{#cs_ti_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Code du tiroir s’il s’agit d’une cassette dans un tiroir:</span> {{cs_ti_code}}<br/>
+{{/cs_ti_code}}
+{{#lt_bat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Nom du bâtiment  :</span> {{lt_bat}}<br/>
+{{/lt_bat}}
+{{#lt_escal}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Nom ou numéro d’escalier du local technique  :</span> {{lt_escal}}<br/>
+{{/lt_escal}}
+{{#lt_etage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Numéro d’étage du local technique:</span> {{lt_etage}}<br/>
+{{/lt_etage}}
+{{#zp_bp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Code de l’EBP à l'extrémité 1 du câble:</span> {{zp_bp_code}}<br/>
+{{/zp_bp_code}}
+{{#cb_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code câble :</span> {{cb_code}}<br/>
+{{/cb_code}}
+{{#cb_bp1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'ebp à l'extrémité 1 du câble:</span> {{cb_bp1}}<br/>
+{{/cb_bp1}}
+{{#cb_ba1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la baie à l'extrémité 1 du câble :</span> {{cb_ba1}}<br/>
+{{/cb_ba1}}
+{{#cb_bp2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de l'ebp à l'extrémité 2 du câble:</span> {{cb_bp2}}<br/>
+{{/cb_bp2}}
+{{#cb_ba2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code de la baie à l'extrémité 2 du câble :</span> {{cb_ba2}}<br/>
+{{/cb_ba2}}
+{{#cs_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code unique de la cassette:</span> {{cs_code}}<br/>
+{{/cs_code}}
+{{#cs_ti_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Code du tiroir s’il s’agit d’une cassette dans un tiroir:</span> {{cs_ti_code}}<br/>
+{{/cs_ti_code}}
+{{#lt_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code local technique :</span> {{lt_code}}<br/>
+{{/lt_code}}
+{{#lt_bat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Nom du bâtiment  :</span> {{lt_bat}}<br/>
+{{/lt_bat}}
+{{#lt_escal}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Nom ou numéro d’escalier du local technique  :</span> {{lt_escal}}<br/>
+{{/lt_escal}}
+{{#lt_etage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Numéro d’étage du local technique:</span> {{lt_etage}}<br/>
+{{/lt_etage}}
+{{#zp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code zpbo :</span> {{zp_code}}<br/>
+{{/zp_code}}
+{{#zp_bp_code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span"> Code de l’EBP à l'extrémité 1 du câble:</span> {{zp_bp_code}}<br/>
+{{/zp_bp_code}}
+{{#type}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type :</span> {{type}}<br/>
+{{/type}}
+{{#zone}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Zone :</span> {{zone}}<br/>
+{{/zone}}
+{{#parent}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Zone :</span> {{parent}}<br/>
+{{/parent}}
+{{#oldcodeext}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code externe ancièn :</span> {{oldcodeext}}<br/>
+{{/oldcodeext}}
+{{#code}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code :</span> {{code}}<br/>
+{{/code}}
+{{#etiquette}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{etiquette}}<br/>
+{{/etiquette}}
+{{#projet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Projet :</span> {{projet}}<br/>
+{{/projet}}
+{{#libelle_niveau1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle niveau 1 :</span> {{libelle_niveau1}}<br/>
+{{/libelle_niveau1}}
+{{#type_niveau1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type niveau 1 :</span> {{type_niveau1}}<br/>
+{{/type_niveau1}}
+{{#niveau2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Niveau 2 :</span> {{niveau2}}<br/>
+{{/niveau2}}
+{{#libelle_niveau2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle niveau 2 :</span> {{libelle_niveau2}}<br/>
+{{/libelle_niveau2}}
+{{#departement_niveau2}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Departement niveau 2 :</span> {{departement_niveau2}}<br/>
+{{/departement_niveau2}}
+{{#etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">ETR :</span> {{etr}}<br/>
+{{/etr}}
+{{#libelle_operation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle de l'opération :</span> {{libelle_operation}}<br/>
+{{/libelle_operation}}
+{{#code_avant_vente}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code avant-vente :</span> {{code_avant_vente}}<br/>
+{{/code_avant_vente}}
+{{#type_operation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type operation :</span> {{type_operation}}<br/>
+{{/type_operation}}
+{{#libelle_phase}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle phase :</span> {{libelle_phase}}<br/>
+{{/libelle_phase}}
+{{#type_phase}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type phase :</span> {{type_phase}}<br/>
+{{/type_phase}}
+{{#date_previsionnel_demarrage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date previsionnelle de démarrage :</span> {{date_previsionnel_demarrage}}<br/>
+{{/date_previsionnel_demarrage}}
+{{#date_previsionnel_fin_etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date previsionnelle du fin de l'ETR :</span> {{date_previsionnel_fin_etr}}<br/>
+{{/date_previsionnel_fin_etr}}
+{{#date_previsionnel_fin_orange}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date previsionnelle du fin Orange :</span> {{date_previsionnel_fin_orange}}<br/>
+{{/date_previsionnel_fin_orange}}
+{{#date_revision_demarrage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de revision du démarrage :</span> {{date_revision_demarrage}}<br/>
+{{/date_revision_demarrage}}
+{{#date_revision_fin_etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de revision du fin de l'ETR :</span> {{date_revision_fin_etr}}<br/>
+{{/date_revision_fin_etr}}
+{{#date_revision_fin_orange}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de revision du fin Orange :</span> {{date_revision_fin_orange}}<br/>
+{{/date_revision_fin_orange}}
+{{#date_realisee_demarrage}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date réalisée pour le démarrage :</span> {{date_realisee_demarrage}}<br/>
+{{/date_realisee_demarrage}}
+{{#date_realisee_fin_etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date réalisée pour la fin de l'ETR :</span> {{date_realisee_fin_etr}}<br/>
+{{/date_realisee_fin_etr}}
+{{#date_realisee_fin_orange}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date réalisée pour la fin Orange :</span> {{date_realisee_fin_orange}}<br/>
+{{/date_realisee_fin_orange}}
+{{#budget_previsionnel_ca_owf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget previsionnel CA OWF :</span> {{budget_previsionnel_ca_owf}}<br/>
+{{/budget_previsionnel_ca_owf}}
+{{#budget_previsionnel_ca_dtrs}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget previsionnel CA DTRS :</span> {{budget_previsionnel_ca_dtrs}}<br/>
+{{/budget_previsionnel_ca_dtrs}}
+{{#budget_previsionnel_materiel}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget previsionnel du matériel :</span> {{budget_previsionnel_materiel}}<br/>
+{{/budget_previsionnel_materiel}}
+{{#budget_previsionnel_mo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget previsionnel MO :</span> {{budget_previsionnel_mo}}<br/>
+{{/budget_previsionnel_mo}}
+{{#budget_revise_ca_owf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget revisé CA OWF :</span> {{budget_revise_ca_owf}}<br/>
+{{/budget_revise_ca_owf}}
+{{#budget_revise_ca_dtrs}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget revisé CA DTRS :</span> {{budget_revise_ca_dtrs}}<br/>
+{{/budget_revise_ca_dtrs}}
+{{#budget_revise_materiel}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget revisé du matériel :</span> {{budget_revise_materiel}}<br/>
+{{/budget_revise_materiel}}
+{{#budget_revise_mo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget revisé MO :</span> {{budget_revise_mo}}<br/>
+{{/budget_revise_mo}}
+{{#budget_realise_ca_owf}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget réalisé CA OWF :</span> {{budget_realise_ca_owf}}<br/>
+{{/budget_realise_ca_owf}}
+{{#budget_realise_ca_dtrs}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget réalisé CA DTRS :</span> {{budget_realise_ca_dtrs}}<br/>
+{{/budget_realise_ca_dtrs}}
+{{#budget_realise_materiel}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget réalisé matériel :</span> {{budget_realise_materiel}}<br/>
+{{/budget_realise_materiel}}
+{{#budget_realise_mo}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Budget réalisé MO :</span> {{budget_realise_mo}}<br/>
+{{/budget_realise_mo}}
+{{#phase_terminee}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase términée :</span> {{phase_terminee}}<br/>
+{{/phase_terminee}}
+{{#phase_annulee}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phase annulée :</span> {{phase_annulee}}<br/>
+{{/phase_annulee}}
+{{#phases_precendentes}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Phases précedentes :</span> {{phases_precendentes}}<br/>
+{{/phases_precendentes}}
+{{#date_de_notification}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de notification :</span> {{date_de_notification}}<br/>
+{{/date_de_notification}}
+{{#ftth}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">FTTH :</span> {{ftth}}<br/>
+{{/ftth}}
+{{#montee}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Montée :</span> {{montee}}<br/>
+{{/montee}}
+{{#format_juridique}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Format juridique :</span> {{format_juridique}}<br/>
+{{/format_juridique}}
+{{#commune_operation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commune de l'opération :</span> {{commune_operation}}<br/>
+{{/commune_operation}}
+{{#cle_unique}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Clé unique :</span> {{cle_unique}}<br/>
+{{/cle_unique}}
+{{#livrables_attendus}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Livrables attendus :</span> {{livrables_attendus}}<br/>
+{{/livrables_attendus}}
+{{#livrables_fournis}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Livrables fournis :</span> {{livrables_fournis}}<br/>
+{{/livrables_fournis}}
+{{#livrables_finalises}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de livraison du dèrnier livrable :</span> {{livrables_finalises}}<br/>
+{{/livrables_finalises}}
+{{#date_de_livraison_du_dernier_livrable}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de finalisation du dèrnier livrable :</span> {{date_de_livraison_du_dernier_livrable}}<br/>
+{{/date_de_livraison_du_dernier_livrable}}
+{{#date_finalisation_la_plus_recente}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de finalisation la plus récente :</span> {{date_finalisation_la_plus_recente}}<br/>
+{{/date_finalisation_la_plus_recente}}
+{{#type_livrable}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type livrable :</span> {{type_livrable}}<br/>
+{{/type_livrable}}
+{{#version_livrable}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Version livrable :</span> {{version_livrable}}<br/>
+{{/version_livrable}}
+{{#etat_du_livrable}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Etat du livrable :</span> {{etat_du_livrable}}<br/>
+{{/etat_du_livrable}}
+{{#date_mise_a_jour_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise à jour état :</span> {{date_mise_a_jour_etat}}<br/>
+{{/date_mise_a_jour_etat}}
+{{#commentaire}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Commentaire :</span> {{commentaire}}<br/>
+{{/commentaire}}
+{{#utilisateur}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Utilisateur :</span> {{utilisateur}}<br/>
+{{/utilisateur}}
+{{#profil}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Profil :</span> {{profil}}<br/>
+{{/profil}}
+{{#cle_unique}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Clé unique :</span> {{cle_unique}}<br/>
+{{/cle_unique}}
+{{#etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">ETR :</span> {{etr}}<br/>
+{{/etr}}
+{{#date_validation_client}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de validation du client :</span> {{date_validation_client}}<br/>
+{{/date_validation_client}}
+{{#num_dossier_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de dossier du site :</span> {{num_dossier_site}}<br/>
+{{/num_dossier_site}}
+{{#projet}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Projet :</span> {{projet}}<br/>
+{{/projet}}
+{{#niveau1}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Niveau 1 :</span> {{niveau1}}<br/>
+{{/niveau1}}
+{{#zone}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Zone :</span> {{zone}}<br/>
+{{/zone}}
+{{#etr}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">ETR :</span> {{etr}}<br/>
+{{/etr}}
+{{#code_regroupement_tchnique}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du regroupement technique :</span> {{code_regroupement_tchnique}}<br/>
+{{/code_regroupement_tchnique}}
+{{#nb_prises_r}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises raccordées :</span> {{nb_prises_r}}<br/>
+{{/nb_prises_r}}
+{{#nb_prises_p}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises professionnelles :</span> {{nb_prises_p}}<br/>
+{{/nb_prises_p}}
+{{#nombre_de_prises}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises :</span> {{nombre_de_prises}}<br/>
+{{/nombre_de_prises}}
+{{#nb_prises_ftte}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de prises FTTE :</span> {{nb_prises_ftte}}<br/>
+{{/nb_prises_ftte}}
+{{#date_retour_convention}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de retour de la convention :</span> {{date_retour_convention}}<br/>
+{{/date_retour_convention}}
+{{#libelle_site_etat_negociation_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle du site pour l'etat de la négociation avec le syndicat :</span> {{libelle_site_etat_negociation_syndic}}<br/>
+{{/libelle_site_etat_negociation_syndic}}
+{{#code_regroupement_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code du regroupement du syndicat :</span> {{code_regroupement_syndic}}<br/>
+{{/code_regroupement_syndic}}
+{{#date_pose_pb}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de pose du PB :</span> {{date_pose_pb}}<br/>
+{{/date_pose_pb}}
+{{#msc_arcep_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">msc_arcep_site :</span> {{msc_arcep_site}}<br/>
+{{/msc_arcep_site}}
+{{#date_validation_pre_etud}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de validation de la pré etude :</span> {{date_validation_pre_etud}}<br/>
+{{/date_validation_pre_etud}}
+{{#libelle_etat_etude_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle de l'état de l'etude du site :</span> {{libelle_etat_etude_site}}<br/>
+{{/libelle_etat_etude_site}}
+{{#bloque}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Bloqué :</span> {{bloque}}<br/>
+{{/bloque}}
+{{#num_as_oeie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">num_as_oeie :</span> {{num_as_oeie}}<br/>
+{{/num_as_oeie}}
+{{#nb_logements_regroupement_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nombre de logements regroupées par syndicat :</span> {{nb_logements_regroupement_syndic}}<br/>
+{{/nb_logements_regroupement_syndic}}
+{{#numero_voie_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numero de voie du site :</span> {{numero_voie_site}}<br/>
+{{/numero_voie_site}}
+{{#libelle_num_complement_adresse_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle contenant le numero en complement de l'adresse du site :</span> {{libelle_num_complement_adresse_site}}<br/>
+{{/libelle_num_complement_adresse_site}}
+{{#type_voie_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type de voie du site :</span> {{type_voie_site}}<br/>
+{{/type_voie_site}}
+{{#voie_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Voie du site :</span> {{voie_site}}<br/>
+{{/voie_site}}
+{{#batiment_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Batiment Site :</span> {{batiment_site}}<br/>
+{{/batiment_site}}
+{{#code_postal_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code postal du site :</span> {{code_postal_site}}<br/>
+{{/code_postal_site}}
+{{#code_insee_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code insee du site :</span> {{code_insee_site}}<br/>
+{{/code_insee_site}}
+{{#code_rivoli_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code RIVOLI du site :</span> {{code_rivoli_site}}<br/>
+{{/code_rivoli_site}}
+{{#code_voie_hexacle}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code voie hexacle :</span> {{code_voie_hexacle}}<br/>
+{{/code_voie_hexacle}}
+{{#code_numero_hexacle}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code numero hexacle :</span> {{code_numero_hexacle}}<br/>
+{{/code_numero_hexacle}}
+{{#code_hexavia}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code HEXAVIA :</span> {{code_hexavia}}<br/>
+{{/code_hexavia}}
+{{#localite_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Localité du site :</span> {{localite_site}}<br/>
+{{/localite_site}}
+{{#nom_du_president}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numero du président :</span> {{nom_du_president}}<br/>
+{{/nom_du_president}}
+{{#num_voie_majic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Numero de voie en provenance des données MAJIC :</span> {{num_voie_majic}}<br/>
+{{/num_voie_majic}}
+{{#libelle_type_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle type site :</span> {{libelle_type_site}}<br/>
+{{/libelle_type_site}}
+{{#type_cas_particulier}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Type pour le cas particulier :</span> {{type_cas_particulier}}<br/>
+{{/type_cas_particulier}}
+{{#adduction}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Adduction :</span> {{adduction}}<br/>
+{{/adduction}}
+{{#date_de_construction}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de construction :</span> {{date_de_construction}}<br/>
+{{/date_de_construction}}
+{{#coord_x}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Coordonnées X :</span> {{coord_x}}<br/>
+{{/coord_x}}
+{{#coord_y}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Coordonnées Y :</span> {{coord_y}}<br/>
+{{/coord_y}}
+{{#typologie}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Typologie :</span> {{typologie}}<br/>
+{{/typologie}}
+{{#libelle_type_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle pour le type de syndicat :</span> {{libelle_type_syndic}}<br/>
+{{/libelle_type_syndic}}
+{{#code_siret_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code SIRET du syndicat :</span> {{code_siret_syndic}}<br/>
+{{/code_siret_syndic}}
+{{#date_envoi_accord}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'envoi de l'accord :</span> {{date_envoi_accord}}<br/>
+{{/date_envoi_accord}}
+{{#libelle_presence_dta}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle pour la présence DTA :</span> {{libelle_presence_dta}}<br/>
+{{/libelle_presence_dta}}
+{{#libelle_motif_refus_accord}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle motif de refus de l'accord :</span> {{libelle_motif_refus_accord}}<br/>
+{{/libelle_motif_refus_accord}}
+{{#date_refus_accord}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de refus de l'accord :</span> {{date_refus_accord}}<br/>
+{{/date_refus_accord}}
+{{#date_effective_raccordement_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date effective du raccordement du site :</span> {{date_effective_raccordement_site}}<br/>
+{{/date_effective_raccordement_site}}
+{{#date_cablage_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de cablage du site :</span> {{date_cablage_site}}<br/>
+{{/date_cablage_site}}
+{{#date_mesc_arcep_pm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date mesc arcep pm :</span> {{date_mesc_arcep_pm}}<br/>
+{{/date_mesc_arcep_pm}}
+{{#date_fin_construction_transport}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date fin de construction pour le transport :</span> {{date_fin_construction_transport}}<br/>
+{{/date_fin_construction_transport}}
+{{#date_de_construction_du_pm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de construction du PM :</span> {{date_de_construction_du_pm}}<br/>
+{{/date_de_construction_du_pm}}
+{{#zone_preblom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Zone Pre BLOM :</span> {{zone_preblom}}<br/>
+{{/zone_preblom}}
+{{#ag_non_pertinente}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Ag non pértinente :</span> {{ag_non_pertinente}}<br/>
+{{/ag_non_pertinente}}
+{{#code_pa}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code PA :</span> {{code_pa}}<br/>
+{{/code_pa}}
+{{#date_ag}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Code AG :</span> {{date_ag}}<br/>
+{{/date_ag}}
+{{#date_construction_pa}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de construction du PA :</span> {{date_construction_pa}}<br/>
+{{/date_construction_pa}}
+{{#date_daccord}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de l'accord :</span> {{date_daccord}}<br/>
+{{/date_daccord}}
+{{#date_denonciation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de dénonciation :</span> {{date_denonciation}}<br/>
+{{/date_denonciation}}
+{{#date_envoi_pre_etude}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date d'envoie de la pré étude :</span> {{date_envoi_pre_etude}}<br/>
+{{/date_envoi_pre_etude}}
+{{#date_mise_a_dispo_pre_etude}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de mise à disposition de la pré étude :</span> {{date_mise_a_dispo_pre_etude}}<br/>
+{{/date_mise_a_dispo_pre_etude}}
+{{#date_de_pose_pre}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de pose de la pré étude :</span> {{date_de_pose_pre}}<br/>
+{{/date_de_pose_pre}}
+{{#date_raccordement_de_la_colonne}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de raccordement de la colonne :</span> {{date_raccordement_de_la_colonne}}<br/>
+{{/date_raccordement_de_la_colonne}}
+{{#date_reception_bon_pre_etude}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de reception du bon de commande de la pré étude :</span> {{date_reception_bon_pre_etude}}<br/>
+{{/date_reception_bon_pre_etude}}
+{{#date_theorique_raccordement_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date théorique du raccordement du site :</span> {{date_theorique_raccordement_site}}<br/>
+{{/date_theorique_raccordement_site}}
+{{#date_visite_reseau}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Date de visite du réseau :</span> {{date_visite_reseau}}<br/>
+{{/date_visite_reseau}}
+{{#departement_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Site du département :</span> {{departement_site}}<br/>
+{{/departement_site}}
+{{#domaine}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Domaine :</span> {{domaine}}<br/>
+{{/domaine}}
+{{#id_processus_particulier}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant pour le processus particulier :</span> {{id_processus_particulier}}<br/>
+{{/id_processus_particulier}}
+{{#identifiant_pb}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant PB :</span> {{identifiant_pb}}<br/>
+{{/identifiant_pb}}
+{{#identifiant_pre}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Identifiant PRE :</span> {{identifiant_pre}}<br/>
+{{/identifiant_pre}}
+{{#libelle_etat_du_pa}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle état du PA :</span> {{libelle_etat_du_pa}}<br/>
+{{/libelle_etat_du_pa}}
+{{#libelle_etat_du_pm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle état du PM :</span> {{libelle_etat_du_pm}}<br/>
+{{/libelle_etat_du_pm}}
+{{#libelle_etat_reseau_site}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Libelle état du réseau site :</span> {{libelle_etat_reseau_site}}<br/>
+{{/libelle_etat_reseau_site}}
+{{#lot_du_pm}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Lot du PM :</span> {{lot_du_pm}}<br/>
+{{/lot_du_pm}}
+{{#modif_attente_probation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Modification de l'attente pour la probation :</span> {{modif_attente_probation}}<br/>
+{{/modif_attente_probation}}
+{{#motif_denonciation}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Motif de dénonciation :</span> {{motif_denonciation}}<br/>
+{{/motif_denonciation}}
+{{#zone_rome}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Zone ROME :</span> {{zone_rome}}<br/>
+{{/zone_rome}}
+{{#raison_sociale_syndic}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Raison sociale du syndicat :</span> {{raison_sociale_syndic}}<br/>
+{{/raison_sociale_syndic}}
+{{#nom_negociateur}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">Nom du négociateur :</span> {{nom_negociateur}}<br/>
+{{/nom_negociateur}}
+{{#zs_kpi_statut}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI statut :</span> {{zs_kpi_statut}}<br/>
+{{/zs_kpi_statut}}
+{{#zs_kpi1_valeur}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI1 valeur :</span> {{zs_kpi1_valeur}}<br/>
+{{/zs_kpi1_valeur}}
+{{#zs_kpi1_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI1 nom :</span> {{zs_kpi1_nom}}<br/>
+{{/zs_kpi1_nom}}
+{{#zs_kpi1_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI1 etat :</span> {{zs_kpi1_etat}}<br/>
+{{/zs_kpi1_etat}}
+{{#zs_kpi2_valeur}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI2 valeur :</span> {{zs_kpi2_valeur}}<br/>
+{{/zs_kpi2_valeur}}
+{{#zs_kpi2_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI2 nom :</span> {{zs_kpi2_nom}}<br/>
+{{/zs_kpi2_nom}}
+{{#zs_kpi2_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI2 etat :</span> {{zs_kpi2_etat}}<br/>
+{{/zs_kpi2_etat}}
+{{#zs_kpi3_valeur}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI3 valeur :</span> {{zs_kpi3_valeur}}<br/>
+{{/zs_kpi3_valeur}}
+{{#zs_kpi3_nom}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI3 nom :</span> {{zs_kpi3_nom}}<br/>
+{{/zs_kpi3_nom}}
+{{#zs_kpi3_etat}}
+<span style="font-family:'roboto_bold'" class="text-feature-span">KPI3 etat :</span> {{zs_kpi3_etat}}<br/>
+{{/zs_kpi3_etat}}
+
+		</p>
+	</li>
+ 
+{{/features}}
+
+<style>
+	.title-feature {
+		color: #2D4059;
+		font-family:"roboto_bold";
+		font-size:23px;
+		margin-bottom:1%;
+		line-height:1;
+	}
+	.text-feature{
+		font-family:"roboto_regular";
+		color:#555;
+		font-size:13px;
+		margin-top:10%;
+	}
+    .text-feature-span{
+        font-family:"roboto_regular";
+		color:#555;
+		font-size:8px;
+		margin-top:10%;
+    }
+</style>
