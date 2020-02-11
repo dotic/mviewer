@@ -460,6 +460,22 @@
                     <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
                 </a>
             </div>
+            <!-- THIRD VERTICAL RIGHT TOOLBAR -->
+            <div id='bookmarktoolbar' class="btn-group-vertical btn-group-sm" role="group" aria-label="true">
+                <button id="togglebutton" class="mv-modetools btn btn-default btn-raised" href="#" onclick="mviewer.toggleBookmarList()"
+                tabindex="108" accesskey="8">
+                        <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                </button>
+                <div id="bookmarkslist" style="display: none;"
+                role="group" aria-label="true">
+                    <div id="bookmarks-header-container">
+                        <span>Salut</span>
+                    </div>
+                    <div id="bookmarks-container" class="list-group">
+                        <span>test</span>
+                    </div>
+                </div>
+            </div>
             <div id="backgroundlayerstoolbar-default" class="btn-group-vertical btn-group-sm" role="group"
                  aria-label="true">
                 <button href="#" onclick="mviewer.nextBackgroundLayer();" id="backgroundlayersbtn"

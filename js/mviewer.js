@@ -521,7 +521,7 @@ mviewer = (function () {
         mviewer.setTool('info');
         //Activate tooltips on tools buttons
         if (!configuration.getConfiguration().mobile) {
-            $("#backgroundlayersbtn, #zoomtoolbar button, #toolstoolbar button, #toolstoolbar a").tooltip({
+            $("#backgroundlayersbtn, #zoomtoolbar button, #toolstoolbar button, #bookmarktoolbar button, #toolstoolbar a").tooltip({
                 placement: 'left',
                 trigger: 'hover',
                 html: true,
@@ -1608,27 +1608,36 @@ mviewer = (function () {
                     xmlToJson.parse( str )
                 )
                 .then(data =>{
-                    console.log(data);
                     let arrayLayer = data.WMS_Capabilities.Capability.Layer.Layer
                     if(!Array.isArray(arrayLayer)){
                         arrayLayer = [arrayLayer];
                     }
                     const found = arrayLayer.find(element => element.Name === themeId);
-                    const oldBbox = '718131.079201147 6316341.60011725,738296.590547089 6342077.05952726'
+                    console.log(found);
+                    const oldBbox = '718131.079201147 6316341.60011725,738296.590547089 6342077.05952726';
                     const bbox = oldBbox.replace(/ /g,",");
-                    console.log(bbox);
+                    console.log(bbox)
                     const newbbox = JSON.parse("["+bbox+"]");
-                    console.log(newbbox)
 
-                    const centerNewCoord = getCenterOfExtent(newbbox);
+                    fetch('http://51.83.13.221:8080/geoserver/of-moselle-ccb-bou/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=of-moselle-ccb-bou%3At_zsro&maxFeatures=50&outputFormat=application%2Fjson', options)
+                    .then( res =>
+                        res.json()
+                    )
+                    .then( (data) => {
+                        console.log(data)
+                        const polyon = data.features.getGeometry();
+                        const newZoom = _map.getView().fit(polyon, _map.getSize());
+                        console.log(newZoom);
 
-                    console.log(centerNewCoord);
-                    // si setCenter = true, définir le layer comme étendu géographique de départ
-                    if(setCenter){
-                        _center = centerNewCoord
-                    }
-                    _map.getView().setCenter(centerNewCoord);
-                    _map.getView().setZoom(_zoom);
+                        const centerNewCoord = getCenterOfExtent(newbbox);
+
+                        // si setCenter = true, définir le layer comme étendu géographique de départ
+                        if(setCenter){
+                            _center = centerNewCoord
+                        }
+                        _map.getView().setCenter(centerNewCoord);
+                        _map.getView().setZoom(_zoom);
+                    })
                 }).catch(error =>{
                     console.log(error);
                 })
@@ -2416,6 +2425,10 @@ mviewer = (function () {
 
         toggleLegend: function () {
             $("#legend").toggleClass("active");
+        },
+
+        toggleBookmarList: function () {
+            $("#bookmarkslist").toggle();
         },
         toggleParameter: function (li) {
             var span = $(li).find("span");

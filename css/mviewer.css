@@ -550,10 +550,6 @@ div#backgroundlayerstoolbar-gallery {
     padding: 10px;
 }
 
-.active #layers-container-box-header span {
-    transform: rotate(0deg);
-}
-
 .menu-toggle.closed span {
     transform: rotate(90deg);
 }
@@ -771,6 +767,42 @@ ul#layers-container {
     right: 10px;
 }
 
+#bookmarktoolbar {
+    position: fixed;
+    top: 280px;
+    right: 10px;
+}
+
+#bookmarkslist {
+    position: fixed;
+    right: 70px;
+    float: right;
+    top: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    max-width: 300px;
+    width: 200px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    background-color: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#bookmarks-header-container {
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+}
+
+#bookmarks-container {
+    padding: 10px 15px;
+}
+
 #drawtoolsoptions {
     position: fixed;
     right: 70px;
@@ -811,6 +843,10 @@ ul#layers-container {
 }
 
 #toolstoolbar {
+    box-shadow: 0px 0px 30px 3px rgba(200, 200, 200, 0.5);
+}
+
+#bookmarktoolbar {
     box-shadow: 0px 0px 30px 3px rgba(200, 200, 200, 0.5);
 }
 
@@ -1782,6 +1818,10 @@ button.btn.btn-default.btn-raised, a#exportpng, a.btn.btn-default {
 }
 
 .xs.mode-u #zoomtoolbar {
+    top: 10px;
+}
+
+.xs.mode-u #bookmarktoolbar {
     top: 10px;
 }
 
