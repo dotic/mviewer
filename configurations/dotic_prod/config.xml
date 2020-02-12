@@ -2,7 +2,7 @@
 <config>
     <application title="Diffusion cartographique" help="mviewer_help.html" logo="/img/logo/companies/dotic.png"
                  measuretools="true" exportpng="true" coordinates="true" togglealllayersfromtheme="true"
-                 style="css/themes/peter_river.css"/>
+                 style="css/themes/peter_river.css" />
     <mapoptions maxzoom="19" projection="EPSG:3857" center="266648.59,5955321.72" zoom="6"
                 projextent="-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244"/>
 
