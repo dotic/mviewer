@@ -1,7 +1,4 @@
 dist/*
 panels/*
 apps/*
-config.xml
-templates/global_template.mst
-img/logo/companies/*.*
 .idea/
