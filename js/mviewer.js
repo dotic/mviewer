@@ -817,6 +817,15 @@ mviewer = (function () {
         //     }
         // });
 
+        const firstTheme = reverse_themes[Object.keys(reverse_themes)[0]];
+        const layers = Object.values(firstTheme.layers)
+        const last = layers.reverse();
+        const theme = last[0]
+
+        // Appelle la fonction de déplacement
+        mviewer.goToLocation(theme.url, theme.id, true)
+
+
         $.each(reverse_themes.reverse(), function (id, theme) {
             var reverse_layers = [];
             var groups = [];
@@ -1555,6 +1564,81 @@ mviewer = (function () {
         zoomToInitialExtent: function () {
             _map.getView().setCenter(_center);
             _map.getView().setZoom(_zoom);
+        },
+
+
+        /**
+         * Public Method: goToCenter
+         *
+         */
+        goToCenter: function (el) {
+            var item;
+            if ( !$(el).is( "button" ) ) {
+                item = $(el).closest("button");
+            } else {
+                item = $(el);
+            }
+            const layerid = item.attr("data-layerid");
+            const getView = _map.getView()
+            const getLayer = _overLayers[layerid];
+
+            // Appelle la fonction de déplacement
+            mviewer.goToLocation(getLayer.url, getLayer.id, false);
+        },
+
+
+
+        /**
+         * Public Method: goToLocation
+         *
+         */
+        goToLocation: function (url, themeId, setCenter){
+            if(url){
+                console.log(url)
+
+                const headers = new Headers();
+                headers.append('Authorization', configuration.getConfiguration().basicAuthentication)
+                const options = {method: 'GET', headers: headers}
+                fetch(url+'?service=WMS&Version=1.3.0&request=GetCapabilities', options)
+                .then(res =>
+                    res.text()
+                )
+                .then(str =>
+                    // Librairie JS
+                    xmlToJson.parse( str )
+                )
+                .then(data =>{
+                    console.log(data);
+                    let arrayLayer = data.WMS_Capabilities.Capability.Layer.Layer
+                    if(!Array.isArray(arrayLayer)){
+                        arrayLayer = [arrayLayer];
+                    }
+                    const found = arrayLayer.find(element => element.Name === themeId);
+                    const oldBbox = '718131.079201147 6316341.60011725,738296.590547089 6342077.05952726'
+                    const bbox = oldBbox.replace(/ /g,",");
+                    console.log(bbox);
+                    const newbbox = JSON.parse("["+bbox+"]");
+                    console.log(newbbox)
+
+                    const centerNewCoord = getCenterOfExtent(newbbox);
+
+                    console.log(centerNewCoord);
+                    // si setCenter = true, définir le layer comme étendu géographique de départ
+                    if(setCenter){
+                        _center = centerNewCoord
+                    }
+                    _map.getView().setCenter(centerNewCoord);
+                    _map.getView().setZoom(_zoom);
+                }).catch(error =>{
+                    console.log(error);
+                })
+
+                function getCenterOfExtent(Extent){
+                    var X = Extent[0] + (Extent[2]-Extent[0])/2;
+                    var Y = Extent[1] + (Extent[3]-Extent[1])/2;
+                    return [X, Y];
+                    }
+            }
         },
 
         /**
