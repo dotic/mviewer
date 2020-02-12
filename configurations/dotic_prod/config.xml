@@ -56,7 +56,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-        <theme name="Genie Civil" collapsed="true" id="genie civil" icon="fas fa-road">
+        <theme name="Genie Civil" collapsed="true" id="genie_civil" icon="fas fa-road">
             <layer id="mvs_elem_pt_nd" name="Chambres" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    style="chambres_avancement"
@@ -187,7 +187,7 @@
         <theme name="Fibrages" collapsed="true" id="fibrages" icon="fas fa-code-branch">
             <layer id="mvs_elem_fo_cb_cl" name="Fibres" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
-                   infoformat="application/vnd.ogc.gml" featurecount="20"
+                   infoformat="application/vnd.ogc.gml" featurecount="720"
                    style="fibres_etat"
                    stylesalias="Etat de fonctionnement"
                    attributefilter="true"
@@ -273,32 +273,28 @@
             </layer>
         </theme>
         <theme name="FTTH" collapsed="true" id="ftth" icon="fas fa-object-group">
-            <layer id="t_znro" name="ZNRO" visible="false" tiled="false"
+            <layer id="t_znro" name="ZNRO" visible="true" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZANRO"
-                   stylesalias="ZNRO"
-            >
+                   stylesalias="ZNRO">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="t_zsro" name="ZSRO" visible="false" tiled="false"
+            <layer id="t_zsro" name="ZSRO" visible="true" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZASRO"
-                   stylesalias="ZSRO"
-            >
+                   stylesalias="ZSRO">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="t_zpbo" name="ZPBO" visible="false" tiled="false"
+            <layer id="t_zpbo" name="ZPBO" visible="true" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZAPBO"
                    stylesalias="ZPBO">
                 <template url="templates/global_template.mst"/>
             </layer>
-            
         </theme>
-
-
+    <theme id="communes_france" url="http://51.83.13.221:8081/configurations/communes_france.xml"/>
     </themes>
 </config>

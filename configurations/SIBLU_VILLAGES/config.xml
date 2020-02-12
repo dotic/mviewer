@@ -56,7 +56,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-        <theme name="Genie Civil" collapsed="true" id="genie civil" icon="fas fa-road">
+        <theme name="Genie Civil" collapsed="true" id="genie_civil" icon="fas fa-road">
             <layer id="mvs_elem_pt_nd" name="Chambres" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    style="chambres_avancement"

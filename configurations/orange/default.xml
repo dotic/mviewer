@@ -61,7 +61,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-        <theme name="Genie Civil" collapsed="true" id="genie civil" icon="fas fa-road">
+        <theme name="Genie Civil" collapsed="true" id="genie_civil" icon="fas fa-road">
             <layer id="mvs_elem_pt_nd" name="Chambres" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    style="chambres_avancement"
@@ -165,6 +165,13 @@
                    attributevalues="PRE,DIA,AVP,PRO,ACT,EXE,TVX,REC,MCO"
                    attributelabel="Filtrer par etat d'avancement"
                    attributefilterenabled="false">
+                <template url="templates/global_template.mst"/>
+            </layer>
+            <layer id="mvs_elem_bp_lt_st_nd" name="PBO immeuble" visible="false" tiled="false"
+                   searchable="false" queryable="true" fields="axe" aliases="axe"
+                   infoformat="application/vnd.ogc.gml" featurecount="20"
+                   style="PBO_immeuble"
+                   stylesalias="PBO immeuble">
                 <template url="templates/global_template.mst"/>
             </layer>
             <layer id="mvs_elem_cb_nd" name="Extremites de cable" visible="false" tiled="false"
@@ -279,7 +286,7 @@
             >
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="t_zsro" name="ZSRO" visible="false" tiled="false"
+            <layer id="t_zsro" name="ZSRO" visible="true" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZASRO"
@@ -292,13 +299,6 @@
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZAPBO"
                    stylesalias="ZPBO">
-                <template url="templates/global_template.mst"/>
-            </layer>
-            <layer id="mvs_elem_bp_lt_st_nd" name="PBO immeuble" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
-                   infoformat="application/vnd.ogc.gml" featurecount="20"
-                   style="PBO_immeuble"
-                   stylesalias="PBO immeuble">
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>

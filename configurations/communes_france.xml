@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <application title="Diffusion cartographique" help="mviewer_help.html" logo="/img/logo/companies/dotic.png"
+                 measuretools="true" exportpng="true" coordinates="true" togglealllayersfromtheme="true"
+                 style="css/themes/peter_river.css"/>
+    <mapoptions maxzoom="19" projection="EPSG:3857" center="266648.59,5955321.72" zoom="6"
+                projextent="-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244"/>
+
+    <baselayers style="gallery"><!-- style="default"||gallery" -->
+
+        <baselayer type="OSM" id="osm1" label="OpenStreetMap" title="OpenStreetMap" thumbgallery="img/basemap/osm.png"
+                   url="http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                   attribution="© MapQuest. Données : les contributeurs d'&lt;a href='http://www.openstreetmap.org/' target='_blank'>OpenStreetMap &lt;/a>,  &lt;a href='http://www.openstreetmap.org/copyright' target='_blank'>ODbL &lt;/a>"
+                   visible="false"/>
+        <baselayer type="OSM" id="positron" label="Positron" title="CartoDb" thumbgallery="img/basemap/positron.png"
+                   url="http://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" maxzoom="20"
+                   visible="true"
+                   attribution="Map tiles by  &lt;a href='http://cartodb.com/attributions'>CartoDb &lt;/a>, under  &lt;a href='http://creativecommons.org/licenses/by/3.0/'>CC BY 3.0 &lt;/a>"/>
+        <baselayer type="OSM" id="esriworldimagery" label="Esri world imagery" title="esriworldimagery"
+                   thumbgallery="img/basemap/ortho.jpg"
+                   url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                   visible="false"
+                   attribution="Esri world imagery"/>
+    </baselayers>
+    <olscompletion url="http://api-adresse.data.gouv.fr/search/" type="ban"/>
+    <searchparameters bbox="false" localities="true" features="false"/>
+
+    <themes mini="true">
+        <theme name="Communes" collapsed="true" id="communes_france" icon="fas fa-layer-group">
+        <layer  id="communes_01" name="Ain" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200" 
+                tooltip="true"
+                nohighlight="false"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/01/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_02" name="Aisne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/02/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_03" name="Allier" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/03/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_04" name="Alpes-de-Haute-Provence" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/04/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_05" name="Hautes-Alpes" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/05/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_06" name="Alpes-Maritimes" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/06/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_07" name="Ardèche" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/07/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_08" name="Ardennes" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/08/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_09" name="Ariège" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/09/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_10" name="Aube" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/10/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_11" name="Aude" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/11/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_12" name="Aveyron" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/12/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_13" name="Bouches-du-Rhône" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/13/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_14" name="Calvados" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/14/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_15" name="Cantal" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/15/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_16" name="Charente" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/16/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_17" name="Charente-Maritime" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/17/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_18" name="Cher" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/18/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_19" name="Corrèze" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/19/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_2A" name="Corse-du-Sud" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/2A/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_2B" name="Haute-Corse" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/2B/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_21" name="Côte-d'Or" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/21/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_22" name="Côtes d'Armor" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/22/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_23" name="Creuse" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/23/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_24" name="Dordogne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/24/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_25" name="Doubs" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/25/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_26" name="Drôme" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/26/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_27" name="Eure" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/27/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_28" name="Eure-et-Loir" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/28/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_29" name="Finistère" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/29/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_30" name="Gard" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/30/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_31" name="Haute-Garonne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/31/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_32" name="Gers" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/32/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_33" name="Gironde" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/33/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_34" name="Hérault" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/34/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_35" name="Ille-et-Vilaine" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/35/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_36" name="Indre" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/36/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_37" name="Indre-et-Loire" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/37/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_38" name="Isère" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/38/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_39" name="Jura" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/39/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_40" name="Landes" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/40/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_41" name="Loir-et-Cher" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/41/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_42" name="Loire" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/42/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_43" name="Haute-Loire" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/43/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_44" name="Loire-Atlantique" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/44/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_45" name="Loiret" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/45/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_46" name="Lot" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/46/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_47" name="Lot-et-Garonne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/47/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_48" name="Lozère" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/48/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_49" name="Maine-et-Loire" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/49/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_50" name="Manche" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/50/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_51" name="Marne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/51/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_52" name="Haute-Marne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/52/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_53" name="Mayenne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/53/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_54" name="Meurthe-et-Moselle" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/54/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_55" name="Meuse" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/55/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_56" name="Morbihan" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/56/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_57" name="Moselle" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/57/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_58" name="Nièvre" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/58/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_59" name="Nord" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/59/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_60" name="Oise" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/60/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_61" name="Orne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/61/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_62" name="Pas-de-Calais" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/62/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_63" name="Puy-de-Dôme" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/63/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_64" name="Pyrénées-Atlantiques" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/64/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_65" name="Hautes-Pyrénées" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/65/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_66" name="Pyrénées-Orientales" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/66/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_67" name="Bas-Rhin" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/67/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_68" name="Haut-Rhin" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/68/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_69" name="Rhône" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/69/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_70" name="Haute-Saône" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/70/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_71" name="Saône-et-Loire" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/71/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_72" name="Sarthe" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/72/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_73" name="Savoie" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/73/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_74" name="Haute-Savoie" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/74/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_75" name="Paris" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/75/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_76" name="Seine-Maritime" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/76/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_77" name="Seine-et-Marne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/77/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_78" name="Yvelines" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/78/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_79" name="Deux-Sèvres" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/79/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_80" name="Somme" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/80/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_81" name="Tarn" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/81/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_82" name="Tarn-et-Garonne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/82/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_83" name="Var" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/83/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_84" name="Vaucluse" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/84/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_85" name="Vendée" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/85/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_86" name="Vienne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/86/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_87" name="Haute-Vienne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/87/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_88" name="Vosges" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/88/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_89" name="Yonne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/89/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_90" name="Territoire de Belfort" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/90/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_91" name="Essonne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/91/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_92" name="Hauts-de-Seine" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/92/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_93" name="Seine-St-Denis" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/93/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_94" name="Val-de-Marne" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/94/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_95" name="Val-D'Oise" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/95/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_971" name="Guadeloupe" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/971/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_972" name="Martinique" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/972/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_973" name="Guyane" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/973/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_974" name="La Réunion" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/974/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+        <layer  id="communes_976" name="Mayotte" type="geojson"
+                visible="false"
+                searchable="true" queryable="true" fields="nom,code,codesPostaux,codeDepartement,codeRegion,population" 
+                aliases="Nom,Code,Codes Postaux, Code du Département, Code de la Région, Population"
+                featurecount="200"
+                style="elsStyle"
+                stylesalias="Communes"
+                url="https://geo.api.gouv.fr/departements/976/communes?fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&amp;format=geojson&amp;geometry=contour">
+        </layer>
+
+        </theme>
+
+
+    </themes>
+</config>

@@ -1,5 +1,6 @@
 {{#features}}
-	<li class="item" style="width:238px;">
+	<li class="item" style="width:400px;">
+	<h3 class="title-feature">{{nom}}</h3>
    <p class="text-feature">
 			{{#ad_code}}
 <span style="font-family:'roboto_bold'" class="text-feature-span">Code unique de l'adresse:</span> {{ad_code}}<br/>
@@ -2062,9 +2063,7 @@
 {{#etiquette}}
 <span style="font-family:'roboto_bold'" class="text-feature-span">Etiquette sur le terrain :</span> {{etiquette}}<br/>
 {{/etiquette}}
-{{#projet}}
-<span style="font-family:'roboto_bold'" class="text-feature-span">Projet :</span> {{projet}}<br/>
-{{/projet}}
+
 {{#libelle_niveau1}}
 <span style="font-family:'roboto_bold'" class="text-feature-span">Libelle niveau 1 :</span> {{libelle_niveau1}}<br/>
 {{/libelle_niveau1}}
@@ -2236,9 +2235,6 @@
 {{#num_dossier_site}}
 <span style="font-family:'roboto_bold'" class="text-feature-span">Numéro de dossier du site :</span> {{num_dossier_site}}<br/>
 {{/num_dossier_site}}
-{{#projet}}
-<span style="font-family:'roboto_bold'" class="text-feature-span">Projet :</span> {{projet}}<br/>
-{{/projet}}
 {{#niveau1}}
 <span style="font-family:'roboto_bold'" class="text-feature-span">Niveau 1 :</span> {{niveau1}}<br/>
 {{/niveau1}}
