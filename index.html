@@ -469,10 +469,16 @@
                 <div id="bookmarkslist" style="display: none;"
                 role="group" aria-label="true">
                     <div id="bookmarks-header-container">
-                        <span>Salut</span>
+                        <span>Favoris</span>
+                        <a href="#" onclick="mviewer.toggleNameBookmarks()" ><span class="glyphicon glyphicon-plus" style="margin-left: 20px; color: white;" aria-hidden="true"></span></a>
+                        <a href="#" onclick="mviewer.deleteBMarks();"><span class="glyphicon glyphicon-trash" style="margin-left: 20px; color: white;" aria-hidden="true"></span></a>
                     </div>
-                    <div id="bookmarks-container" class="list-group">
-                        <span>test</span>
+                    <div id="inputNameBookmarks" style="display: none; padding: 5px;">
+                        <label for="name">Nom :</label>
+                        <input type="text" id="nameBookmark" name="name" required>
+                        <button onclick="mviewer.addBMark()">Ajouter</button>
+                    </div>
+                    <div id="bookmarks-container" id="list-group">
                     </div>
                 </div>
             </div>

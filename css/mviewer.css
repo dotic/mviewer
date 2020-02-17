@@ -793,6 +793,14 @@ ul#layers-container {
     transition: all 0.5s ease;
 }
 
+#bookmark-item {
+    margin-top: 10px;
+}
+
+#action-bookmark {
+    margin-left: 10px;
+}
+
 #bookmarks-header-container {
     padding: 10px 15px;
     background-color: black;

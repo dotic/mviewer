@@ -211,6 +211,11 @@ mviewer = (function () {
     var _themes = null;
 
     /**
+     * Property: bmarkList
+     */
+    var bmarkList = [];
+
+    /**
      * Property: _marker
      * marker used to locate features on the map.
      * @type {ol.Overlay}
@@ -2429,7 +2434,88 @@ mviewer = (function () {
 
         toggleBookmarList: function () {
             $("#bookmarkslist").toggle();
+            if (localStorage.PosBMarks) {
+                bmarkList = [];
+                bmarkList = JSON.parse(localStorage.getItem('PosBMarks'));
+                mviewer.drawPosBMarks();
+            }
         },
+
+        toggleNameBookmarks: function () {
+            $("#inputNameBookmarks").toggle();
+        },
+
+        drawPosBMarks : function() {
+
+            if (localStorage.PosBMarks) {
+                $('#bookmarks-container').empty();
+                $.each(bmarkList, function(index, value) {
+                    $('#bookmarks-container').append(`
+                    <div id="bookmark-item">
+                    <a href="#" onclick="mviewer.goToPosBMarks(${value.lat}, ${value.lon}, ${value.zoom})">${value.name}</a>
+                    </span>
+                    <a style="margin-left: 10px;" title="Supprimer le favoris" href="#" onclick="mviewer.deleteBMark(${index})">
+                        <span class="glyphicon glyphicon-trash">
+                        </span>
+                    </a>
+                </div>`)
+                });
+
+            } else {
+                console.log("There is nothing saved!");
+            }
+            return true;
+        },
+
+        addBMark : function() {
+            var nameBookmarks = $("#nameBookmark").val();
+
+            if(nameBookmarks){
+                var center = _map.getView().getCenter();
+                var zoom = _map.getView().getZoom();
+
+                var view = {};
+                view.name = nameBookmarks;
+                view.zoom = zoom;
+                view.lat = center[0];
+                view.lon = center[1];
+
+                bmarkList.push(view);
+
+                localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+                $("#inputNameBookmarks").toggle();
+                $('#bookmarks-container').empty();
+                $("#nameBookmark").val('');
+                mviewer.drawPosBMarks();
+            }
+        },
+
+        deleteBMarks : function() {
+            bmarkList = [];
+            localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+            mviewer.drawPosBMarks();
+        },
+
+        deleteBMark : function(index) {
+            if(index > -1){
+                bmarkList.splice(index, 1);
+                localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+                mviewer.drawPosBMarks();
+            }
+        },
+
+        goToPosBMarks: function(lat, lon, zoom) {
+            var center = [
+                parseFloat(lat),
+                parseFloat(lon),
+            ];
+            var zoom = parseInt(zoom);
+
+            _map.getView().setCenter(center);
+            _map.getView().setZoom(zoom);
+        },
+
+
         toggleParameter: function (li) {
             var span = $(li).find("span");
             var parameter = false;
