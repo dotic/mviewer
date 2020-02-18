@@ -52,7 +52,7 @@ http.createServer((request, response) => {
                 response.end('Erreur serveur');
             }
         } else {
-            response.writeHead(200, { 'Content-Type': contentType });
+            response.writeHead(200, { 'Content-Type': contentType, 'X-Forwarded-Proto': 'https' });
             response.end(content, 'utf-8');
         }
     });
