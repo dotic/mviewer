@@ -1741,48 +1741,44 @@ mviewer = (function() {
       const url =
         "http://51.83.13.221:8080/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger%3Apoly_landmarks&maxFeatures=50&outputFormat=application%2Fjson";
 
-      addLayerWMS(url);
-      function addLayerWMS(url) {
-        fetch(url, options)
-          .then(function(response) {
-            return response.text();
-          })
-          .then(function(text) {
-            //   var result = JSON.parse(text);
+      fetch(url, options)
+        .then(function(response) {
+          return response.text();
+        })
+        .then(function(text) {
+          //   var result = JSON.parse(text);
 
-            const source = new ol.source.Vector({
-              format: new ol.format.GeoJSON()
-            });
-            source.addFeatures(source.getFormat().readFeatures(text));
-
-            const feature = source.getFeatures()[0];
-            const polygon = feature.getGeometry();
-            console.log("polygon", polygon);
-
-            _map.getView().fit(polygon.extent_, _map.getSize());
-
-            const mapViewCenter = _map.getView().getCenter();
-            const mapViewZoom = _map.getView().getZoom();
-
-            console.log(mapViewCenter);
-            console.log(mapViewZoom);
-
-            if (setCenter) {
-              _center = mapViewCenter;
-              _zoom = mapViewZoom;
-            }
-          })
-          .catch(error => {
-            console.log(error);
+          const source = new ol.source.Vector({
+            format: new ol.format.GeoJSON()
           });
-      }
+          source.addFeatures(source.getFormat().readFeatures(text));
+
+          const feature = source.getFeatures()[0];
+          const polygon = feature.getGeometry();
+          console.log("polygon", polygon);
+
+          _map.getView().fit(polygon.extent_, _map.getSize());
+
+          const mapViewCenter = _map.getView().getCenter();
+          const mapViewZoom = _map.getView().getZoom();
+
+          console.log(mapViewCenter);
+          console.log(mapViewZoom);
+
+          if (setCenter) {
+            _center = mapViewCenter;
+            _zoom = mapViewZoom;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
       function getCenterOfExtent(Extent) {
         var X = Extent[0] + (Extent[2] - Extent[0]) / 2;
         var Y = Extent[1] + (Extent[3] - Extent[1]) / 2;
         return [X, Y];
       }
-
     },
 
     /**
