@@ -848,7 +848,7 @@ mviewer = (function() {
         const theme = last[0];
 
         // Appelle la fonction de déplacement
-        // mviewer.goToLocation();
+        mviewer.goToLocation();
 
         $.each(reverse_themes.reverse(), function(id, theme) {
             var reverse_layers = [];
@@ -1674,8 +1674,8 @@ mviewer = (function() {
          *
          */
         goToCenter: function() {
-          _map.getView().setCenter(_center);
-          _map.getView().setZoom(_zoom);
+            _map.getView().setCenter(_center);
+            _map.getView().setZoom(_zoom);
         },
 
         /**
@@ -1689,8 +1689,13 @@ mviewer = (function() {
                     'Authorization',
                     configuration.getConfiguration().basicAuthentication,
                 );
+
                 const options = { method: 'GET', headers: headers };
-                const url = configuration.getConfiguration().bboxLayerURL;
+                let url = configuration.getConfiguration().bboxLayerURL;
+                if (configuration.getConfiguration().filters) {
+                    console.log('filter', configuration.getConfiguration().filters);
+                    url += '&CQL_FILTER=' + encodeURI(configuration.getConfiguration().filters);
+                }
 
                 fetch(url, options)
                     .then(function(response) {
@@ -1704,7 +1709,6 @@ mviewer = (function() {
 
                         const feature = source.getFeatures()[0];
                         const polygon = feature.getGeometry();
-                        console.log('polygon', polygon);
 
                         _map.getView().fit(polygon.extent_, _map.getSize());
 
@@ -1713,9 +1717,6 @@ mviewer = (function() {
 
                         _center = mapViewCenter;
                         _zoom = mapViewZoom;
-
-                        console.log(mapViewCenter);
-                        console.log(mapViewZoom);
                     })
                     .catch((error) => {
                         console.log(error);
