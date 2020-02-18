@@ -34,6 +34,7 @@ http.createServer((request, response) => {
         '.eot': 'application/vnd.ms-fontobject',
         '.otf': 'application/font-otf',
         '.svh': 'image/svg+xml',
+        '.txt': 'text/plain',
     };
 
     const contentType = mimeTypes[extname] || 'application/octet-stream';
