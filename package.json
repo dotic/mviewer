@@ -1,0 +1,25 @@
+{
+  "name": "mviewer",
+  "version": "1.0.0",
+  "description": "Mviewer : A web SIG",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotic/mviewer.git"
+  },
+  "author": "",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dotic/mviewer/issues"
+  },
+  "homepage": "https://github.com/dotic/mviewer#readme",
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
