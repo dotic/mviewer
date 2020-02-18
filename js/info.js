@@ -762,6 +762,7 @@ var info = (function () {
             "#mv-navbar",
             "#zoomtoolbar",
             "#toolstoolbar",
+            "#bookmarktoolbar",
             "#backgroundlayerstoolbar-default",
             "#backgroundlayerstoolbar-gallery",
         ];
