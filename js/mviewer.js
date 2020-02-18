@@ -855,7 +855,7 @@ mviewer = (function() {
     const theme = last[0];
 
     // Appelle la fonction de déplacement
-    mviewer.goToLocation(theme.url, theme.id, true);
+    mviewer.goToLocation(true);
 
     $.each(reverse_themes.reverse(), function(id, theme) {
       var reverse_layers = [];
@@ -1722,112 +1722,67 @@ mviewer = (function() {
       } else {
         item = $(el);
       }
-      const layerid = item.attr("data-layerid");
-      const getView = _map.getView();
-      const getLayer = _overLayers[layerid];
 
       // Appelle la fonction de déplacement
-      mviewer.goToLocation(getLayer.url, getLayer.id, false);
+      mviewer.goToLocation(false);
     },
 
     /**
      * Public Method: goToLocation
      *
      */
-    goToLocation: function(url, themeId, setCenter) {
-      if (url) {
-        console.log(url, themeId);
+    goToLocation: function(setCenter) {
+      const headers = new Headers();
+      headers.append(
+        "Authorization",
+        configuration.getConfiguration().basicAuthentication
+      );
+      const options = { method: "GET", headers: headers };
+      const url =
+        "http://51.83.13.221:8080/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger%3Apoly_landmarks&maxFeatures=50&outputFormat=application%2Fjson";
 
-        const headers = new Headers();
-        headers.append(
-          "Authorization",
-          configuration.getConfiguration().basicAuthentication
-        );
-        const options = { method: "GET", headers: headers };
-        fetch(
-          url + "?service=WMS&Version=1.3.0&request=GetCapabilities",
-          options
-        )
-          .then(res => res.text())
-          .then(str =>
-            // Librairie JS
-            xmlToJson.parse(str)
-          )
-          .then(data => {
-            let arrayLayer = data.WMS_Capabilities.Capability.Layer.Layer;
-            if (!Array.isArray(arrayLayer)) {
-              arrayLayer = [arrayLayer];
-            }
-            const found = arrayLayer.find(element => element.Name === themeId);
-            console.log(found);
-            const oldBbox =
-              "718131.079201147 6316341.60011725,738296.590547089 6342077.05952726";
-            const bbox = oldBbox.replace(/ /g, ",");
-            console.log(bbox);
-            const newbbox = JSON.parse("[" + bbox + "]");
+      addLayerWMS(url);
+      function addLayerWMS(url) {
+        fetch(url, options)
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(text) {
+            //   var result = JSON.parse(text);
 
-            const url =
-              "http://51.83.13.221:8080/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger%3Apoly_landmarks&maxFeatures=50&outputFormat=application%2Fjson";
+            const source = new ol.source.Vector({
+              format: new ol.format.GeoJSON()
+            });
+            source.addFeatures(source.getFormat().readFeatures(text));
 
+            const feature = source.getFeatures()[0];
+            const polygon = feature.getGeometry();
+            console.log("polygon", polygon);
 
+            _map.getView().fit(polygon.extent_, _map.getSize());
 
-            addLayerWMS(url);
-            function addLayerWMS(url) {
-              fetch(url, options)
-                .then(function(response) {
-                  return response.text();
-                })
-                .then(function(text) {
-                  //   var result = JSON.parse(text);
+            const mapViewCenter = _map.getView().getCenter();
+            const mapViewZoom = _map.getView().getZoom();
 
-                  const source = new ol.source.Vector({
-                    format: new ol.format.GeoJSON(),
-                  });
-                  source.addFeatures(source.getFormat().readFeatures(text));
+            console.log(mapViewCenter);
+            console.log(mapViewZoom);
 
-                  const feature = source.getFeatures()[0];
-                  const polygon = feature.getGeometry();
-                  console.log('polygon',polygon)
-
-                  _map.getView().fit(polygon.extent_, _map.getSize());
-
-                  const mapViewCenter = _map.getView().getCenter();
-                  const mapViewZoom = _map.getView().getZoom();
-
-                  console.log(mapViewCenter);
-                  console.log(mapViewZoom);
-
-                  if(setCenter){
-                    _center = mapViewCenter
-                    _zoom = mapViewZoom
-                }
-
-                  /* const centerCoord = mapView.options_.center
-                  const zoomCoord = mapView.options_.zoom
-
-                  console.log(centerCoord, zoomCoord)
-
-
-                  if(setCenter){
-                      _center = centerCoord
-                      _zoom = zoomCoord
-                  }
-                  _map.getView().setCenter(centerCoord);
-                  _map.getView().setZoom(zoomCoord); */
-
-                });
+            if (setCenter) {
+              _center = mapViewCenter;
+              _zoom = mapViewZoom;
             }
           })
           .catch(error => {
             console.log(error);
           });
-
-        function getCenterOfExtent(Extent) {
-          var X = Extent[0] + (Extent[2] - Extent[0]) / 2;
-          var Y = Extent[1] + (Extent[3] - Extent[1]) / 2;
-          return [X, Y];
-        }
       }
+
+      function getCenterOfExtent(Extent) {
+        var X = Extent[0] + (Extent[2] - Extent[0]) / 2;
+        var Y = Extent[1] + (Extent[3] - Extent[1]) / 2;
+        return [X, Y];
+      }
+
     },
 
     /**
