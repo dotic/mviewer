@@ -142,7 +142,7 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="pbo-extra-site" name="PBO extra site" visible="false" tiled="false"
+            <layer id="pbo-extra-sites" name="PBO extra site" visible="false" tiled="false"
                    searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="PBO_extra_site"
