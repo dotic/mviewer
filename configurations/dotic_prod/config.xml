@@ -295,6 +295,6 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-    <theme id="communes_france" url="http://51.83.13.221:8081/configurations/communes_france.xml"/>
+    <theme id="communes_france" url="http://carto.connect-control.com/configurations/communes_france.xml"/>
     </themes>
 </config>

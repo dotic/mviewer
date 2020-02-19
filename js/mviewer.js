@@ -11,14 +11,16 @@
  * along with mviewer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-mviewer = (function () {
+mviewer = (function() {
     /*
      * Private
      */
 
-    proj4.defs("EPSG:2154",
-        "+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 " +
-        "+units=m +no_defs");
+    proj4.defs(
+        'EPSG:2154',
+        '+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 ' +
+            '+units=m +no_defs',
+    );
 
     ol.proj.proj4.register(proj4);
 
@@ -28,11 +30,11 @@ mviewer = (function () {
      * It could be georchestra security-proxy
      */
 
-    var _proxy = "";
+    var _proxy = '';
 
-    var _bsize = ""; /* bootstrap size */
+    var _bsize = ''; /* bootstrap size */
 
-    var _mediaSize = "";
+    var _mediaSize = '';
 
     var _geolocation;
 
@@ -42,8 +44,7 @@ mviewer = (function () {
         _confLoaded: false,
         _overLayersLoaded: 0,
         _overLayersTotal: 0,
-        overLayersLoadedListener: function (val) {
-        },
+        overLayersLoadedListener: function(val) {},
         set overLayersLoaded(val) {
             this._overLayersLoaded = val;
             this.overLayersLoadedListener(val);
@@ -57,8 +58,7 @@ mviewer = (function () {
         get overLayersTotal() {
             return this._overLayersTotal;
         },
-        confLoadedListener: function (val) {
-        },
+        confLoadedListener: function(val) {},
         set confLoaded(val) {
             this._confLoaded = val;
             this.confLoadedListener(val);
@@ -66,27 +66,27 @@ mviewer = (function () {
         get confLoaded() {
             return this._confLoaded;
         },
-        registerOverLayersLoadedListener: function (listener) {
+        registerOverLayersLoadedListener: function(listener) {
             this.overLayersLoadedListener = listener;
         },
-        registerConfLoadedListener: function (listener) {
+        registerConfLoadedListener: function(listener) {
             this.confLoadedListener = listener;
         },
     };
 
-    _events.registerOverLayersLoadedListener(function (val) {
+    _events.registerOverLayersLoadedListener(function(val) {
         if (val === _events.overLayersTotal && _events.confLoaded === true) {
-            $(document).trigger("layersLoaded");
+            $(document).trigger('layersLoaded');
         }
     });
 
-    _events.registerConfLoadedListener(function (val) {
+    _events.registerConfLoadedListener(function(val) {
         if (_events.overLayersLoaded === _events.overLayersTotal && val === true) {
-            $(document).trigger("layersLoaded");
+            $(document).trigger('layersLoaded');
         }
     });
 
-    var _overLayersReady = function () {
+    var _overLayersReady = function() {
         mviewer.init();
         // OLD VERSION
         // ligne supprimée
@@ -103,13 +103,10 @@ mviewer = (function () {
         _showCheckedLayers();
     };
 
-    var _applyPermalink = function () {
+    var _applyPermalink = function() {
         //Get  x, y & z url parameters if exists
         if (API.x && API.y && API.z) {
-            var center = [
-                parseFloat(API.x),
-                parseFloat(API.y),
-            ];
+            var center = [parseFloat(API.x), parseFloat(API.y)];
             var zoom = parseInt(API.z);
             _map.getView().setCenter(center);
             _map.getView().setZoom(zoom);
@@ -127,13 +124,12 @@ mviewer = (function () {
         }
     };
 
-
     /**
      * Property: _ajaxURL
      *
      */
 
-    var _ajaxURL = function (url, optionalProxy) {
+    var _ajaxURL = function(url, optionalProxy) {
         // relative path
         if (url.indexOf('http') != 0) {
             return url;
@@ -158,7 +154,6 @@ mviewer = (function () {
      */
 
     var _map = null;
-
 
     /**
      * Property: _projection
@@ -211,6 +206,11 @@ mviewer = (function () {
     var _themes = null;
 
     /**
+     * Property: bmarkList
+     */
+    var bmarkList = [];
+
+    /**
      * Property: _marker
      * marker used to locate features on the map.
      * @type {ol.Overlay}
@@ -245,29 +245,29 @@ mviewer = (function () {
 
     var _overlayFeatureLayer = false;
 
-    var _setVariables = function () {
+    var _setVariables = function() {
         _proxy = configuration.getProxy();
     };
 
-    var _initMap = function (mapoptions) {
+    var _initMap = function(mapoptions) {
         _zoom = parseInt(mapoptions.zoom) || 8;
-        if (mapoptions.rotation === "true") {
+        if (mapoptions.rotation === 'true') {
             _rotation = true;
         } else {
-            $("#northbtn").hide();
+            $('#northbtn').hide();
         }
-        _center = mapoptions.center.split(",").map(Number);
+        _center = mapoptions.center.split(',').map(Number);
         //Projection
         switch (mapoptions.projection) {
-            case "EPSG:3857":
-            case "EPSG:4326":
+            case 'EPSG:3857':
+            case 'EPSG:4326':
                 _projection = ol.proj.get(mapoptions.projection);
                 break;
 
             default:
                 _projection = new ol.proj.Projection({
                     code: mapoptions.projection,
-                    extent: mapoptions.projextent.split(",").map(function (item) {
+                    extent: mapoptions.projextent.split(',').map(function(item) {
                         return parseFloat(item);
                     }),
                 });
@@ -276,23 +276,28 @@ mviewer = (function () {
         var overlays = [];
         //Create overlay (red pin) used by showLocation method
         //TODO rename els_marker to mv-marker
-        _marker = new ol.Overlay({positioning: 'bottom-center', element: $("#els_marker")[0], stopEvent: false});
+        _marker = new ol.Overlay({
+            positioning: 'bottom-center',
+            element: $('#els_marker')[0],
+            stopEvent: false,
+        });
         overlays.push(_marker);
         _map = new ol.Map({
             target: 'map',
             controls: [
                 //new ol.control.FullScreen(),
-                new ol.control.Attribution({collapsible: true}),
+                new ol.control.Attribution({ collapsible: true }),
                 new ol.control.ScaleLine(),
                 new ol.control.MousePosition({
                     projection: _projection.getCode(),
                     undefinedHTML: 'y , x',
                     className: 'custom-mouse-position',
                     target: document.getElementById('mouse-position'),
-                    coordinateFormat: function (coordinate) {
-                        let getCoord = ol.coordinate.toStringHDMS(ol.proj.transform(coordinate,
-                            _projection.getCode(), 'EPSG:4326'));
-                        let coordStr = getCoord.replace(/ /g, "").replace("N", "N - ");
+                    coordinateFormat: function(coordinate) {
+                        let getCoord = ol.coordinate.toStringHDMS(
+                            ol.proj.transform(coordinate, _projection.getCode(), 'EPSG:4326'),
+                        );
+                        let coordStr = getCoord.replace(/ /g, '').replace('N', 'N - ');
                         return coordStr;
                     },
                 }),
@@ -322,51 +327,63 @@ mviewer = (function () {
      * @param {String} msg
      */
 
-    var _message = function (msg, cls) {
-        var item = $([
-            '<div class="alert ' + cls + ' alert-dismissible" role="alert">',
-            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
-            '<span aria-hidden="true">&times;</span></button>',
-            msg,
-            '</div>',
-        ].join(""));
-        $("#alerts-zone").append(item);
+    var _message = function(msg, cls) {
+        var item = $(
+            [
+                '<div class="alert ' + cls + ' alert-dismissible" role="alert">',
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
+                '<span aria-hidden="true">&times;</span></button>',
+                msg,
+                '</div>',
+            ].join(''),
+        );
+        $('#alerts-zone').append(item);
     };
 
-    var _deleteLayer = function (layername) {
+    var _deleteLayer = function(layername) {
         $("[data-layerid='" + layername + "']").remove();
         _map.removeLayer(_overLayers[layername].layer);
         delete _overLayers[layername];
     };
 
-    var _getlegendurl = function (layer, scale) {
-        var sld = "";
-        var legendUrl = "";
+    var _getlegendurl = function(layer, scale) {
+        var sld = '';
+        var legendUrl = '';
         if (layer.sld) {
             sld = '&SLD=' + encodeURIComponent(layer.sld);
         }
         if (layer.legendurl && !layer.styles) {
             legendUrl = layer.legendurl;
-        } else if (layer.legendurl && layer.styles && (layer.styles.split(",").length === 1)) {
+        } else if (layer.legendurl && layer.styles && layer.styles.split(',').length === 1) {
             legendUrl = layer.legendurl;
         } else if (layer.sld) {
-            legendUrl = layer.url + '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0' +
-                '&format=image%2Fpng&width=30&height=20&layer=' + layer.layername + '&style=' + sld +
+            legendUrl =
+                layer.url +
+                '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0' +
+                '&format=image%2Fpng&width=30&height=20&layer=' +
+                layer.layername +
+                '&style=' +
+                sld +
                 '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10;dpi:96&TRANSPARENT=true';
         } else {
-            legendUrl = layer.url + '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0' +
-                '&format=image%2Fpng&width=30&height=20&layer=' + layer.layername + '&style=' + layer.style + sld +
+            legendUrl =
+                layer.url +
+                '?service=WMS&Version=1.3.0&request=GetLegendGraphic&SLD_VERSION=1.1.0' +
+                '&format=image%2Fpng&width=30&height=20&layer=' +
+                layer.layername +
+                '&style=' +
+                layer.style +
+                sld +
                 '&legend_options=fontName:Open%20Sans;fontAntiAliasing:true;fontColor:0x777777;fontSize:10;dpi:96&TRANSPARENT=true';
         }
         if (layer.dynamiclegend) {
             if (!scale) {
                 scale = _calculateScale(_map.getView().getResolution());
             }
-            legendUrl = legendUrl.split("&scale=")[0] += "&scale=" + scale;
+            legendUrl = legendUrl.split('&scale=')[0] += '&scale=' + scale;
         }
         return legendUrl;
     };
-
 
     //{styles:stylePublic, label: "Public", geometry: "Point"}
     /**
@@ -375,8 +392,8 @@ mviewer = (function () {
      * @param {Array} items. Array of {styles:ol.styles , label: string, geometry: Point|Polygon|LineString)
      */
 
-    var _drawVectorLegend = function (layerid, items) {
-        var canvas = document.getElementById("vector-legend-" + layerid);
+    var _drawVectorLegend = function(layerid, items) {
+        var canvas = document.getElementById('vector-legend-' + layerid);
         if (canvas) {
             var marginTop = 15;
             var marginLeft = 15;
@@ -388,79 +405,61 @@ mviewer = (function () {
             var verticalSpace = itemHeight - geomHeight;
             var ctx = canvas.getContext('2d');
             vectorContext = ol.render.toContext(ctx, {
-                size: [
-                    250,
-                    (items.length * itemHeight) + marginTop,
-                ],
+                size: [250, items.length * itemHeight + marginTop],
             });
-            items.forEach(function (item, id) {
+            items.forEach(function(item, id) {
                 var geometry;
                 verticalPosition += itemHeight;
                 switch (item.geometry) {
                     case 'Point':
                         geometry = new ol.geom.Point([
-                            marginLeft + (geomWidth / 2),
-                            verticalPosition - (geomHeight / 2),
+                            marginLeft + geomWidth / 2,
+                            verticalPosition - geomHeight / 2,
                         ]);
                         break;
 
                     case 'LineString':
                         geometry = new ol.geom.LineString([
-                            [
-                                marginLeft,
-                                -marginTop + verticalPosition,
-                            ],
-                            [
-                                marginLeft + geomWidth,
-                                -marginTop + verticalPosition + geomHeight,
-                            ],
+                            [marginLeft, -marginTop + verticalPosition],
+                            [marginLeft + geomWidth, -marginTop + verticalPosition + geomHeight],
                         ]);
                         break;
 
                     case 'Polygon':
                         geometry = new ol.geom.Polygon([
                             [
-                                [
-                                    marginLeft,
-                                    -marginTop + verticalPosition,
-                                ],
-                                [
-                                    marginLeft,
-                                    -marginTop + verticalPosition + geomHeight,
-                                ],
+                                [marginLeft, -marginTop + verticalPosition],
+                                [marginLeft, -marginTop + verticalPosition + geomHeight],
                                 [
                                     marginLeft + geomWidth,
                                     -marginTop + verticalPosition + geomHeight,
                                 ],
-                                [
-                                    marginLeft + geomWidth,
-                                    -marginTop + verticalPosition,
-                                ],
-                                [
-                                    marginLeft,
-                                    -marginTop + verticalPosition,
-                                ],
+                                [marginLeft + geomWidth, -marginTop + verticalPosition],
+                                [marginLeft, -marginTop + verticalPosition],
                             ],
                         ]);
                         break;
                 }
 
-                item.styles.forEach(function (style) {
+                item.styles.forEach(function(style) {
                     vectorContext.setStyle(style);
                     vectorContext.drawGeometry(geometry);
                 });
                 ctx.fillStyle = 'rgba(153, 153, 153, 1)';
                 var fontsize = 12;
                 ctx.font = fontsize + 'px roboto_regular, Arial, Sans-serif';
-                ctx.textAlign = "left";
-                ctx.fillText(item.label, marginLeft + geomWidth + horizontalSpace, verticalPosition - (geomHeight - fontsize));
-
+                ctx.textAlign = 'left';
+                ctx.fillText(
+                    item.label,
+                    marginLeft + geomWidth + horizontalSpace,
+                    verticalPosition - (geomHeight - fontsize),
+                );
             });
         }
     };
 
-    var _convertScale2Resolution = function (scale) {
-        return scale * 0.28 / 1000;
+    var _convertScale2Resolution = function(scale) {
+        return (scale * 0.28) / 1000;
     };
 
     /**
@@ -469,7 +468,7 @@ mviewer = (function () {
      *
      */
 
-    var _initGeolocation = function () {
+    var _initGeolocation = function() {
         _geolocation = new ol.Geolocation({
             projection: _projection,
             trackingOptions: {
@@ -489,7 +488,7 @@ mviewer = (function () {
      * - zoomToLocation
      */
 
-    var _initVectorOverlay = function () {
+    var _initVectorOverlay = function() {
         _sourceOverlay = new ol.source.Vector();
         _overlayFeatureLayer = new ol.layer.Vector({
             source: _sourceOverlay,
@@ -507,12 +506,12 @@ mviewer = (function () {
      *
      */
 
-    _initTools = function () {
+    _initTools = function() {
         //GetFeatureInfo tool
         mviewer.tools.info = info;
         mviewer.tools.info.init();
         //Measure tool
-        if (configuration.getConfiguration().application.measuretools === "true") {
+        if (configuration.getConfiguration().application.measuretools === 'true') {
             //Load measure moadule
             mviewer.tools.measure = measure;
             mviewer.tools.measure.init();
@@ -521,7 +520,9 @@ mviewer = (function () {
         mviewer.setTool('info');
         //Activate tooltips on tools buttons
         if (!configuration.getConfiguration().mobile) {
-            $("#backgroundlayersbtn, #zoomtoolbar button, #toolstoolbar button, #toolstoolbar a").tooltip({
+            $(
+                '#backgroundlayersbtn, #zoomtoolbar button, #toolstoolbar button, #bookmarktoolbar button, #toolstoolbar a',
+            ).tooltip({
                 placement: 'left',
                 trigger: 'hover',
                 html: true,
@@ -531,10 +532,12 @@ mviewer = (function () {
         }
     };
 
-    var _initShare = function () {
+    var _initShare = function() {
         var displayMode = API.mode || 'd';
-        $("#mv-display-mode input").filter('[value="' + displayMode + '"]').attr('checked', true);
-        $("#mv-display-mode input").change(function () {
+        $('#mv-display-mode input')
+            .filter('[value="' + displayMode + '"]')
+            .attr('checked', true);
+        $('#mv-display-mode input').change(function() {
             mviewer.setPermalink();
         });
     };
@@ -544,13 +547,13 @@ mviewer = (function () {
      *
      */
 
-    var _initPanelsPopup = function () {
+    var _initPanelsPopup = function() {
         if (configuration.getConfiguration().application.help) {
             $.ajax({
                 url: configuration.getConfiguration().application.help,
-                dataType: "text",
-                success: function (html) {
-                    $("#help .modal-body").append(html);
+                dataType: 'text',
+                success: function(html) {
+                    $('#help .modal-body').append(html);
                 },
             });
         }
@@ -562,12 +565,12 @@ mviewer = (function () {
      *Parameter e - event
      */
 
-    var _mapChange = function (e) {
-        if ($("#sharepanel-popup").css("visibility") === "visible") {
+    var _mapChange = function(e) {
+        if ($('#sharepanel-popup').css('visibility') === 'visible') {
             mviewer.setPermalink();
         }
-        if (search.options.features && $("#searchfield").val()) {
-            search.sendElasticsearchRequest($("#searchfield").val());
+        if (search.options.features && $('#searchfield').val()) {
+            search.sendElasticsearchRequest($('#searchfield').val());
         }
     };
 
@@ -577,9 +580,9 @@ mviewer = (function () {
      * Parameter res - resolution
      */
 
-    var _calculateScale = function (res) {
+    var _calculateScale = function(res) {
         var ppi = 25.4 / 0.28;
-        return res * ppi / 0.0254;
+        return (res * ppi) / 0.0254;
     };
 
     /**
@@ -588,7 +591,7 @@ mviewer = (function () {
      *Parameter e - event
      */
 
-    var _mapZoomChange = function (e) {
+    var _mapZoomChange = function(e) {
         var resolution = e.target.getResolution();
         var scale = _calculateScale(resolution);
         _updateLayersScaleDependancy(scale);
@@ -601,13 +604,13 @@ mviewer = (function () {
      * Parameter name - layer name
      */
 
-    var _getLayerByName = function (name) {
-        return $.grep(_map.getLayers().getArray(), function (layer, i) {
+    var _getLayerByName = function(name) {
+        return $.grep(_map.getLayers().getArray(), function(layer, i) {
             return layer.get('name') === name;
         })[0];
     };
 
-    var _processLayer = function (oLayer, l) {
+    var _processLayer = function(oLayer, l) {
         oLayer.layer = l;
         l.setVisible(oLayer.checked);
         l.setOpacity(oLayer.opacity);
@@ -631,26 +634,40 @@ mviewer = (function () {
         }
         _overLayers[oLayer.id] = oLayer;
 
-        if (oLayer.metadatacsw && oLayer.metadatacsw.search("http") >= 0) {
+        if (oLayer.metadatacsw && oLayer.metadatacsw.search('http') >= 0) {
             $.ajax({
-                dataType: "xml",
+                dataType: 'xml',
                 layer: oLayer.id,
                 url: _ajaxURL(oLayer.metadatacsw),
-                success: function (result) {
-                    var summary = "";
-                    if ($(result).find("dct\\:abstract, abstract").length > 0) {
-                        summary = '<p>' + $(result).find("dct\\:abstract, abstract").text() + '</p>';
+                success: function(result) {
+                    var summary = '';
+                    if ($(result).find('dct\\:abstract, abstract').length > 0) {
+                        summary =
+                            '<p>' +
+                            $(result)
+                                .find('dct\\:abstract, abstract')
+                                .text() +
+                            '</p>';
                     } else {
-                        summary = '<p>' + $(result).find("gmd\\:identificationInfo, identificationInfo")
-                            .find("gmd\\:MD_DataIdentification,  MD_DataIdentification")
-                            .find("gmd\\:abstract, abstract").find("gco\\:CharacterString, CharacterString").text() + '</p>';
+                        summary =
+                            '<p>' +
+                            $(result)
+                                .find('gmd\\:identificationInfo, identificationInfo')
+                                .find('gmd\\:MD_DataIdentification,  MD_DataIdentification')
+                                .find('gmd\\:abstract, abstract')
+                                .find('gco\\:CharacterString, CharacterString')
+                                .text() +
+                            '</p>';
                     }
                     if (_overLayers[this.layer].metadata) {
-                        summary += '<a href="' + _overLayers[this.layer].metadata + '" target="_blank">En savoir plus</a>';
+                        summary +=
+                            '<a href="' +
+                            _overLayers[this.layer].metadata +
+                            '" target="_blank">En savoir plus</a>';
                     }
                     _overLayers[this.layer].summary = summary;
                     //update visible layers on the map
-                    $('#' + this.layer + '-layer-summary').attr("data-content", summary);
+                    $('#' + this.layer + '-layer-summary').attr('data-content', summary);
                 },
             });
         }
@@ -663,22 +680,21 @@ mviewer = (function () {
      *
      */
 
-    var _updateMedia = function (s) {
+    var _updateMedia = function(s) {
         switch (s) {
-            case "xs":
-            case "sm":
-                if (_mediaSize === "xl") {
-                    _updateViewPort("xs");
+            case 'xs':
+            case 'sm':
+                if (_mediaSize === 'xl') {
+                    _updateViewPort('xs');
                 }
                 break;
-            case "md":
-            case "lg":
-                if (_mediaSize === "xs") {
-                    _updateViewPort("xl");
+            case 'md':
+            case 'lg':
+                if (_mediaSize === 'xs') {
+                    _updateViewPort('xl');
                 }
                 break;
         }
-
     };
 
     /**
@@ -686,29 +702,36 @@ mviewer = (function () {
      *
      */
 
-    var _updateViewPort = function (s, displayMode) {
+    var _updateViewPort = function(s, displayMode) {
         _mediaSize = s;
-        if (s === "xs") {
-            $("#wrapper, #main").removeClass("xl").addClass("xs");
-            $("#menu").appendTo("#thematic-modal .modal-body");
-            $("#legend").appendTo("#legend-modal .modal-body");
+        if (s === 'xs') {
+            $('#wrapper, #main')
+                .removeClass('xl')
+                .addClass('xs');
+            $('#menu').appendTo('#thematic-modal .modal-body');
+            $('#legend').appendTo('#legend-modal .modal-body');
             configuration.getConfiguration().mobile = true;
             if (displayMode) {
-                $("#wrapper, #main").addClass("mode-" + displayMode);
+                $('#wrapper, #main').addClass('mode-' + displayMode);
                 // OLD VERSION
                 // class btn-sm enlevée
-                $("#page-content-wrapper").append(['<a id="btn-mode-su-menu" class="btn btn-sm btn-default" ',
-                                                   'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
-                                                   '<span class="glyphicon glyphicon-menu-hamburger"></span></a>',
-                ].join(""));
-                if (displayMode === "u") {
-                    $("#mv-navbar").remove();
+                $('#page-content-wrapper').append(
+                    [
+                        '<a id="btn-mode-su-menu" class="btn btn-sm btn-default" ',
+                        'type="button" href="#" data-toggle="modal" data-target="#legend-modal">',
+                        '<span class="glyphicon glyphicon-menu-hamburger"></span></a>',
+                    ].join(''),
+                );
+                if (displayMode === 'u') {
+                    $('#mv-navbar').remove();
                 }
             }
         } else {
-            $("#wrapper, #main").removeClass("xs").addClass("xl");
-            $("#menu").appendTo("#sidebar-wrapper");
-            $("#legend").appendTo("#layers-container-box");
+            $('#wrapper, #main')
+                .removeClass('xs')
+                .addClass('xl');
+            $('#menu').appendTo('#sidebar-wrapper');
+            $('#legend').appendTo('#layers-container-box');
             configuration.getConfiguration().mobile = false;
         }
     };
@@ -718,25 +741,25 @@ mviewer = (function () {
      *
      */
 
-    var _initDisplayMode = function () {
-        var displayMode = "d"; /* d :default, s: simple, u: ultrasimple */
-        if (API.mode && (API.mode === "s" || API.mode === "u")) {
+    var _initDisplayMode = function() {
+        var displayMode = 'd'; /* d :default, s: simple, u: ultrasimple */
+        if (API.mode && (API.mode === 's' || API.mode === 'u')) {
             displayMode = API.mode;
         }
-        if ($(window).width() < 992 || displayMode !== "d") {
-            _mediaSize = "xs";
+        if ($(window).width() < 992 || displayMode !== 'd') {
+            _mediaSize = 'xs';
             configuration.getConfiguration().mobile = true;
         } else {
-            _mediaSize = "xl";
+            _mediaSize = 'xl';
             configuration.getConfiguration().mobile = false;
         }
-        if (_mediaSize === "xs") {
-            _updateViewPort("xs", displayMode);
+        if (_mediaSize === 'xs') {
+            _updateViewPort('xs', displayMode);
         }
-        if (displayMode === "d") {
-            $(window).resize(function () {
+        if (displayMode === 'd') {
+            $(window).resize(function() {
                 var w = $(this).width();
-                var s = "";
+                var s = '';
                 if (w < 768) {
                     s = 'xs';
                 } else if (w < 992) {
@@ -753,18 +776,21 @@ mviewer = (function () {
             });
         }
         if (configuration.getConfiguration().mobile) {
-            $("#thematic-modal .modal-body").append('<ul class="sidebar-nav nav-pills nav-stacked" id="menu"></ul>');
-            $("#legend").appendTo("#legend-modal .modal-body");
+            $('#thematic-modal .modal-body').append(
+                '<ul class="sidebar-nav nav-pills nav-stacked" id="menu"></ul>',
+            );
+            $('#legend').appendTo('#legend-modal .modal-body');
         } else {
-            $("#sidebar-wrapper").append('<ul class="sidebar-nav nav-pills nav-stacked" id="menu"></ul>');
+            $('#sidebar-wrapper').append(
+                '<ul class="sidebar-nav nav-pills nav-stacked" id="menu"></ul>',
+            );
         }
 
-        $('.navbar-collapse a, #map').on('click', function () {
+        $('.navbar-collapse a, #map').on('click', function() {
             if ($('.navbar-collapse').hasClass('in')) {
                 $('.navbar-toggle').click();
             }
         });
-
     };
     /**
      * Private Method: _initDataList
@@ -772,7 +798,7 @@ mviewer = (function () {
      * Parameter
      */
 
-    var _initDataList = function () {
+    var _initDataList = function() {
         // OLD VERSION
         // var htmlListGroup = '';
         // var reverse_themes = [];
@@ -792,12 +818,11 @@ mviewer = (function () {
         //     }
         // });
 
-
         var htmlListGroup = '';
         var reverse_themes = [];
         var crossorigin = '';
         _themes = configuration.getThemes();
-        $.each(_themes, function (id, theme) {
+        $.each(_themes, function(id, theme) {
             reverse_themes.push(theme);
         });
 
@@ -817,16 +842,10 @@ mviewer = (function () {
         //     }
         // });
 
-        const firstTheme = reverse_themes[Object.keys(reverse_themes)[0]];
-        const layers = Object.values(firstTheme.layers)
-        const last = layers.reverse();
-        const theme = last[0]
-
         // Appelle la fonction de déplacement
-        mviewer.goToLocation(theme.url, theme.id, true)
+        mviewer.goToLocation();
 
-
-        $.each(reverse_themes.reverse(), function (id, theme) {
+        $.each(reverse_themes.reverse(), function(id, theme) {
             var reverse_layers = [];
             var groups = [];
             var classes = [];
@@ -837,121 +856,122 @@ mviewer = (function () {
                 layers: false,
                 groups: false,
                 toggleAllLayers: false,
-                cls: "",
+                cls: '',
             };
-            if (configuration.getConfiguration().application.togglealllayersfromtheme === "true") {
+            if (configuration.getConfiguration().application.togglealllayersfromtheme === 'true') {
                 view.toggleAllLayers = true;
-                classes.push("empty");
+                classes.push('empty');
             }
             //GROUPS
             if (_themes[theme.id].groups) {
-                classes.push("level-1");
-                $.each(_themes[theme.id].groups, function (id, group) {
-                    var grp = {title: group.name, layers: []};
-                    $.each(group.layers, function (id, layer) {
+                classes.push('level-1');
+                $.each(_themes[theme.id].groups, function(id, group) {
+                    var grp = { title: group.name, layers: [] };
+                    $.each(group.layers, function(id, layer) {
                         grp.layers.unshift(layer);
                     });
                     groups.push(grp);
                 });
                 view.groups = groups;
-                view.cls = classes.join(" ");
+                view.cls = classes.join(' ');
                 //NO GROUPS
             } else {
-                $.each(_themes[theme.id].layers, function (id, layer) {
+                $.each(_themes[theme.id].layers, function(id, layer) {
                     reverse_layers.push(layer);
                 });
                 view.layers = reverse_layers.reverse();
-                view.cls = classes.join(" ");
+                view.cls = classes.join(' ');
             }
             htmlListGroup += Mustache.render(mviewer.templates.theme, view);
         });
         var panelMini = configuration.getConfiguration().themes.mini;
-        if (panelMini && (panelMini === 'true')) {
+        if (panelMini && panelMini === 'true') {
             mviewer.toggleMenu(false);
             mviewer.toggleLegend(false);
         }
-        $("#menu").html(htmlListGroup);
+        $('#menu').html(htmlListGroup);
         initMenu();
         // Open theme item if set to collapsed=false
-        var expanded_theme = $.grep(configuration.getConfiguration().themes.theme, function (obj) {
-            return obj.collapsed === "false";
+        var expanded_theme = $.grep(configuration.getConfiguration().themes.theme, function(obj) {
+            return obj.collapsed === 'false';
         });
         if (expanded_theme.length > 0) {
-            $("#theme-layers-" + expanded_theme[0].id + ">a").click();
+            $('#theme-layers-' + expanded_theme[0].id + '>a').click();
         }
         //Add remove and add layers button on them
-        if (configuration.getConfiguration().application.togglealllayersfromtheme === "true") {
-            $(".toggle-theme-layers").on("click", mviewer.toggleAllThemeLayers);
+        if (configuration.getConfiguration().application.togglealllayersfromtheme === 'true') {
+            $('.toggle-theme-layers').on('click', mviewer.toggleAllThemeLayers);
         }
     };
 
-    var _setLayerScaleStatus = function (layer, scale) {
+    var _setLayerScaleStatus = function(layer, scale) {
         if (layer.scale) {
             var legendUrl = _getlegendurl(layer);
             if (scale > layer.scale.min && scale <= layer.scale.max) {
-                $('#legend-' + layer.id).attr("src", legendUrl);
-                $('#legend-' + layer.id).closest("li").removeClass("glyphicon mv-invisible");
+                $('#legend-' + layer.id).attr('src', legendUrl);
+                $('#legend-' + layer.id)
+                    .closest('li')
+                    .removeClass('glyphicon mv-invisible');
             } else {
-                $('#legend-' + layer.id).attr("src", "img/invisible.png");
-                $('#legend-' + layer.id).closest("li").addClass("glyphicon mv-invisible");
+                $('#legend-' + layer.id).attr('src', 'img/invisible.png');
+                $('#legend-' + layer.id)
+                    .closest('li')
+                    .addClass('glyphicon mv-invisible');
             }
         }
     };
 
-    var _setLayerLegend = function (layer, scale) {
+    var _setLayerLegend = function(layer, scale) {
         if (layer.dynamiclegend) {
             var legendUrl = _getlegendurl(layer, scale);
-            $('#legend-' + layer.id).attr("src", legendUrl);
+            $('#legend-' + layer.id).attr('src', legendUrl);
         }
     };
 
-    var _updateLayersScaleDependancy = function (scale) {
-        $.each(_scaledDependantLayers, function (i, item) {
+    var _updateLayersScaleDependancy = function(scale) {
+        $.each(_scaledDependantLayers, function(i, item) {
             _setLayerScaleStatus(item, scale);
         });
     };
 
-    var _updateLegendsScaleDependancy = function (scale) {
-        $.each(_scaledDependantLayersLegend, function (i, item) {
+    var _updateLegendsScaleDependancy = function(scale) {
+        $.each(_scaledDependantLayersLegend, function(i, item) {
             _setLayerLegend(item, scale);
         });
     };
 
-    var _setThemeStatus = function (id, prop) {
+    var _setThemeStatus = function(id, prop) {
         var theme = $('#theme-layers-' + id);
         if (!prop) {
             prop = _getThemeStatus(id);
         }
         switch (prop.status) {
-            case "empty":
-                theme.removeClass("half full").addClass(prop.status);
+            case 'empty':
+                theme.removeClass('half full').addClass(prop.status);
                 break;
-            case "full":
-                theme.removeClass("half empty").addClass(prop.status);
+            case 'full':
+                theme.removeClass('half empty').addClass(prop.status);
                 break;
-            case "half":
-                theme.removeClass("empty full").addClass(prop.status);
+            case 'half':
+                theme.removeClass('empty full').addClass(prop.status);
                 break;
         }
-        theme.find(".toggle-theme-layers .badge").text([
-            prop.visible,
-            prop.all,
-        ].join("/"));
+        theme.find('.toggle-theme-layers .badge').text([prop.visible, prop.all].join('/'));
     };
 
-    _getThemeStatus = function (id) {
+    _getThemeStatus = function(id) {
         var theme = $('#theme-layers-' + id);
-        var nbLayers = theme.find("input").length;
+        var nbLayers = theme.find('input').length;
         var visLayers = theme.find("input[value='true']").length;
-        var status = "";
+        var status = '';
         if (visLayers === 0) {
-            status = "empty";
+            status = 'empty';
         } else if (visLayers === nbLayers) {
-            status = "full";
+            status = 'full';
         } else {
-            status = "half";
+            status = 'half';
         }
-        return {"visible": visLayers, "all": nbLayers, "status": status};
+        return { visible: visLayers, all: nbLayers, status: status };
     };
 
     /**
@@ -962,24 +982,24 @@ mviewer = (function () {
      * params - [ xml ] a baselayer node    present in config.xml.
      */
 
-    var _createBaseLayer = function (baselayer) {
+    var _createBaseLayer = function(baselayer) {
         var crossorigin = configuration.getCrossorigin();
         var l;
         switch (baselayer.type) {
-            case "fake":
+            case 'fake':
                 l = new ol.layer.Base({});
                 _backgroundLayers.push(l);
                 l.set('name', baselayer.label);
                 l.set('blid', baselayer.id);
                 break;
-            case "WMS":
+            case 'WMS':
                 var params = {
-                    'LAYERS': baselayer.layers,
-                    'VERSION': '1.1.1',
-                    'FORMAT': baselayer.format,
-                    'TRANSPARENT': false,
+                    LAYERS: baselayer.layers,
+                    VERSION: '1.1.1',
+                    FORMAT: baselayer.format,
+                    TRANSPARENT: false,
                 };
-                if (baselayer.tiled !== "false") {
+                if (baselayer.tiled !== 'false') {
                     params.TILED = true;
                 }
                 l = new ol.layer.Tile({
@@ -998,8 +1018,8 @@ mviewer = (function () {
                 _backgroundLayers.push(l);
                 _map.addLayer(l);
                 break;
-            case "WMTS":
-                if (baselayer.fromcapacity === "false") {
+            case 'WMTS':
+                if (baselayer.fromcapacity === 'false') {
                     var matrixset = baselayer.matrixset;
                     var projectionExtent = _projection.getExtent();
                     l = new ol.layer.Tile({
@@ -1027,22 +1047,27 @@ mviewer = (function () {
                 } else {
                     $.ajax({
                         url: _ajaxURL(baselayer.url),
-                        dataType: "xml",
+                        dataType: 'xml',
                         data: {
-                            SERVICE: "WMTS",
-                            VERSION: "1.0.0",
-                            REQUEST: "GetCapabilities",
+                            SERVICE: 'WMTS',
+                            VERSION: '1.0.0',
+                            REQUEST: 'GetCapabilities',
                         },
-                        success: function (xml) {
-                            var getCapabilitiesResult = (new ol.format.WMTSCapabilities()).read(xml);
-                            var WMTSOptions = ol.source.WMTS.optionsFromCapabilities(getCapabilitiesResult, {
-                                layer: baselayer.layers,
-                                matrixSet: baselayer.matrixset,
-                                format: baselayer.format,
-                                style: baselayer.style,
-                            });
+                        success: function(xml) {
+                            var getCapabilitiesResult = new ol.format.WMTSCapabilities().read(xml);
+                            var WMTSOptions = ol.source.WMTS.optionsFromCapabilities(
+                                getCapabilitiesResult,
+                                {
+                                    layer: baselayer.layers,
+                                    matrixSet: baselayer.matrixset,
+                                    format: baselayer.format,
+                                    style: baselayer.style,
+                                },
+                            );
                             WMTSOptions.attributions = baselayer.attribution;
-                            l = new ol.layer.Tile({source: new ol.source.WMTS(WMTSOptions)});
+                            l = new ol.layer.Tile({
+                                source: new ol.source.WMTS(WMTSOptions),
+                            });
                             l.set('name', baselayer.label);
                             l.set('blid', baselayer.id);
                             _map.getLayers().insertAt(0, l);
@@ -1057,7 +1082,7 @@ mviewer = (function () {
                 }
                 break;
 
-            case "OSM":
+            case 'OSM':
                 l = new ol.layer.Tile({
                     source: new ol.source.OSM({
                         url: baselayer.url,
@@ -1080,37 +1105,36 @@ mviewer = (function () {
      *
      */
 
-    var _getVisibleOverLayers = function () {
+    var _getVisibleOverLayers = function() {
         var layers = [];
-        $.each(_overLayers, function (i, item) {
+        $.each(_overLayers, function(i, item) {
             var layerparams = [];
             if (item.layer.getVisible()) {
                 layerparams.push(item.layerid);
-                if (item.type === "wms") {
+                if (item.type === 'wms') {
                     //get current style if many styles
                     var source = item.layer.getSource();
                     if (item.styles && source.getParams().STYLES) {
                         layerparams.push(source.getParams().STYLES.trim());
                     } else {
-                        layerparams.push("");
+                        layerparams.push('');
                     }
                     //get current filter if necessary
                     if (item.attributefilter && source.getParams()['CQL_FILTER']) {
                         layerparams.push(source.getParams()['CQL_FILTER'].trim());
                     } else {
-                        layerparams.push("");
+                        layerparams.push('');
                     }
                     //get current time filter if necessary
                     if (item.timefilter && source.getParams()['TIME']) {
                         layerparams.push(source.getParams()['TIME']);
                     }
-
                 }
 
-                layers.push(layerparams.join("*").replace(/\*$/i, ""));
+                layers.push(layerparams.join('*').replace(/\*$/i, ''));
             }
         });
-        return layers.join(",");
+        return layers.join(',');
     };
 
     /**
@@ -1118,15 +1142,15 @@ mviewer = (function () {
      *
      */
 
-    var _setVisibleOverLayers = function (lst) {
+    var _setVisibleOverLayers = function(lst) {
         var errors = [];
         var errorLayers = [];
-        var layers = decodeURIComponent(lst).split(",");
+        var layers = decodeURIComponent(lst).split(',');
         var layersWithOptions = {};
-        layers.forEach(function (layer, i) {
+        layers.forEach(function(layer, i) {
             //search layer by id or by name in overLayers collection
             //layer with options - layername*style*cql_filter*time
-            var layerWithOptions = layer.split("*");
+            var layerWithOptions = layer.split('*');
             var richLayer = {};
             var layerIdOrName = layerWithOptions[0];
             switch (layerWithOptions.length) {
@@ -1154,22 +1178,25 @@ mviewer = (function () {
                 //layerIdOrName is layername
                 l = _getLayerByName(layerIdOrName);
                 richLayer.name = layerIdOrName;
-                richLayer.layerid = l.get("mviewerid");
+                richLayer.layerid = l.get('mviewerid');
             }
             layersWithOptions[richLayer.layerid] = richLayer;
 
             if (l) {
-                (l.src) ? l.src.setVisible(true) : l.setVisible(true);
+                l.src ? l.src.setVisible(true) : l.setVisible(true);
             } else {
                 errors.push(i);
             }
         });
-        errors.forEach(function (err) {
+        errors.forEach(function(err) {
             errorLayers.push(layers[err]);
             delete layers[err];
         });
         if (errorLayers.length > 0) {
-            mviewer.alert("Couche(s) " + errorLayers.join(", ") + " non disponible(s)", "alert-danger");
+            mviewer.alert(
+                'Couche(s) ' + errorLayers.join(', ') + ' non disponible(s)',
+                'alert-danger',
+            );
         }
         _overwiteThemeProperties(layersWithOptions);
     };
@@ -1180,17 +1207,21 @@ mviewer = (function () {
      * Parameter
      */
 
-    var _showCheckedLayers = function () {
-        var checkedLayers = $.map(_overLayers, function (layer, index) {
+    var _showCheckedLayers = function() {
+        var checkedLayers = $.map(_overLayers, function(layer, index) {
             if (layer.checked) {
                 return layer;
             }
         });
-        $.each(checkedLayers, function (index, layer) {
+        $.each(checkedLayers, function(index, layer) {
             if (layer) {
                 var l = layer.layer;
-                if (l && $(".list-group-item.mv-layer-details[data-layerid='" + layer.id + "']").length === 0) {
-                    (l.src) ? l.src.setVisible(true) : l.setVisible(true);
+                if (
+                    l &&
+                    $(".list-group-item.mv-layer-details[data-layerid='" + layer.id + "']")
+                        .length === 0
+                ) {
+                    l.src ? l.src.setVisible(true) : l.setVisible(true);
                     mviewer.addLayer(layer);
                 }
             }
@@ -1203,39 +1234,43 @@ mviewer = (function () {
      * Parameter: layers (Hash of richlayers (layerid, style, filter))
      */
 
-    var _overwiteThemeProperties = function (layersWithOptions) {
-        var showLayer = function (layerControler, layerOptions) {
+    var _overwiteThemeProperties = function(layersWithOptions) {
+        var showLayer = function(layerControler, layerOptions) {
             layerControler.checked = true;
             layerControler.visiblebydefault = true;
             var li = $(".mv-nav-item[data-layerid='" + layerControler.layerid + "']");
-            if (layerOptions.style && layerControler.type === "wms") {
+            if (layerOptions.style && layerControler.type === 'wms') {
                 layerControler.layer.getSource().getParams()['STYLES'] = layerOptions.style;
                 layerControler.style = layerOptions.style;
             }
-            if (layerOptions.filter && layerControler.type === "wms") {
+            if (layerOptions.filter && layerControler.type === 'wms') {
                 layerControler.layer.getSource().getParams()['CQL_FILTER'] = layerOptions.filter;
                 layerControler.filter = layerOptions.filter;
             }
             mviewer.toggleLayer(li);
-            if (layerOptions.time && layerControler.type === "wms") {
+            if (layerOptions.time && layerControler.type === 'wms') {
                 //layerControler.layer.getSource().getParams()['TIME'] = layerOptions.time;
-                var timeControl = $("#" + layerControler.layerid + "-layer-timefilter");
-                if (timeControl.hasClass("mv-slider-timer")) {
-                    timeControl.slider('setValue', layerControler.timevalues.indexOf(layerOptions.time), true, true);
+                var timeControl = $('#' + layerControler.layerid + '-layer-timefilter');
+                if (timeControl.hasClass('mv-slider-timer')) {
+                    timeControl.slider(
+                        'setValue',
+                        layerControler.timevalues.indexOf(layerOptions.time),
+                        true,
+                        true,
+                    );
                 }
             }
-
         };
 
-        var hideLayer = function (layerControler) {
+        var hideLayer = function(layerControler) {
             layerControler.checked = false;
             if (layerControler.layer) {
                 layerControler.layer.setVisible(false);
             }
             layerControler.visiblebydefault = false;
         };
-        $.each(_themes, function (i, theme) {
-            $.each(theme.layers, function (j, l) {
+        $.each(_themes, function(i, theme) {
+            $.each(theme.layers, function(j, l) {
                 if (layersWithOptions[l.layerid]) {
                     var options = layersWithOptions[l.layerid];
                     showLayer(l, options);
@@ -1243,8 +1278,8 @@ mviewer = (function () {
                     hideLayer(l);
                 }
             });
-            $.each(theme.groups, function (g, group) {
-                $.each(group.layers, function (i, l) {
+            $.each(theme.groups, function(g, group) {
+                $.each(group.layers, function(i, l) {
                     if (layersWithOptions[l.layerid]) {
                         var options = layersWithOptions[l.layerid];
                         showLayer(l, options);
@@ -1253,7 +1288,6 @@ mviewer = (function () {
                     }
                 });
             });
-
         });
     };
 
@@ -1262,115 +1296,175 @@ mviewer = (function () {
      *
      */
 
-    var _parseWMCResponse = function (response, wmcid) {
+    var _parseWMCResponse = function(response, wmcid) {
         var crossorigin = configuration.getCrossorigin();
         var wmc = $('ViewContext', response);
         var wmc_extent = {};
-        wmc_extent.srs = $(wmc).find('General > BoundingBox').attr('SRS');
-        wmc_extent.minx = parseInt($(wmc).find('General > BoundingBox').attr('minx'));
-        wmc_extent.miny = parseInt($(wmc).find('General > BoundingBox').attr('miny'));
-        wmc_extent.maxx = parseInt($(wmc).find('General > BoundingBox').attr('maxx'));
-        wmc_extent.maxy = parseInt($(wmc).find('General > BoundingBox').attr('maxy'));
-        var map_extent = ol.proj.transformExtent([
-            wmc_extent.minx,
-            wmc_extent.miny,
-            wmc_extent.maxx,
-            wmc_extent.maxy,
-        ], wmc_extent.srs, _projection.getCode());
-        var title = $(wmc).find('General > Title').text() || $(wmc).attr('id');
+        wmc_extent.srs = $(wmc)
+            .find('General > BoundingBox')
+            .attr('SRS');
+        wmc_extent.minx = parseInt(
+            $(wmc)
+                .find('General > BoundingBox')
+                .attr('minx'),
+        );
+        wmc_extent.miny = parseInt(
+            $(wmc)
+                .find('General > BoundingBox')
+                .attr('miny'),
+        );
+        wmc_extent.maxx = parseInt(
+            $(wmc)
+                .find('General > BoundingBox')
+                .attr('maxx'),
+        );
+        wmc_extent.maxy = parseInt(
+            $(wmc)
+                .find('General > BoundingBox')
+                .attr('maxy'),
+        );
+        var map_extent = ol.proj.transformExtent(
+            [wmc_extent.minx, wmc_extent.miny, wmc_extent.maxx, wmc_extent.maxy],
+            wmc_extent.srs,
+            _projection.getCode(),
+        );
+        var title =
+            $(wmc)
+                .find('General > Title')
+                .text() || $(wmc).attr('id');
         var themeLayers = {};
         var layerRank = 0;
-        $(wmc).find('LayerList > Layer').each(function () {
-            layerRank += 1;
-            // we only consider queryable layers
-            if ($(this).attr('queryable') == '1') {
-                var oLayer = {};
-                oLayer.checked = ($(this).attr('hidden') === '0') ? true : false;
-                oLayer.id = $(this).children('Name').text();
-                oLayer.rank = layerRank;
-                oLayer.infospanel = "right-panel";
-                oLayer.layerid = $(this).children('Name').text();
-                oLayer.layername = oLayer.id;
-                oLayer.name = $(this).children('Title').text();
-                oLayer.title = $(this).children('Title').text();
-                oLayer.attribution = $(this).find("attribution").find("Title").text() || "";
-                oLayer.metadata = $(this).find('MetadataURL > OnlineResource').attr('xlink:href');
-                //fixme
-                if (oLayer.metadata && oLayer.metadata.search('geonetwork') > 1) {
-                    var mdid = oLayer.metadata.split('#/metadata/')[1];
-                    oLayer.metadatacsw = oLayer.metadata.substring(0, oLayer.metadata.search('geonetwork')) +
-                        'geonetwork/srv/eng/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&elementSetName=full&ID=' +
-                        mdid;
-                }
-                oLayer.style = $(this).find("StyleList  > Style[current='1'] > Name").text();
-                oLayer.sld = ($(this).find("StyleList  > Style[current='1'] > SLD > OnlineResource").attr('xlink:href'));
-                if (!oLayer.sld && $(this).find("StyleList  > Style > Name").length > 1) {
-                    oLayer.styles = $(this).find("StyleList  > Style > Name").map(function (id, name) {
-                        return $(name).text();
-                    }).toArray().join(",");
-                    oLayer.stylesalias = oLayer.styles;
-                }
-                oLayer.url = $(this).find('Server > OnlineResource').attr('xlink:href');
-                oLayer.queryable = true;
-                oLayer.infoformat = 'text/html';
-                oLayer.format = $(this).find("FormatList  > Format[current='1']").text();
-                oLayer.visiblebydefault = oLayer.checked;
-                oLayer.tiled = false;
-                oLayer.legendurl = _getlegendurl(oLayer);
-                oLayer.opacity = parseFloat($(this).find("opacity").text() || "1");
-                var minscale = parseFloat($(this).find("MinScaleDenominator").text());
-                var maxscale = parseFloat($(this).find("MaxScaleDenominator").text());
-                if (!isNaN(minscale) || !isNaN(maxscale)) {
-                    oLayer.scale = {};
-                    if (!isNaN(minscale)) {
-                        oLayer.scale.min = minscale;
+        $(wmc)
+            .find('LayerList > Layer')
+            .each(function() {
+                layerRank += 1;
+                // we only consider queryable layers
+                if ($(this).attr('queryable') == '1') {
+                    var oLayer = {};
+                    oLayer.checked = $(this).attr('hidden') === '0' ? true : false;
+                    oLayer.id = $(this)
+                        .children('Name')
+                        .text();
+                    oLayer.rank = layerRank;
+                    oLayer.infospanel = 'right-panel';
+                    oLayer.layerid = $(this)
+                        .children('Name')
+                        .text();
+                    oLayer.layername = oLayer.id;
+                    oLayer.name = $(this)
+                        .children('Title')
+                        .text();
+                    oLayer.title = $(this)
+                        .children('Title')
+                        .text();
+                    oLayer.attribution =
+                        $(this)
+                            .find('attribution')
+                            .find('Title')
+                            .text() || '';
+                    oLayer.metadata = $(this)
+                        .find('MetadataURL > OnlineResource')
+                        .attr('xlink:href');
+                    //fixme
+                    if (oLayer.metadata && oLayer.metadata.search('geonetwork') > 1) {
+                        var mdid = oLayer.metadata.split('#/metadata/')[1];
+                        oLayer.metadatacsw =
+                            oLayer.metadata.substring(0, oLayer.metadata.search('geonetwork')) +
+                            'geonetwork/srv/eng/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&elementSetName=full&ID=' +
+                            mdid;
                     }
-                    if (!isNaN(maxscale)) {
-                        oLayer.scale.max = maxscale;
+                    oLayer.style = $(this)
+                        .find("StyleList  > Style[current='1'] > Name")
+                        .text();
+                    oLayer.sld = $(this)
+                        .find("StyleList  > Style[current='1'] > SLD > OnlineResource")
+                        .attr('xlink:href');
+                    if (!oLayer.sld && $(this).find('StyleList  > Style > Name').length > 1) {
+                        oLayer.styles = $(this)
+                            .find('StyleList  > Style > Name')
+                            .map(function(id, name) {
+                                return $(name).text();
+                            })
+                            .toArray()
+                            .join(',');
+                        oLayer.stylesalias = oLayer.styles;
+                    }
+                    oLayer.url = $(this)
+                        .find('Server > OnlineResource')
+                        .attr('xlink:href');
+                    oLayer.queryable = true;
+                    oLayer.infoformat = 'text/html';
+                    oLayer.format = $(this)
+                        .find("FormatList  > Format[current='1']")
+                        .text();
+                    oLayer.visiblebydefault = oLayer.checked;
+                    oLayer.tiled = false;
+                    oLayer.legendurl = _getlegendurl(oLayer);
+                    oLayer.opacity = parseFloat(
+                        $(this)
+                            .find('opacity')
+                            .text() || '1',
+                    );
+                    var minscale = parseFloat(
+                        $(this)
+                            .find('MinScaleDenominator')
+                            .text(),
+                    );
+                    var maxscale = parseFloat(
+                        $(this)
+                            .find('MaxScaleDenominator')
+                            .text(),
+                    );
+                    if (!isNaN(minscale) || !isNaN(maxscale)) {
+                        oLayer.scale = {};
+                        if (!isNaN(minscale)) {
+                            oLayer.scale.min = minscale;
+                        }
+                        if (!isNaN(maxscale)) {
+                            oLayer.scale.max = maxscale;
+                        }
+                    }
+
+                    oLayer.theme = wmcid;
+                    themeLayers[oLayer.id] = oLayer;
+                    var wms_params = {
+                        LAYERS: oLayer.id,
+                        STYLES: oLayer.style,
+                        FORMAT: 'image/png',
+                        TRANSPARENT: true,
+                    };
+                    if (oLayer.sld) {
+                        wms_params['SLD'] = oLayer.sld;
+                    }
+                    var l = new ol.layer.Image({
+                        source: new ol.source.ImageWMS({
+                            url: oLayer.url,
+                            crossOrigin: crossorigin,
+                            params: wms_params,
+                        }),
+                    });
+
+                    l.setVisible(oLayer.checked);
+                    l.setOpacity(oLayer.opacity);
+                    if (oLayer.scale && oLayer.scale.max) {
+                        l.setMaxResolution(_convertScale2Resolution(oLayer.scale.max));
+                    }
+                    if (oLayer.scale && oLayer.scale.min) {
+                        l.setMinResolution(_convertScale2Resolution(oLayer.scale.min));
+                    }
+                    l.set('name', oLayer.name);
+                    l.set('mviewerid', oLayer.id);
+                    themeLayers[oLayer.id].layer = l;
+                    _overLayers[oLayer.id] = themeLayers[oLayer.id];
+                    if (oLayer.scale) {
+                        _scaledDependantLayers.push(oLayer);
                     }
                 }
-
-                oLayer.theme = wmcid;
-                themeLayers[oLayer.id] = oLayer;
-                var wms_params = {
-                    'LAYERS': oLayer.id,
-                    'STYLES': oLayer.style,
-                    'FORMAT': 'image/png',
-                    'TRANSPARENT': true,
-                };
-                if (oLayer.sld) {
-                    wms_params['SLD'] = oLayer.sld;
-                }
-                var l = new ol.layer.Image({
-                    source: new ol.source.ImageWMS({
-                        url: oLayer.url,
-                        crossOrigin: crossorigin,
-                        params: wms_params,
-                    }),
-                });
-
-                l.setVisible(oLayer.checked);
-                l.setOpacity(oLayer.opacity);
-                if (oLayer.scale && oLayer.scale.max) {
-                    l.setMaxResolution(_convertScale2Resolution(oLayer.scale.max));
-                }
-                if (oLayer.scale && oLayer.scale.min) {
-                    l.setMinResolution(_convertScale2Resolution(oLayer.scale.min));
-                }
-                l.set('name', oLayer.name);
-                l.set('mviewerid', oLayer.id);
-                themeLayers[oLayer.id].layer = l;
-                _overLayers[oLayer.id] = themeLayers[oLayer.id];
-                if (oLayer.scale) {
-                    _scaledDependantLayers.push(oLayer);
-                }
-            }
-
-        });
-        return {title: title, extent: map_extent, layers: themeLayers};
+            });
+        return { title: title, extent: map_extent, layers: themeLayers };
     };
 
-    var _flash = function (feature, source) {
+    var _flash = function(feature, source) {
         var duration = 1000;
         var start = new Date().getTime();
         var listenerKey;
@@ -1410,21 +1504,21 @@ mviewer = (function () {
         listenerKey = _map.on('postcompose', animate);
     };
 
-    var _calculateTicksPositions = function (values) {
+    var _calculateTicksPositions = function(values) {
         var min = values[0];
         var max = values[values.length - 1];
         var interval = max - min;
         var positions = [0];
         for (var i = 1; i < values.length - 1; ++i) {
             var val = values[i];
-            var pos = parseInt((val - min) / interval * 100);
+            var pos = parseInt(((val - min) / interval) * 100);
             positions.push(pos);
         }
         positions.push(100);
         return positions;
     };
 
-    var _createPseudoTicks = function (values) {
+    var _createPseudoTicks = function(values) {
         var ticks = [];
         for (var i = 0; i <= values.length - 1; ++i) {
             ticks.push(i);
@@ -1437,12 +1531,12 @@ mviewer = (function () {
      *
      */
 
-    var _getLonLatZfromGeometry = function (geometry, proj, maxzoom) {
+    var _getLonLatZfromGeometry = function(geometry, proj, maxzoom) {
         var xyz = {};
         //For Point or multiPoints with one point
         // OLD VERSION
         // if (geometry.getType() === "Point" || (geometry.getType() === "MultiPoint" && geometry.getPoints().length === 1)) {
-        if (geometry.getType() === "Point" || geometry.getPoints().length === 1) {
+        if (geometry.getType() === 'Point' || geometry.getPoints().length === 1) {
             var coordinates = geometry.getPoints()[0].flatCoordinates;
             xyz = {
                 lon: coordinates[0],
@@ -1472,10 +1566,9 @@ mviewer = (function () {
      */
 
     return {
-
-        flash: function (proj, x, y) {
+        flash: function(proj, x, y) {
             var source, vector;
-            var vectorLayer = _getLayerByName("flash");
+            var vectorLayer = _getLayerByName('flash');
             if (!vectorLayer) {
                 source = new ol.source.Vector({
                     wrapX: false,
@@ -1484,20 +1577,25 @@ mviewer = (function () {
                     source: source,
                     style: mviewer.featureStyles.crossStyle,
                 });
-                vector.set('name', "flash");
+                vector.set('name', 'flash');
                 _map.addLayer(vector);
-                source.on('addfeature', function (e) {
+                source.on('addfeature', function(e) {
                     _flash(e.feature, source);
                 });
             } else {
                 vector = vectorLayer;
                 source = vectorLayer.getSource();
             }
-            var geom = new ol.geom.Point(ol.proj.transform([
-                    x,
-                    y,
-                ],
-                proj, _map.getView().getProjection().getCode()));
+            var geom = new ol.geom.Point(
+                ol.proj.transform(
+                    [x, y],
+                    proj,
+                    _map
+                        .getView()
+                        .getProjection()
+                        .getCode(),
+                ),
+            );
             var feature = new ol.Feature(geom);
             source.addFeature(feature);
         },
@@ -1507,7 +1605,7 @@ mviewer = (function () {
          *
          */
 
-        setTool: function (tool, option) {
+        setTool: function(tool, option) {
             //Deactivate active Tool if new tool is different
             if (mviewer.tools.activeTool && mviewer.tools[mviewer.tools.activeTool]) {
                 mviewer.tools[mviewer.tools.activeTool].disable();
@@ -1524,7 +1622,7 @@ mviewer = (function () {
          *
          */
 
-        unsetTool: function (tool) {
+        unsetTool: function(tool) {
             //Deactivate active Tool
             if (mviewer.tools.activeTool === tool && mviewer.tools[tool]) {
                 mviewer.tools[tool].disable();
@@ -1541,9 +1639,9 @@ mviewer = (function () {
          *
          */
 
-        zoomOut: function () {
+        zoomOut: function() {
             var v = _map.getView();
-            v.animate({zoom: v.getZoom() - 1});
+            v.animate({ zoom: v.getZoom() - 1 });
         },
 
         /**
@@ -1551,9 +1649,9 @@ mviewer = (function () {
          *
          */
 
-        zoomIn: function () {
+        zoomIn: function() {
             var v = _map.getView();
-            v.animate({zoom: v.getZoom() + 1});
+            v.animate({ zoom: v.getZoom() + 1 });
         },
 
         /**
@@ -1561,83 +1659,62 @@ mviewer = (function () {
          *
          */
 
-        zoomToInitialExtent: function () {
+        zoomToInitialExtent: function() {
             _map.getView().setCenter(_center);
             _map.getView().setZoom(_zoom);
         },
-
 
         /**
          * Public Method: goToCenter
          *
          */
-        goToCenter: function (el) {
-            var item;
-            if ( !$(el).is( "button" ) ) {
-                item = $(el).closest("button");
-            } else {
-                item = $(el);
-            }
-            const layerid = item.attr("data-layerid");
-            const getView = _map.getView()
-            const getLayer = _overLayers[layerid];
-
-            // Appelle la fonction de déplacement
-            mviewer.goToLocation(getLayer.url, getLayer.id, false);
+        goToCenter: function() {
+            _map.getView().setCenter(_center);
+            _map.getView().setZoom(_zoom);
         },
-
-
 
         /**
          * Public Method: goToLocation
          *
          */
-        goToLocation: function (url, themeId, setCenter){
-            if(url){
-                console.log(url)
-
+        goToLocation: function() {
+            if (configuration.getConfiguration().bboxLayerURL) {
                 const headers = new Headers();
-                headers.append('Authorization', configuration.getConfiguration().basicAuthentication)
-                const options = {method: 'GET', headers: headers}
-                fetch(url+'?service=WMS&Version=1.3.0&request=GetCapabilities', options)
-                .then(res =>
-                    res.text()
-                )
-                .then(str =>
-                    // Librairie JS
-                    xmlToJson.parse( str )
-                )
-                .then(data =>{
-                    console.log(data);
-                    let arrayLayer = data.WMS_Capabilities.Capability.Layer.Layer
-                    if(!Array.isArray(arrayLayer)){
-                        arrayLayer = [arrayLayer];
-                    }
-                    const found = arrayLayer.find(element => element.Name === themeId);
-                    const oldBbox = '718131.079201147 6316341.60011725,738296.590547089 6342077.05952726'
-                    const bbox = oldBbox.replace(/ /g,",");
-                    console.log(bbox);
-                    const newbbox = JSON.parse("["+bbox+"]");
-                    console.log(newbbox)
+                headers.append(
+                    'Authorization',
+                    configuration.getConfiguration().basicAuthentication,
+                );
 
-                    const centerNewCoord = getCenterOfExtent(newbbox);
+                const options = { method: 'GET', headers: headers };
+                let url = configuration.getConfiguration().bboxLayerURL;
+                if (configuration.getConfiguration().filters) {
+                    url += '&CQL_FILTER=' + encodeURI(configuration.getConfiguration().filters);
+                }
 
-                    console.log(centerNewCoord);
-                    // si setCenter = true, définir le layer comme étendu géographique de départ
-                    if(setCenter){
-                        _center = centerNewCoord
-                    }
-                    _map.getView().setCenter(centerNewCoord);
-                    _map.getView().setZoom(_zoom);
-                }).catch(error =>{
-                    console.log(error);
-                })
+                fetch(url, options)
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(text) {
+                        const source = new ol.source.Vector({
+                            format: new ol.format.GeoJSON(),
+                        });
+                        source.addFeatures(source.getFormat().readFeatures(text));
 
-                function getCenterOfExtent(Extent){
-                    var X = Extent[0] + (Extent[2]-Extent[0])/2;
-                    var Y = Extent[1] + (Extent[3]-Extent[1])/2;
-                    return [X, Y];
-                    }
+                        const feature = source.getFeatures()[0];
+                        const polygon = feature.getGeometry();
+
+                        _map.getView().fit(polygon.extent_, _map.getSize());
+
+                        const mapViewCenter = _map.getView().getCenter();
+                        const mapViewZoom = _map.getView().getZoom();
+
+                        _center = mapViewCenter;
+                        _zoom = mapViewZoom;
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             }
         },
 
@@ -1646,7 +1723,7 @@ mviewer = (function () {
          *
          */
 
-        getActiveBaseLayer: function () {
+        getActiveBaseLayer: function() {
             var result = null;
             for (var i = 0; i < _backgroundLayers.length; i += 1) {
                 var l = _backgroundLayers[i];
@@ -1663,8 +1740,8 @@ mviewer = (function () {
          *
          */
 
-        setBaseLayer: function (baseLayerId) {
-            if ($(".mini").length == 1 && $(".no-active").length > 0) {
+        setBaseLayer: function(baseLayerId) {
+            if ($('.mini').length == 1 && $('.no-active').length > 0) {
                 mviewer.bgtoogle();
                 return;
             }
@@ -1680,30 +1757,35 @@ mviewer = (function () {
             }
             if (configuration.getConfiguration().baselayers.style === 'default') {
                 //get the next thumb
-                var thumb = configuration.getConfiguration().baselayers.baselayer[nexid].thumbgallery;
+                var thumb = configuration.getConfiguration().baselayers.baselayer[nexid]
+                    .thumbgallery;
                 var title = configuration.getConfiguration().baselayers.baselayer[nexid].label;
-                $("#backgroundlayersbtn").css("background-image", 'url("' + thumb + '")');
+                $('#backgroundlayersbtn').css('background-image', 'url("' + thumb + '")');
                 if (!configuration.getConfiguration().mobile) {
-                    $("#backgroundlayersbtn").attr("title", title);
-                    $("#backgroundlayersbtn").tooltip('destroy').tooltip({
-                        placement: 'left',
-                        trigger: 'hover',
-                        html: true,
-                        container: 'body',
-                        template: mviewer.templates.tooltip,
-                    });
+                    $('#backgroundlayersbtn').attr('title', title);
+                    $('#backgroundlayersbtn')
+                        .tooltip('destroy')
+                        .tooltip({
+                            placement: 'left',
+                            trigger: 'hover',
+                            html: true,
+                            container: 'body',
+                            template: mviewer.templates.tooltip,
+                        });
                 }
             }
-            $.each(_backgroundLayers, function (id, layer) {
+            $.each(_backgroundLayers, function(id, layer) {
                 var opt = configuration.getConfiguration().baselayers.style;
-                var elem = (opt === "gallery") ? $('#' + layer.get('blid') + '_btn')
-                    .closest('li') : $('#' + layer.get('blid') + '_btn');
+                var elem =
+                    opt === 'gallery'
+                        ? $('#' + layer.get('blid') + '_btn').closest('li')
+                        : $('#' + layer.get('blid') + '_btn');
                 if (layer.getVisible()) {
-                    elem.removeClass("no-active");
-                    elem.addClass("active");
+                    elem.removeClass('no-active');
+                    elem.addClass('active');
                 } else {
-                    elem.removeClass("active");
-                    elem.addClass("no-active");
+                    elem.removeClass('active');
+                    elem.addClass('no-active');
                 }
             });
             mviewer.bgtoogle();
@@ -1714,7 +1796,7 @@ mviewer = (function () {
          *
          */
 
-        changeLayerOpacity: function (id, value) {
+        changeLayerOpacity: function(id, value) {
             _overLayers[id].layer.setOpacity(value);
             _overLayers[id].opacity = parseFloat(value);
         },
@@ -1724,12 +1806,12 @@ mviewer = (function () {
          *
          */
 
-        getLayerOpacity: function (id) {
+        getLayerOpacity: function(id) {
             return _overLayers[id].layer.getOpacity();
         },
 
-        bgtoogle: function () {
-            $("#backgroundlayerstoolbar-gallery .no-active").toggle();
+        bgtoogle: function() {
+            $('#backgroundlayerstoolbar-gallery .no-active').toggle();
             // COMMENT HERE
             //$("#backgroundlayerstoolbar-gallery .bglt-btn").toggleClass("mini");
         },
@@ -1739,8 +1821,11 @@ mviewer = (function () {
          *
          */
 
-        getLayerMetadata: function (id) {
-            return {url: _overLayers[id].metadata, csw: _overLayers[id].metadatacsw};
+        getLayerMetadata: function(id) {
+            return {
+                url: _overLayers[id].metadata,
+                csw: _overLayers[id].metadatacsw,
+            };
         },
 
         /**
@@ -1748,7 +1833,7 @@ mviewer = (function () {
          *
          */
 
-        toggleOverLayer: function (id) {
+        toggleOverLayer: function(id) {
             _overLayers[id].checked = !_overLayers[id].checked;
             if (_overLayers[id].checked) {
                 _overLayers[id].layer.setVisible(true);
@@ -1757,15 +1842,14 @@ mviewer = (function () {
             }
         },
 
-        reorderLayer: function (layer, newIndex) {
+        reorderLayer: function(layer, newIndex) {
             var layers = _map.getLayers().getArray();
             var oldIndex = layers.indexOf(layer);
             layers.splice(newIndex, 0, layers.splice(oldIndex, 1)[0]);
             _map.render();
-
         },
 
-        orderLayer: function (actionMove) {
+        orderLayer: function(actionMove) {
             if (actionMove.layerRef) {
                 var layers = _map.getLayers().getArray();
                 var layer = _overLayers[actionMove.layerName];
@@ -1773,7 +1857,7 @@ mviewer = (function () {
                 var oldIndex = layers.indexOf(layer.layer);
                 var refIndex = layers.indexOf(layerRef.layer);
                 var newIndex = null;
-                if (actionMove.action === "up") {
+                if (actionMove.action === 'up') {
                     newIndex = refIndex + 1;
                 } else {
                     newIndex = refIndex - 1;
@@ -1782,7 +1866,10 @@ mviewer = (function () {
                 //put overlayFeatureLayer on the top of the map
                 if (_overlayFeatureLayer) {
                     _map.removeLayer(_overlayFeatureLayer);
-                    _map.getLayers().setAt(_map.getLayers().getArray().length, _overlayFeatureLayer);
+                    _map.getLayers().setAt(
+                        _map.getLayers().getArray().length,
+                        _overlayFeatureLayer,
+                    );
                 }
                 _map.render();
             }
@@ -1794,12 +1881,15 @@ mviewer = (function () {
             // get xml config file
             var configFile = API.config ? API.config : 'config.xml';
             // get domain url and clean
-            var splitStr = window.location.href.split('?')[0].replace('#','').split('/');
-            splitStr = splitStr.slice(0,splitStr.length-1).join('/');
+            var splitStr = window.location.href
+                .split('?')[0]
+                .replace('#', '')
+                .split('/');
+            splitStr = splitStr.slice(0, splitStr.length - 1).join('/');
             // create absolute config file url
             var url = splitStr + '/' + configFile;
             // send config file to studio
-            if(url) {
+            if (url) {
                 window.open(configuration.getConfiguration().application.studio + url, '_blank');
             }
         },
@@ -1809,7 +1899,7 @@ mviewer = (function () {
          *
          */
 
-        setPermalink: function () {
+        setPermalink: function() {
             var c = _map.getView().getCenter();
             var linkParams = {};
             if (!API.wmc) {
@@ -1827,9 +1917,16 @@ mviewer = (function () {
             }
             linkParams.mode = $('input[name=mv-display-mode]:checked').val();
 
-            var url = window.location.href.split('?')[0].replace('#', '') + '?' + $.param(linkParams);
-            $("#permalinklink").attr('href', url).attr("target", "_blank");
-            $("#permaqr").attr("src", "http://chart.apis.google.com/chart?cht=qr&chs=140x140&chl=" + encodeURIComponent(url));
+            var url =
+                window.location.href.split('?')[0].replace('#', '') + '?' + $.param(linkParams);
+            $('#permalinklink')
+                .attr('href', url)
+                .attr('target', '_blank');
+            $('#permaqr').attr(
+                'src',
+                'http://chart.apis.google.com/chart?cht=qr&chs=140x140&chl=' +
+                    encodeURIComponent(url),
+            );
             return url;
         },
 
@@ -1838,7 +1935,7 @@ mviewer = (function () {
          *
          */
 
-        getMap: function () {
+        getMap: function() {
             return _map;
         },
 
@@ -1847,7 +1944,7 @@ mviewer = (function () {
          *
          */
 
-        init: function () {
+        init: function() {
             _setVariables();
             _initDisplayMode();
             _initDataList();
@@ -1863,16 +1960,18 @@ mviewer = (function () {
 
         customControls: {},
 
-        tools: {activeTool: false},
+        tools: { activeTool: false },
 
         /**
          * Public Method: popupPhoto
          *
          */
 
-        popupPhoto: function (src) {
-            $("#imagepopup").find("img").attr("src", src);
-            $("#imagepopup").modal('show');
+        popupPhoto: function(src) {
+            $('#imagepopup')
+                .find('img')
+                .attr('src', src);
+            $('#imagepopup').modal('show');
         },
 
         /**
@@ -1880,32 +1979,25 @@ mviewer = (function () {
          *
          */
 
-        zoomToLocation: function (x, y, zoom, lib) {
+        zoomToLocation: function(x, y, zoom, lib) {
             if (_sourceOverlay) {
                 _sourceOverlay.clear();
             }
-            var ptResult = ol.proj.transform([
-                x,
-                y,
-            ], 'EPSG:4326', _projection.getCode());
+            var ptResult = ol.proj.transform([x, y], 'EPSG:4326', _projection.getCode());
             _map.getView().setCenter(ptResult);
             _map.getView().setZoom(zoom);
         },
-
 
         /**
          * Public Method: showLocation
          *
          */
 
-        showLocation: function (proj, x, y) {
+        showLocation: function(proj, x, y) {
             //marker
-            var ptResult = ol.proj.transform([
-                x,
-                y,
-            ], proj, _projection.getCode());
+            var ptResult = ol.proj.transform([x, y], proj, _projection.getCode());
             _marker.setPosition(ptResult);
-            $("#els_marker").show();
+            $('#els_marker').show();
             _map.render();
         },
 
@@ -1914,23 +2006,21 @@ mviewer = (function () {
          *
          */
 
-        print: function () {
-
-        },
+        print: function() {},
 
         /**
          * Public Method: geoloc
          *
          */
 
-        geoloc: function () {
-            if (!$("#geolocbtn").hasClass('enabled')) {
-                $("#geolocbtn").addClass('enabled');
+        geoloc: function() {
+            if (!$('#geolocbtn').hasClass('enabled')) {
+                $('#geolocbtn').addClass('enabled');
                 _geolocation.setTracking(true);
-                _geolocation.once('change', function (evt) {
+                _geolocation.once('change', function(evt) {
                     _map.getView().setZoom(18);
                 });
-                geolocON = _geolocation.on('change', function (evt) {
+                geolocON = _geolocation.on('change', function(evt) {
                     coordinates = _geolocation.getPosition();
                     _map.getView().setCenter(coordinates);
                     iconFeature = new ol.Feature({
@@ -1950,7 +2040,7 @@ mviewer = (function () {
                     _sourceGeolocation.addFeature(accuracyFeature);
                 });
             } else {
-                $("#geolocbtn").removeClass('enabled');
+                $('#geolocbtn').removeClass('enabled');
                 _geolocation.setTracking(false);
                 _sourceGeolocation.clear();
             }
@@ -1961,9 +2051,9 @@ mviewer = (function () {
          *
          */
 
-        northRotate: function () {
+        northRotate: function() {
             //_map.getView().setRotation(0);
-            _map.getView().animate({rotation: 0});
+            _map.getView().animate({ rotation: 0 });
         },
 
         /**
@@ -1971,8 +2061,8 @@ mviewer = (function () {
          *
          */
 
-        hideLocation: function () {
-            $("#els_marker").hide();
+        hideLocation: function() {
+            $('#els_marker').hide();
         },
 
         /**
@@ -1980,24 +2070,24 @@ mviewer = (function () {
          *
          */
 
-        sendToGeorchestra: function () {
+        sendToGeorchestra: function() {
             var params = {
-                "services": [],
-                "layers": [],
+                services: [],
+                layers: [],
             };
-            $.each(_overLayers, function (i, layer) {
+            $.each(_overLayers, function(i, layer) {
                 if (layer.layer.getVisible()) {
                     var layername = layer.id;
                     params.layers.push({
-                        "layername": layername,
-                        "owstype": "WMS",
-                        "owsurl": layer.url,
+                        layername: layername,
+                        owstype: 'WMS',
+                        owsurl: layer.url,
                     });
                 }
             });
             if (params.layers.length > 0) {
-                $("#georchestraFormData").val(JSON.stringify(params));
-                $("#georchestraForm").submit();
+                $('#georchestraFormData').val(JSON.stringify(params));
+                $('#georchestraForm').submit();
             }
         },
 
@@ -2006,11 +2096,11 @@ mviewer = (function () {
          *
          */
 
-        mapShare: function () {
+        mapShare: function() {
             var myurl = this.setPermalink();
         }, // fin function tools toolbar
 
-        addLayer: function (layer) {
+        addLayer: function(layer) {
             if (!layer) {
                 return;
             }
@@ -2024,18 +2114,15 @@ mviewer = (function () {
                 }
                 _exclusiveLayer = layer.layerid;
             }
-            var classes = [
-                "list-group-item",
-                "mv-layer-details",
-            ];
+            var classes = ['list-group-item', 'mv-layer-details'];
             if (!layer.toplayer) {
-                classes.push("draggable");
+                classes.push('draggable');
             } else {
-                classes.push("toplayer");
+                classes.push('toplayer');
             }
 
             var view = {
-                cls: classes.join(" "),
+                cls: classes.join(' '),
                 layerid: layer.layerid,
                 title: layer.title,
                 opacity: layer.opacity,
@@ -2053,35 +2140,47 @@ mviewer = (function () {
                 // To avoid a failed HTTP request to the secured server
                 // Replace scr by a transparent img to avoid empty src
                 view.legendurl = '/img/no_logo.svg';
-                configuration.getImageFromBasicAuthURL(layer.legendurl, configuration.getConfiguration().basicAuthentication, function (res) {
-                    if (res) {
-                        view.legendurl = res;
-                    }
-                });
+                configuration.getImageFromBasicAuthURL(
+                    layer.legendurl,
+                    configuration.getConfiguration().basicAuthentication,
+                    function(res) {
+                        if (res) {
+                            view.legendurl = res;
+                        }
+                    },
+                );
             }
 
             if (layer.type === 'customlayer' && layer.tooltip) {
                 view.tooltipControl = true;
             }
-            if (layer.styles && layer.styles.split(",").length > 1 &&
-                layer.stylesalias && layer.stylesalias.split(",").length > 1) {
+            if (
+                layer.styles &&
+                layer.styles.split(',').length > 1 &&
+                layer.stylesalias &&
+                layer.stylesalias.split(',').length > 1
+            ) {
                 view.styleControl = true;
                 var styles = [];
-                layer.styles.split(",").forEach(function (style, i) {
-                    styles.push({"style": style, "label": layer.stylesalias.split(",")[i]});
+                layer.styles.split(',').forEach(function(style, i) {
+                    styles.push({ style: style, label: layer.stylesalias.split(',')[i] });
                 });
                 view.styles = styles;
             }
 
-            if (layer.attributefilter && layer.attributevalues != "undefined" && layer.attributefield != "undefined") {
+            if (
+                layer.attributefilter &&
+                layer.attributevalues != 'undefined' &&
+                layer.attributefield != 'undefined'
+            ) {
                 view.attributeControl = true;
                 view.attributeLabel = layer.attributelabel || 'Filtrer';
                 var options = [];
                 if (layer.attributefilterenabled === false) {
-                    options.push({"label": "Par défaut", "attribute": "all"});
+                    options.push({ label: 'Par défaut', attribute: 'all' });
                 }
-                layer.attributevalues.forEach(function (attribute) {
-                    options.push({"label": attribute, "attribute": attribute});
+                layer.attributevalues.forEach(function(attribute) {
+                    options.push({ label: attribute, attribute: attribute });
                 });
                 view.attributes = options;
             }
@@ -2091,56 +2190,71 @@ mviewer = (function () {
             }
 
             var item = Mustache.render(mviewer.templates.layerControl, view);
-            if (layer.customcontrol && mviewer.customControls[layer.layerid] && mviewer.customControls[layer.layerid].form) {
-                item = $(item).find('.mv-custom-controls').append(mviewer.customControls[layer.layerid].form).closest(".mv-layer-details");
+            if (
+                layer.customcontrol &&
+                mviewer.customControls[layer.layerid] &&
+                mviewer.customControls[layer.layerid].form
+            ) {
+                item = $(item)
+                    .find('.mv-custom-controls')
+                    .append(mviewer.customControls[layer.layerid].form)
+                    .closest('.mv-layer-details');
             }
 
-            if (_topLayer && $("#layers-container .toplayer").length > 0) {
-                $("#layers-container .toplayer").after(item);
+            if (_topLayer && $('#layers-container .toplayer').length > 0) {
+                $('#layers-container .toplayer').after(item);
             } else {
-                $("#layers-container").prepend(item);
+                $('#layers-container').prepend(item);
             }
 
             //Dynamic vector Legend
-            if (layer.vectorlegend && mviewer.customLayers[layer.layerid] && mviewer.customLayers[layer.layerid].legend) {
+            if (
+                layer.vectorlegend &&
+                mviewer.customLayers[layer.layerid] &&
+                mviewer.customLayers[layer.layerid].legend
+            ) {
                 _drawVectorLegend(layer.layerid, mviewer.customLayers[layer.layerid].legend.items);
                 //Remove classic getLegendUrl
-                $("#legend-" + layer.layerid).remove();
+                $('#legend-' + layer.layerid).remove();
             }
 
             _setLayerScaleStatus(layer, _calculateScale(_map.getView().getResolution()));
-            $("#" + layer.layerid + "-layer-opacity").slider({});
-            $("#" + layer.layerid + "-layer-summary").popover({container: 'body', html: true});
-            $("#" + layer.layerid + "-layer-summary").attr("data-content", layer.summary);
+            $('#' + layer.layerid + '-layer-opacity').slider({});
+            $('#' + layer.layerid + '-layer-summary').popover({
+                container: 'body',
+                html: true,
+            });
+            $('#' + layer.layerid + '-layer-summary').attr('data-content', layer.summary);
             if (layer.attributefilterenabled === true) {
                 //Activate  CQL for this layer
             }
             //Time Filter
             //Time Filter slider and slider-range
-            if (layer.timefilter && (layer.timecontrol === 'slider' || layer.timecontrol === 'slider-range')) {
+            if (
+                layer.timefilter &&
+                (layer.timecontrol === 'slider' || layer.timecontrol === 'slider-range')
+            ) {
                 var ticks_labels;
                 var ticks;
                 var slider_options;
                 var default_values;
                 var onSliderChange;
                 if (layer.timevalues) {
-
                     ticks_labels = layer.timevalues;
                     ticks = _createPseudoTicks(layer.timevalues);
                     if (layer.timecontrol === 'slider') {
                         default_value = parseInt(ticks_labels[ticks_labels.length - 1]);
-                        $(".mv-time-player-selection[data-layerid='" + layer.layerid + "']").text(default_value);
+                        $(".mv-time-player-selection[data-layerid='" + layer.layerid + "']").text(
+                            default_value,
+                        );
                     } else if (layer.timecontrol === 'slider-range') {
-                        default_value = [
-                            0,
-                            layer.timevalues.length - 1,
-                        ];
+                        default_value = [0, layer.timevalues.length - 1];
                         //Set wms filter to see all data and not only the last
                         var range = [
                             parseInt(layer.timevalues[0]),
                             parseInt(layer.timevalues[layer.timevalues.length - 1]),
                         ];
-                        wms_timefilter = range.join("/");
+                        wms_timefilter = range.join('/');
                         mviewer.setLayerTime(layer.layerid, wms_timefilter);
                     }
 
@@ -2151,7 +2265,7 @@ mviewer = (function () {
                         ticks_labels: ticks_labels,
                         ticks: ticks,
                         step: 1,
-                        formatter: function (val) {
+                        formatter: function(val) {
                             var value;
                             if (Array.isArray(val)) {
                                 if (val[0] === val[1]) {
@@ -2169,19 +2283,18 @@ mviewer = (function () {
                         },
                     };
 
-                    onSliderChange = function (data) {
+                    onSliderChange = function(data) {
                         var wms_timefilter;
                         if (Array.isArray(data.value.newValue)) {
                             wms_timefilter = [
                                 parseInt(ticks_labels[data.value.newValue[0]]),
                                 parseInt(ticks_labels[data.value.newValue[1]]),
-                            ].join("/");
+                            ].join('/');
                         } else {
                             wms_timefilter = parseInt(ticks_labels[data.value.newValue]);
                         }
                         mviewer.setLayerTime(layer.layerid, wms_timefilter);
                     };
-
                 } else if (layer.timemin && layer.timemax) {
                     default_value = parseInt(layer.timemax);
                     ticks_labels = [layer.timemin];
@@ -2204,37 +2317,41 @@ mviewer = (function () {
                         ticks: ticks,
                     };
 
-                    onSliderChange = function (data) {
+                    onSliderChange = function(data) {
                         mviewer.setLayerTime(layer.layerid, data.value.newValue);
                     };
-
                 }
                 //slider && slider-range
 
-                $("#" + layer.layerid + "-layer-timefilter")
-                    .addClass("mv-slider-timer")
+                $('#' + layer.layerid + '-layer-timefilter')
+                    .addClass('mv-slider-timer')
                     .slider(slider_options);
-                $("#" + layer.layerid + "-layer-timefilter").slider().on('change', onSliderChange);
+                $('#' + layer.layerid + '-layer-timefilter')
+                    .slider()
+                    .on('change', onSliderChange);
                 if (ticks_labels.length > 7) {
-                    $("#" + layer.layerid + "-layer-timefilter").closest(".form-group")
-                        .find(".slider-tick-label").addClass("mv-time-vertical");
+                    $('#' + layer.layerid + '-layer-timefilter')
+                        .closest('.form-group')
+                        .find('.slider-tick-label')
+                        .addClass('mv-time-vertical');
                 }
 
                 if (layer.timecontrol === 'slider') {
                     //Activate the time player
-                    $('.mv-time-player[data-layerid="' + layer.layerid + '"]').click(function (e) {
+                    $('.mv-time-player[data-layerid="' + layer.layerid + '"]').click(function(e) {
                         var ctrl = e.currentTarget;
-                        $(ctrl).toggleClass("active");
-                        if ($(ctrl).hasClass("active")) {
-                            mviewer.playLayerTime($(ctrl).attr("data-layerid"), ctrl);
+                        $(ctrl).toggleClass('active');
+                        if ($(ctrl).hasClass('active')) {
+                            mviewer.playLayerTime($(ctrl).attr('data-layerid'), ctrl);
                         }
                     });
 
-
                     // slider-range
                 } else if (layer.timecontrol === 'slider-range') {
-                    $("#" + layer.layerid + "-layer-timefilter").closest(".form-group")
-                        .removeClass("form-group-timer").addClass("form-group-timer-range");
+                    $('#' + layer.layerid + '-layer-timefilter')
+                        .closest('.form-group')
+                        .removeClass('form-group-timer')
+                        .addClass('form-group-timer-range');
                     //Remove time player
                     $('.mv-time-player[data-layerid="' + layer.layerid + '"]').remove();
                 } else {
@@ -2246,8 +2363,8 @@ mviewer = (function () {
             //Time Filter calendar
             if (layer.timefilter && layer.timecontrol === 'calendar') {
                 var options = {
-                    format: "yyyy-mm-dd",
-                    language: "fr",
+                    format: 'yyyy-mm-dd',
+                    language: 'fr',
                     todayHighlight: true,
                     minViewMode: 0,
                     autoclose: true,
@@ -2258,39 +2375,42 @@ mviewer = (function () {
                 }
 
                 switch (layer.timeinterval) {
-                    case "year":
+                    case 'year':
                         options.minViewMode = 2;
                         break;
-                    case "month":
-                        options.startView = 2,
-                            options.minViewMode = 1;
+                    case 'month':
+                        (options.startView = 2), (options.minViewMode = 1);
                         break;
                     default:
                         break;
                 }
-                $("#" + layer.layerid + "-layer-timefilter")
-                    .addClass("mv-calendar-timer")
-                    .addClass("form-control")
+                $('#' + layer.layerid + '-layer-timefilter')
+                    .addClass('mv-calendar-timer')
+                    .addClass('form-control')
                     .wrap('<div class="input-group date"></div>');
 
-                $("#" + layer.layerid + "-layer-timefilter");
+                $('#' + layer.layerid + '-layer-timefilter');
 
-                $("#" + layer.layerid + "-layer-timefilter").closest('div')
-                    .append('<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>')
+                $('#' + layer.layerid + '-layer-timefilter')
+                    .closest('div')
+                    .append(
+                        '<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>',
+                    )
                     .datepicker(options);
 
-                $("#" + layer.layerid + "-layer-timefilter").on('change', function (data, cc) {
+                $('#' + layer.layerid + '-layer-timefilter').on('change', function(data, cc) {
                     mviewer.setLayerTime(layer.layerid, data.currentTarget.value);
                 });
-
             }
             //End Time filter
-            if ($("#layers-container").find("li").length > 1) {
+            if ($('#layers-container').find('li').length > 1) {
                 //set Layer to top on the map
                 var actionMove = {
                     layerName: layer.layerid,
-                    layerRef: $("#layers-container li[data-layerid='" + layer.layerid + "']").next().attr("data-layerid"),
-                    action: "up",
+                    layerRef: $("#layers-container li[data-layerid='" + layer.layerid + "']")
+                        .next()
+                        .attr('data-layerid'),
+                    action: 'up',
                 };
 
                 mviewer.orderLayer(actionMove);
@@ -2300,10 +2420,22 @@ mviewer = (function () {
             //Only for second and more loads
             if (oLayer.attributefilter && oLayer.layer.getSource().getParams()['CQL_FILTER']) {
                 var activeFilter = oLayer.layer.getSource().getParams()['CQL_FILTER'];
-                var activeAttributeValue = activeFilter.split(oLayer.attributeoperator)[1].replace(/\%|'/g, "").trim();
-                $("#" + layer.layerid + "-attributes-selector option[value='" + activeAttributeValue + "']").prop("selected", true);
-                $('.mv-layer-details[data-layerid="' + layer.layerid + '"] .layerdisplay-subtitle .selected-attribute span')
-                    .text(activeAttributeValue);
+                var activeAttributeValue = activeFilter
+                    .split(oLayer.attributeoperator)[1]
+                    .replace(/\%|'/g, '')
+                    .trim();
+                $(
+                    '#' +
+                        layer.layerid +
+                        "-attributes-selector option[value='" +
+                        activeAttributeValue +
+                        "']",
+                ).prop('selected', true);
+                $(
+                    '.mv-layer-details[data-layerid="' +
+                        layer.layerid +
+                        '"] .layerdisplay-subtitle .selected-attribute span',
+                ).text(activeAttributeValue);
             }
 
             var activeStyle = false;
@@ -2313,67 +2445,99 @@ mviewer = (function () {
                 //update legend image if nec.
                 var legendUrl = _getlegendurl(layer);
                 if (configuration.getConfiguration().basicAuthentication) {
-                    configuration.getImageFromBasicAuthURL(legendUrl, configuration.getConfiguration().basicAuthentication, function (res) {
-                        if (res) {
-                            $("#legend-" + layer.layerid).attr("src", res);
-                        }
-                    });
+                    configuration.getImageFromBasicAuthURL(
+                        legendUrl,
+                        configuration.getConfiguration().basicAuthentication,
+                        function(res) {
+                            if (res) {
+                                $('#legend-' + layer.layerid).attr('src', res);
+                            }
+                        },
+                    );
                 } else {
-                    $("#legend-" + layer.layerid).attr("src", legendUrl);
+                    $('#legend-' + layer.layerid).attr('src', legendUrl);
                 }
             }
             if (oLayer.styles) {
-                var selectCtrl = $("#" + layer.layerid + "-styles-selector")[0];
+                var selectCtrl = $('#' + layer.layerid + '-styles-selector')[0];
                 if (activeStyle) {
-                    var selectedStyle = $("#" + layer.layerid + "-styles-selector option[value*='" + activeStyle.split('@')[0] + "']")
-                        .prop("selected", true);
+                    var selectedStyle = $(
+                        '#' +
+                            layer.layerid +
+                            "-styles-selector option[value*='" +
+                            activeStyle.split('@')[0] +
+                            "']",
+                    ).prop('selected', true);
                 }
-                $('.mv-layer-details[data-layerid="' + layer.layerid + '"] .layerdisplay-subtitle .selected-sld span')
-                    .text(selectCtrl.options[selectCtrl.selectedIndex].label);
+                $(
+                    '.mv-layer-details[data-layerid="' +
+                        layer.layerid +
+                        '"] .layerdisplay-subtitle .selected-sld span',
+                ).text(selectCtrl.options[selectCtrl.selectedIndex].label);
             } else {
-                $('.mv-layer-details[data-layerid="' + layer.layerid + '"] .layerdisplay-subtitle .selected-sld').remove();
+                $(
+                    '.mv-layer-details[data-layerid="' +
+                        layer.layerid +
+                        '"] .layerdisplay-subtitle .selected-sld',
+                ).remove();
             }
 
             if (!oLayer.attributefilter) {
-                $('.mv-layer-details[data-layerid="' + layer.layerid + '"] .layerdisplay-subtitle .selected-attribute').remove();
+                $(
+                    '.mv-layer-details[data-layerid="' +
+                        layer.layerid +
+                        '"] .layerdisplay-subtitle .selected-attribute',
+                ).remove();
             }
             if (!oLayer.attributefilter && !oLayer.styles) {
-                $('.mv-layer-details[data-layerid="' + layer.layerid + '"] .layerdisplay-subtitle').remove();
+                $(
+                    '.mv-layer-details[data-layerid="' +
+                        layer.layerid +
+                        '"] .layerdisplay-subtitle',
+                ).remove();
             }
 
             var li = $(".mv-nav-item[data-layerid='" + layer.layerid + "']");
-            li.find("a span").removeClass("mv-unchecked").addClass("mv-checked");
-            li.find("input").val(true);
+            li.find('a span')
+                .removeClass('mv-unchecked')
+                .addClass('mv-checked');
+            li.find('input').val(true);
             // activate custom controls
             if (layer.customcontrol && mviewer.customControls[layer.layerid]) {
                 mviewer.customControls[layer.layerid].init();
             }
             if (layer.type === 'customlayer' && layer.tooltip && layer.tooltipenabled) {
-                info.toggleTooltipLayer($('.layer-tooltip[data-layerid="' + layer.layerid + '"]')[0]);
+                info.toggleTooltipLayer(
+                    $('.layer-tooltip[data-layerid="' + layer.layerid + '"]')[0],
+                );
             }
             if (layer.expanded) {
-                this.toggleLayerOptions($('.mv-layer-details[data-layerid="' + layer.layerid + '"]')[0]);
+                this.toggleLayerOptions(
+                    $('.mv-layer-details[data-layerid="' + layer.layerid + '"]')[0],
+                );
             }
-            $("#legend").removeClass("empty");
-            if (configuration.getConfiguration().application.togglealllayersfromtheme === "true") {
+            $('#legend').removeClass('empty');
+            if (configuration.getConfiguration().application.togglealllayersfromtheme === 'true') {
                 var newStatus = _getThemeStatus(layer.theme);
                 _setThemeStatus(layer.theme, newStatus);
             }
         },
-        removeLayer: function (el) {
+        removeLayer: function(el) {
             var item;
-            if (!$(el).is("li")) {
-                item = $(el).closest("li");
+            if (!$(el).is('li')) {
+                item = $(el).closest('li');
             } else {
                 item = $(el);
             }
-            var layerid = item.attr("data-layerid");
+            var layerid = item.attr('data-layerid');
             var layer = _overLayers[layerid];
             item.remove();
             layer.layer.setVisible(false);
             var li = $(".mv-nav-item[data-layerid='" + layerid + "']");
-            li.find("a span").removeClass("mv-checked").addClass("mv-unchecked");
-            li.find("input").val(false);
+            li.find('a span')
+                .removeClass('mv-checked')
+                .addClass('mv-unchecked');
+            li.find('input').val(false);
             // deactivate custom controls
             if (layer.customcontrol && mviewer.customControls[layer.layerid]) {
                 mviewer.customControls[layer.layerid].destroy();
@@ -2381,44 +2545,123 @@ mviewer = (function () {
             //Remove Layer infos in info panels
             mviewer.removeLayerInfo(layer.layerid);
             //check if layers-container is empty
-            if ($("#layers-container .list-group-item").length === 0) {
-                $("#legend").addClass("empty");
+            if ($('#layers-container .list-group-item').length === 0) {
+                $('#legend').addClass('empty');
             }
-            if (configuration.getConfiguration().application.togglealllayersfromtheme === "true") {
+            if (configuration.getConfiguration().application.togglealllayersfromtheme === 'true') {
                 var newStatus = _getThemeStatus(layer.theme);
                 _setThemeStatus(layer.theme, newStatus);
             }
         },
-        removeAllLayers: function () {
-            $("#layers-container .list-group-item").each(function (id, item) {
+        removeAllLayers: function() {
+            $('#layers-container .list-group-item').each(function(id, item) {
                 mviewer.removeLayer(item);
             });
         },
-        toggleLayer: function (el) {
-            var li = $(el).closest("li");
-            if (li.find("input").val() === 'false') {
-                mviewer.addLayer(_overLayers[$(li).data("layerid")]);
+        toggleLayer: function(el) {
+            var li = $(el).closest('li');
+            if (li.find('input').val() === 'false') {
+                mviewer.addLayer(_overLayers[$(li).data('layerid')]);
             } else {
-                var el = $(".mv-layer-details[data-layerid='" + li.data("layerid") + "']");
+                var el = $(".mv-layer-details[data-layerid='" + li.data('layerid') + "']");
                 mviewer.removeLayer(el);
             }
         },
-        toggleMenu: function (transition) {
+        toggleMenu: function(transition) {
             if (transition) {
-                $("#wrapper, #sidebar-wrapper, #page-content-wrapper").removeClass("notransition");
+                $('#wrapper, #sidebar-wrapper, #page-content-wrapper').removeClass('notransition');
             } else {
-                $("#wrapper, #sidebar-wrapper, #page-content-wrapper").addClass("notransition");
+                $('#wrapper, #sidebar-wrapper, #page-content-wrapper').addClass('notransition');
             }
-            $("#wrapper").toggleClass("toggled-2");
-            $("#menu-toggle-2,.menu-toggle").toggleClass("closed");
+            $('#wrapper').toggleClass('toggled-2');
+            $('#menu-toggle-2,.menu-toggle').toggleClass('closed');
             $('#menu ul').hide();
         },
 
-        toggleLegend: function () {
-            $("#legend").toggleClass("active");
+        toggleLegend: function() {
+            $('#legend').toggleClass('active');
         },
-        toggleParameter: function (li) {
-            var span = $(li).find("span");
+
+        toggleBookmarList: function() {
+            $('#bookmarkslist').toggle();
+            if (localStorage.PosBMarks) {
+                bmarkList = [];
+                bmarkList = JSON.parse(localStorage.getItem('PosBMarks'));
+                mviewer.drawPosBMarks();
+            }
+        },
+
+        toggleNameBookmarks: function() {
+            $('#inputNameBookmarks').toggle();
+        },
+
+        drawPosBMarks: function() {
+            if (localStorage.PosBMarks) {
+                $('#bookmarks-container').empty();
+                $.each(bmarkList, function(index, value) {
+                    $('#bookmarks-container').append(`
+                    <div id="bookmark-item">
+                    <a href="#" onclick="mviewer.goToPosBMarks(${value.lat}, ${value.lon}, ${value.zoom})">${value.name}</a>
+                    </span>
+                    <a style="margin-left: 10px;" title="Supprimer le favoris" href="#" onclick="mviewer.deleteBMark(${index})">
+                        <span class="glyphicon glyphicon-trash">
+                        </span>
+                    </a>
+                </div>`);
+                });
+            } else {
+                console.log('There is nothing saved!');
+            }
+            return true;
+        },
+
+        addBMark: function() {
+            var nameBookmarks = $('#nameBookmark').val();
+
+            if (nameBookmarks) {
+                var center = _map.getView().getCenter();
+                var zoom = _map.getView().getZoom();
+
+                var view = {};
+                view.name = nameBookmarks;
+                view.zoom = zoom;
+                view.lat = center[0];
+                view.lon = center[1];
+
+                bmarkList.push(view);
+
+                localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+                $('#inputNameBookmarks').toggle();
+                $('#bookmarks-container').empty();
+                $('#nameBookmark').val('');
+                mviewer.drawPosBMarks();
+            }
+        },
+
+        deleteBMarks: function() {
+            bmarkList = [];
+            localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+            mviewer.drawPosBMarks();
+        },
+
+        deleteBMark: function(index) {
+            if (index > -1) {
+                bmarkList.splice(index, 1);
+                localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
+                mviewer.drawPosBMarks();
+            }
+        },
+
+        goToPosBMarks: function(lat, lon, zoom) {
+            var center = [parseFloat(lat), parseFloat(lon)];
+            var zoom = parseInt(zoom);
+
+            _map.getView().setCenter(center);
+            _map.getView().setZoom(zoom);
+        },
+
+        toggleParameter: function(li) {
+            var span = $(li).find('span');
             var parameter = false;
             if (span.hasClass('mv-unchecked') === true) {
                 span.removeClass('mv-unchecked').addClass('mv-checked');
@@ -2427,26 +2670,41 @@ mviewer = (function () {
                 span.removeClass('mv-checked').addClass('mv-unchecked');
             }
             switch (li.id) {
-                case "param_search_bbox":
+                case 'param_search_bbox':
                     _searchparams.bbox = parameter;
                     break;
-                case "param_search_localities":
+                case 'param_search_localities':
                     _searchparams.localities = parameter;
                     break;
-                case "param_search_features":
+                case 'param_search_features':
                     _searchparams.features = parameter;
                     break;
             }
-
         },
-        toggleLayerOptions: function (el) {
-            $(el).closest("li").find(".mv-layer-options").slideToggle();
+        toggleLayerOptions: function(el) {
+            $(el)
+                .closest('li')
+                .find('.mv-layer-options')
+                .slideToggle();
             //hack slider js
-            $(el).closest("li").find(".mv-slider-timer").slider('relayout');
-            if ($(el).find("span.state-icon").hasClass("glyphicon glyphicon-chevron-down")) {
-                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-chevron-down").addClass("glyphicon glyphicon-chevron-up");
+            $(el)
+                .closest('li')
+                .find('.mv-slider-timer')
+                .slider('relayout');
+            if (
+                $(el)
+                    .find('span.state-icon')
+                    .hasClass('glyphicon glyphicon-chevron-down')
+            ) {
+                $(el)
+                    .find('span.state-icon')
+                    .removeClass('glyphicon glyphicon-chevron-down')
+                    .addClass('glyphicon glyphicon-chevron-up');
             } else {
-                $(el).find("span.state-icon").removeClass("glyphicon glyphicon-chevron-up").addClass("glyphicon glyphicon-chevron-down");
+                $(el)
+                    .find('span.state-icon')
+                    .removeClass('glyphicon glyphicon-chevron-up')
+                    .addClass('glyphicon glyphicon-chevron-down');
             }
 
             // OLD VERSION
@@ -2458,7 +2716,7 @@ mviewer = (function () {
             // }
         },
 
-        setLayerStyle: function (layerid, style, selectCtrl) {
+        setLayerStyle: function(layerid, style, selectCtrl) {
             var _layerDefinition = _overLayers[layerid];
             var styleRef = style;
             var _source = _layerDefinition.layer.getSource();
@@ -2468,19 +2726,18 @@ mviewer = (function () {
                 var attributeValue = 'all';
                 var styleBase = style.split('@')[0];
                 if (_source.getParams().CQL_FILTER) {
-                    attributeValue = _source.getParams().CQL_FILTER.split(" " + _layerDefinition.attributeoperator + " ")[1].replace(/\'/g, "");
+                    attributeValue = _source
+                        .getParams()
+                        .CQL_FILTER.split(' ' + _layerDefinition.attributeoperator + ' ')[1]
+                        .replace(/\'/g, '');
                 }
                 if (attributeValue != 'all') {
-                    style = [
-                        styleBase,
-                        '@',
-                        attributeValue.toLowerCase().sansAccent(),
-                    ].join("");
+                    style = [styleBase, '@', attributeValue.toLowerCase().sansAccent()].join('');
                 }
             }
             if (_layerDefinition.sld) {
                 if (!/.(sld|SLD)$/.test(style)) {
-                    style += ".sld";
+                    style += '.sld';
                 }
                 _source.getParams()['SLD'] = style;
                 _layerDefinition.sld = style;
@@ -2488,38 +2745,53 @@ mviewer = (function () {
                 _source.getParams()['STYLES'] = style;
                 _layerDefinition.style = style;
             }
-            _source.updateParams({"dc": new Date().valueOf()});
+            _source.updateParams({ dc: new Date().valueOf() });
             _source.changed();
-            var styleLabel = $(selectCtrl).find("option[value='" + styleBase + "'], option[value='" + styleRef + "']").attr("label");
-            $('.mv-layer-details[data-layerid="' + layerid + '"] .layerdisplay-subtitle .selected-sld span').text(styleLabel);
+            var styleLabel = $(selectCtrl)
+                .find("option[value='" + styleBase + "'], option[value='" + styleRef + "']")
+                .attr('label');
+            $(
+                '.mv-layer-details[data-layerid="' +
+                    layerid +
+                    '"] .layerdisplay-subtitle .selected-sld span',
+            ).text(styleLabel);
             var legendUrl = _getlegendurl(_layerDefinition);
-            $("#legend-" + layerid).fadeOut("slow", function () {
+            $('#legend-' + layerid).fadeOut('slow', function() {
                 // Animation complete
                 if (configuration.getConfiguration().basicAuthentication) {
-                    configuration.getImageFromBasicAuthURL(legendUrl, configuration.getConfiguration().basicAuthentication, function (res) {
-                        if (res) {
-                            $("#legend-" + layerid).attr("src", res).fadeIn();
-                        }
-                    });
+                    configuration.getImageFromBasicAuthURL(
+                        legendUrl,
+                        configuration.getConfiguration().basicAuthentication,
+                        function(res) {
+                            if (res) {
+                                $('#legend-' + layerid)
+                                    .attr('src', res)
+                                    .fadeIn();
+                            }
+                        },
+                    );
                 } else {
-                    $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                    $('#legend-' + layerid)
+                        .attr('src', legendUrl)
+                        .fadeIn();
                 }
             });
-            $('.mv-nav-item[data-layerid="' + layerid + '"]').attr("data-legendurl", legendUrl).data("legendurl", legendUrl);
-
+            $('.mv-nav-item[data-layerid="' + layerid + '"]')
+                .attr('data-legendurl', legendUrl)
+                .data('legendurl', legendUrl);
         },
 
-        makeCQL_Filter: function (fld, operator, value) {
-            var cql_filter = "";
-            if (operator == "=") {
-                cql_filter = fld + " = " + "'" + value.replace("'", "''") + "'";
-            } else if (operator == "like") {
-                cql_filter = fld + " like " + "'%" + value.replace("'", "''") + "%'";
+        makeCQL_Filter: function(fld, operator, value) {
+            var cql_filter = '';
+            if (operator == '=') {
+                cql_filter = fld + ' = ' + "'" + value.replace("'", "''") + "'";
+            } else if (operator == 'like') {
+                cql_filter = fld + ' like ' + "'%" + value.replace("'", "''") + "%'";
             }
             return cql_filter;
         },
 
-        setLayerAttribute: function (layerid, attributeValue, selectCtrl) {
+        setLayerAttribute: function(layerid, attributeValue, selectCtrl) {
             var _layerDefinition = _overLayers[layerid];
             var _source = _layerDefinition.layer.getSource();
             if (attributeValue === 'all') {
@@ -2528,10 +2800,14 @@ mviewer = (function () {
                     _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters;
                 }
             } else {
-                var cql_filter = this.makeCQL_Filter(_layerDefinition.attributefield, _layerDefinition.attributeoperator,
-                    attributeValue);
+                var cql_filter = this.makeCQL_Filter(
+                    _layerDefinition.attributefield,
+                    _layerDefinition.attributeoperator,
+                    attributeValue,
+                );
                 if (configuration.getConfiguration().filters) {
-                    _source.getParams()['CQL_FILTER'] = configuration.getConfiguration().filters + " AND " + cql_filter;
+                    _source.getParams()['CQL_FILTER'] =
+                        configuration.getConfiguration().filters + ' AND ' + cql_filter;
                 } else {
                     _source.getParams()['CQL_FILTER'] = cql_filter;
                 }
@@ -2548,15 +2824,15 @@ mviewer = (function () {
                 //Respect this convention in sld naming : stylename@attribute eg style1@departement plus no accent no Capitale.
                 if (attributeValue != 'all') {
                     newStyle = [
-                        currentStyle.split("@")[0],
-                        "@",
+                        currentStyle.split('@')[0],
+                        '@',
                         attributeValue.sansAccent().toLowerCase(),
-                    ].join("");
+                    ].join('');
                 } else {
-                    newStyle = currentStyle.split("@")[0];
+                    newStyle = currentStyle.split('@')[0];
                 }
                 if (_layerDefinition.sld) {
-                    newStyle += ".sld";
+                    newStyle += '.sld';
                     _source.getParams()['SLD'] = newStyle;
                     _layerDefinition.sld = newStyle;
                 } else {
@@ -2564,29 +2840,36 @@ mviewer = (function () {
                     _layerDefinition.style = newStyle;
                 }
                 var legendUrl = _getlegendurl(_layerDefinition);
-                $("#legend-" + layerid).fadeOut("slow", function () {
+                $('#legend-' + layerid).fadeOut('slow', function() {
                     // Animation complete
-                    $("#legend-" + layerid).attr("src", legendUrl).fadeIn();
+                    $('#legend-' + layerid)
+                        .attr('src', legendUrl)
+                        .fadeIn();
                 });
-                $('.mv-nav-item[data-layerid="' + layerid + '"]').attr("data-legendurl", legendUrl).data("legendurl", legendUrl);
+                $('.mv-nav-item[data-layerid="' + layerid + '"]')
+                    .attr('data-legendurl', legendUrl)
+                    .data('legendurl', legendUrl);
             }
-            _source.updateParams({"dc": new Date().valueOf()});
+            _source.updateParams({ dc: new Date().valueOf() });
             _source.changed();
-            $('.mv-layer-details[data-layerid="' + layerid + '"] .layerdisplay-subtitle .selected-attribute span')
-                .text(selectCtrl.options[selectCtrl.selectedIndex].label);
+            $(
+                '.mv-layer-details[data-layerid="' +
+                    layerid +
+                    '"] .layerdisplay-subtitle .selected-attribute span',
+            ).text(selectCtrl.options[selectCtrl.selectedIndex].label);
         },
 
-        setLayerTime: function (layerid, filter_time) {
+        setLayerTime: function(layerid, filter_time) {
             //Fix me
             var str = filter_time.toString();
             var test = str.length;
             switch (test) {
-
                 case 6:
                     filter_time = str.substr(0, 4) + '-' + str.substr(4, 2);
                     break;
                 case 8:
-                    filter_time = str.substr(0, 4) + '-' + str.substr(4, 2) + '-' + str.substr(6, 2);
+                    filter_time =
+                        str.substr(0, 4) + '-' + str.substr(4, 2) + '-' + str.substr(6, 2);
                     break;
                 default:
                     filter_time = filter_time;
@@ -2595,29 +2878,32 @@ mviewer = (function () {
             var _source = _layerDefinition.layer.getSource();
             _source.getParams()['TIME'] = filter_time;
             $(".mv-time-player-selection[data-layerid='" + layerid + "']").text('Patientez...');
-            var key = _source.on('imageloadend', function () {
+            var key = _source.on('imageloadend', function() {
                 ol.Observable.unByKey(key);
                 $(".mv-time-player-selection[data-layerid='" + layerid + "']").text(filter_time);
             });
             _source.changed();
 
-            if (_source.hasOwnProperty("tileClass")) {
-                _source.updateParams({'ol3_salt': Math.random()});
+            if (_source.hasOwnProperty('tileClass')) {
+                _source.updateParams({ ol3_salt: Math.random() });
             }
         },
 
-        playLayerTime: function (layerid, ctrl) {
-            var t = $("#" + layerid + "-layer-timefilter");
+        playLayerTime: function(layerid, ctrl) {
+            var t = $('#' + layerid + '-layer-timefilter');
             var timevalues = _overLayers[layerid].timevalues;
             var animation;
-            t.slider({tooltip: 'always'}).slider('refresh');
+            t.slider({ tooltip: 'always' }).slider('refresh');
 
             function play() {
-                if ($(ctrl).hasClass("active") && $("#" + layerid + "-layer-timefilter").length > 0) {
+                if (
+                    $(ctrl).hasClass('active') &&
+                    $('#' + layerid + '-layer-timefilter').length > 0
+                ) {
                     var nextvalue = (t.slider('getValue') + 1) % timevalues.length;
                     t.slider('setValue', nextvalue, true, true);
                 } else {
-                    t.slider({tooltip: 'show'}).slider('refresh');
+                    t.slider({ tooltip: 'show' }).slider('refresh');
                     clearInterval(animation);
                 }
             }
@@ -2625,12 +2911,12 @@ mviewer = (function () {
             animation = setInterval(play, 2000);
         },
 
-        setInfoPanelTitle: function (el, panel) {
-            var title = $(el).attr("data-original-title");
-            $("#" + panel + " .mv-header h5").text(title);
+        setInfoPanelTitle: function(el, panel) {
+            var title = $(el).attr('data-original-title');
+            $('#' + panel + ' .mv-header h5').text(title);
         },
 
-        nextBackgroundLayer: function () {
+        nextBackgroundLayer: function() {
             //Get activeLayer
             var id = 0;
             for (var i = 0; i < _backgroundLayers.length; i += 1) {
@@ -2643,22 +2929,24 @@ mviewer = (function () {
             var nexid = (id + 1) % _backgroundLayers.length;
             var i, ii;
             for (i = 0, ii = _backgroundLayers.length; i < ii; ++i) {
-                _backgroundLayers[i].set('visible', (i == nexid));
+                _backgroundLayers[i].set('visible', i == nexid);
             }
             nexid = (nexid + 1) % _backgroundLayers.length;
             //get the next thumb
             var thumb = configuration.getConfiguration().baselayers.baselayer[nexid].thumbgallery;
             var title = configuration.getConfiguration().baselayers.baselayer[nexid].label;
-            $("#backgroundlayersbtn").css("background-image", 'url("' + thumb + '")');
+            $('#backgroundlayersbtn').css('background-image', 'url("' + thumb + '")');
             if (!configuration.getConfiguration().mobile) {
-                $("#backgroundlayersbtn").attr("data-original-title", title);
-                $("#backgroundlayersbtn").tooltip('hide').tooltip({
-                    placement: 'top',
-                    trigger: 'hover',
-                    html: true,
-                    container: 'body',
-                    template: mviewer.templates.tooltip,
-                });
+                $('#backgroundlayersbtn').attr('data-original-title', title);
+                $('#backgroundlayersbtn')
+                    .tooltip('hide')
+                    .tooltip({
+                        placement: 'top',
+                        trigger: 'hover',
+                        html: true,
+                        container: 'body',
+                        template: mviewer.templates.tooltip,
+                    });
             }
         },
 
@@ -2667,28 +2955,28 @@ mviewer = (function () {
          *
          */
 
-        getLayer: function (idlayer) {
+        getLayer: function(idlayer) {
             return _overLayers[idlayer];
         },
 
-        removeLayerInfo: function (layerid) {
+        removeLayerInfo: function(layerid) {
             var tab = $('.nav-tabs li[data-layerid="' + layerid + '"]');
-            var panel = tab.closest(".popup-content").parent();
-            var tabs = tab.parent().find("li");
-            var info = $(tab.find("a").attr("href"));
+            var panel = tab.closest('.popup-content').parent();
+            var tabs = tab.parent().find('li');
+            var info = $(tab.find('a').attr('href'));
 
             if (tabs.length === 1) {
                 tab.remove();
                 info.remove();
-                if (panel.hasClass("active")) {
-                    panel.toggleClass("active");
+                if (panel.hasClass('active')) {
+                    panel.toggleClass('active');
                 }
-                $("#els_marker").hide();
+                $('#els_marker').hide();
             } else {
-                if (tab.hasClass("active")) {
+                if (tab.hasClass('active')) {
                     //Activation de l'item suivant
                     var _next_tab = tab.next();
-                    _next_tab.find("a").click();
+                    _next_tab.find('a').click();
                     tab.remove();
                     info.remove();
                 } else {
@@ -2696,44 +2984,52 @@ mviewer = (function () {
                     info.remove();
                 }
             }
-
         },
 
-        alert: function (msg, cls) {
+        alert: function(msg, cls) {
             _message(msg, cls);
         },
 
-        legendSize: function (img) {
+        legendSize: function(img) {
             if (img.width > 250) {
                 //$(img).addClass("big-legend");
-                $(img).closest("div").addClass("big-legend");
-                $(img).parent().append('<span onclick="mviewer.popupPhoto(' +
-                    'this.parentElement.getElementsByTagName(\'img\')[0].src)" ' +
-                    'class="text-big-legend"><span><span class="glyphicon glyphicon-resize-full" aria-hidden="true">' +
-                    '</span> Agrandir la légende</span></span>');
+                $(img)
+                    .closest('div')
+                    .addClass('big-legend');
+                $(img)
+                    .parent()
+                    .append(
+                        '<span onclick="mviewer.popupPhoto(' +
+                            "this.parentElement.getElementsByTagName('img')[0].src)\" " +
+                            'class="text-big-legend"><span><span class="glyphicon glyphicon-resize-full" aria-hidden="true">' +
+                            '</span> Agrandir la légende</span></span>',
+                    );
             }
         },
 
-        toggleAllThemeLayers: function (e) {
+        toggleAllThemeLayers: function(e) {
             e.preventDefault();
-            var themeid = $(e.currentTarget).closest("li").attr("id").split("theme-layers-")[1];
+            var themeid = $(e.currentTarget)
+                .closest('li')
+                .attr('id')
+                .split('theme-layers-')[1];
             var theme = _themes[themeid];
             var status = _getThemeStatus(themeid);
             var visibility = false;
-            if (status.status !== "full") {
+            if (status.status !== 'full') {
                 visibility = true;
             }
             if (visibility) {
                 if (theme.groups) {
-                    $.each(theme.groups, function (key, group) {
-                        $.each(group.layers, function (key, layer) {
+                    $.each(theme.groups, function(key, group) {
+                        $.each(group.layers, function(key, layer) {
                             if (!layer.layer.getVisible()) {
                                 mviewer.addLayer(layer);
                             }
                         });
                     });
                 } else {
-                    $.each(theme.layers, function (key, layer) {
+                    $.each(theme.layers, function(key, layer) {
                         if (!layer.layer.getVisible()) {
                             mviewer.addLayer(layer);
                         }
@@ -2741,15 +3037,17 @@ mviewer = (function () {
                 }
             } else {
                 if (theme.groups) {
-                    $.each(theme.groups, function (key, group) {
-                        $.each(group.layers, function (key, layer) {
+                    $.each(theme.groups, function(key, group) {
+                        $.each(group.layers, function(key, layer) {
                             if (layer.layer.getVisible()) {
-                                mviewer.removeLayer($(".mv-layer-details[data-layerid='" + key + "']"));
+                                mviewer.removeLayer(
+                                    $(".mv-layer-details[data-layerid='" + key + "']"),
+                                );
                             }
                         });
                     });
                 } else {
-                    $.each(theme.layers, function (key, layer) {
+                    $.each(theme.layers, function(key, layer) {
                         if (layer.layer.getVisible()) {
                             mviewer.removeLayer($(".mv-layer-details[data-layerid='" + key + "']"));
                         }
@@ -2760,7 +3058,7 @@ mviewer = (function () {
             e.stopPropagation();
         },
 
-        getLayers: function () {
+        getLayers: function() {
             return _overLayers;
         },
 
@@ -2778,15 +3076,15 @@ mviewer = (function () {
 
         getLegendUrl: _getlegendurl,
 
-        getProjection: function () {
+        getProjection: function() {
             return _projection;
         },
 
-        getSourceOverlay: function () {
+        getSourceOverlay: function() {
             return _sourceOverlay;
         },
 
-        setTopLayer: function (layer) {
+        setTopLayer: function(layer) {
             _topLayer = layer;
         },
 
@@ -2796,11 +3094,8 @@ mviewer = (function () {
 
         overLayersReady: _overLayersReady,
 
-        events: function () {
+        events: function() {
             return _events;
         },
-
-
     }; // fin return
-
 })();
