@@ -39,6 +39,8 @@ http.createServer((request, response) => {
 
     const contentType = mimeTypes[extname] || 'application/octet-stream';
 
+    console.log('Headers', request.headers);
+
     fs.readFile(filePath, function(error, content) {
         if (error) {
             console.error('[Error] ' + request.url + ' ' + error.message);
@@ -52,7 +54,7 @@ http.createServer((request, response) => {
                 response.end('Erreur serveur');
             }
         } else {
-            response.writeHead(200, { 'Content-Type': contentType, 'X-Forwarded-Proto': 'https' });
+            response.writeHead(200, { 'Content-Type': contentType });
             response.end(content, 'utf-8');
         }
     });
