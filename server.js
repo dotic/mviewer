@@ -47,7 +47,7 @@ http.createServer((request, response) => {
         needRedirection = true;
     }
 
-    if (needRedirection) {
+    if (needRedirection && process.env.SECURE) {
         const host = request.headers['x-forwarded-host'] || request.headers.host;
         response.writeHead(301, {
             Location: 'https://' + host + request.url,
