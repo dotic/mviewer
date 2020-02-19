@@ -119,4 +119,6 @@
             </group>
         </theme>
     </themes>
+        <theme id="communes_france" url="http://carto.connect-control.com/configurations/communes_france.xml"/>
+
 </config>

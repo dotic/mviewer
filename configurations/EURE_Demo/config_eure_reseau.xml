@@ -32,7 +32,7 @@
     <themes mini="true">
 
         <theme name="Sites" collapsed="true" id="sites" icon="fas fa-map-marked">
-            <layer id="mvs_elem_sf_nd" name="Sites d'utilisateurs finaux" visible="false" tiled="false"
+            <layer id="sites-utilisateurs-finaux" name="Sites d'utilisateurs finaux" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="sites_utilisateurs_finaux_type"
@@ -50,7 +50,7 @@
             </layer>
         </theme>
         <theme name="Infrastructures" collapsed="true" id="infrastructures" icon="fas fa-road">
-            <layer id="mvs_elem_cd_dm_cm" name="Conduites" visible="false" tiled="false"
+            <layer id="conduites" name="Conduites" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="conduites_type_d_implantation,conduites_avancement"
@@ -63,7 +63,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_pt_nd" name="Chambres" visible="false" tiled="false"
+            <layer id="chambres" name="Chambres" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    style="chambres_avancement"
                    stylesalias="Etat"
@@ -76,7 +76,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_pt_nd" name="Appuis" visible="false" tiled="false"
+            <layer id="appuis" name="Appuis" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    style="appuis_implantation_eure"
                    stylesalias="Avancement"
@@ -92,7 +92,7 @@
         </theme>
         <theme name="Réseau" collapsed="true" id="reseau" icon="fas fa-project-diagram">
         <group id="cables" name="Cables">
-            <layer id="mvs_elem_cl_cb" name="Transport" visible="false" tiled="false"
+            <layer id="cables-extra-sites" name="Transport" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="cables_transport_avancement_eure"
@@ -105,7 +105,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_cl_cb" name="Distribution" visible="false" tiled="false"
+            <layer id="cables-extra-sites" name="Distribution" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="cables_distribution_avancement_eure"
@@ -120,7 +120,7 @@
             </layer>
             </group>
             <group id="locaux_techniques" name="Locaux Techniques">
-            <layer id="mvs_elem_lt_st_nd" name="NRO" visible="false" tiled="false"
+            <layer id="locaux-techniques" name="NRO" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="locaux_techniques_nro_avancement_eure"
@@ -133,7 +133,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_lt_st_nd" name="SRO" visible="false" tiled="false"
+            <layer id="locaux-techniques" name="SRO" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="locaux_techniques_sro_avancement_eure"
@@ -148,7 +148,7 @@
             </layer>
             </group>
             <group id="boites" name="Boites">
-            <layer id="mvs_elem_bp_pt_nd" name="PEP" visible="false" tiled="false"
+            <layer id="bpe" name="PEP" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="boites_pep_avancement_eure"
@@ -161,7 +161,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="PA" visible="false" tiled="false"
+            <layer id="bpe" name="PA" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="boites_pa_avancement_eure"
@@ -174,7 +174,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="PB Aérien" visible="false" tiled="false"
+            <layer id="pbo-extra-sites" name="PB Aérien" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="boites_pb_aerien_avancement_eure"
@@ -187,7 +187,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="PB Souterrain" visible="false" tiled="false"
+            <layer id="pbo-extra-sites" name="PB Souterrain" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="boites_pb_souterrain_eure"
@@ -200,7 +200,7 @@
                    opacity ="0.6">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="PB Immeuble" visible="false" tiled="false"
+            <layer id="pbo-immeuble" name="PB Immeuble" visible="false" tiled="false"
                    searchable="false" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="boites_pb_immeuble_eure"
@@ -243,4 +243,6 @@
         </theme>
 
     </themes>
+        <theme id="communes_france" url="http://carto.connect-control.com/configurations/communes_france.xml"/>
+
 </config>

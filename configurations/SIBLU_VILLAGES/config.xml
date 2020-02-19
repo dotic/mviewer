@@ -26,10 +26,9 @@
     <searchparameters bbox="false" localities="true" features="false"/>
 
     <themes mini="true">
-
-        <theme name="Sites" collapsed="true" id="sites" icon="fas fa-map-marked">
-            <layer id="mvs_elem_st_nd" name="Sites techniques" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <theme name="Sites" collapsed="true" id="_sites" icon="fas fa-map-marked">
+            <layer id="sites-techniques" name="Sites techniques" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="site_technique_type"
                    stylesalias="Site technique par type"
@@ -40,8 +39,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_sf_nd" name="Sites d'utilisateurs finaux" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="sites-utilisateurs-finaux" name="Sites d'utilisateurs finaux" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="sites_utilisateurs_finaux_type"
                    stylesalias="SUF"
@@ -49,6 +48,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
             <layer id="t_adresse" name="Adresses" visible="false" tiled="false" opacity="1" queryable="true"
+                   searchable="true" searchengine="elasticsearch"
                    fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="adresses_isolees,adresses_par_type"
@@ -57,8 +57,8 @@
             </layer>
         </theme>
         <theme name="Genie Civil" collapsed="true" id="genie_civil" icon="fas fa-road">
-            <layer id="mvs_elem_pt_nd" name="Chambres" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="chambres" name="Chambres" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    style="chambres_avancement"
                    stylesalias="Etat"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
@@ -69,8 +69,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_pt_nd" name="Appuis" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="appuis" name="Appuis" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    style="appuis_etat_d_avancement,appuis_usages"
                    stylesalias="Appuis etat d'avancement,Appui par usage"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
@@ -81,8 +81,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_cd_dm_cm" name="Conduites" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="conduites" name="Conduites" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="conduites_type_d_implantation,conduites_avancement"
                    stylesalias="Implantation des conduites,Etat d'avancement"
@@ -93,8 +93,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_mq_nd" name="Masques" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="masques" name="Masques" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="masques"
                    stylesalias="Masques">
@@ -102,20 +102,20 @@
             </layer>
         </theme>
         <theme name="Cablages" collapsed="true" id="cablages" icon="fas fa-project-diagram">
-            <layer id="mvs_elem_cl_cb" name="Cables" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="cables-extra-sites" name="Cables" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="cables_par_type_logique"
                    stylealias="Type logique du cable"
-                   aattributefilter="true"
-                   attributefield="cb_statut"
-                   attributevalues="PRE,DIA,AVP,PRO,ACT,EXE,TVX,REC,MCO"
-                   attributelabel="Filtrer par etat d'avancement"
+                   attributefilter="true"
+                   attributefield="cb_typelog"
+                   attributevalues="CX,CT,CD,TD,CO,TR,DI,RA,IND,NC"
+                   attributelabel="Filtrer par type de cable"
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="BPE" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="bpe" name="BPE" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="BPE"
                    stylealias="BPE"
@@ -126,8 +126,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_lt_st_nd" name="BPI" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="bp-immeuble" name="BPI" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="BPI"
                    stylealias="BPI"
@@ -138,8 +138,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_pt_nd" name="PBO extra site" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="pbo-extra-sites" name="PBO extra site" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="PBO_extra_site"
                    stylealias="PBO extra site"
@@ -150,15 +150,15 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_lt_st_nd" name="PBO immeuble" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="pbo-immeuble" name="PBO immeuble" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="PBO_immeuble"
                    stylesalias="PBO immeuble">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_bp_sf_nd" name="PTO" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="pto" name="PTO" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="PTO"
                    stylealias="PTO"
@@ -169,14 +169,14 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_cb_nd" name="Extremites de cable" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="extremites-cables" name="Extremites de cable" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    style="extremites_des_cables"
                    stylealias="Par noeud amont et aval"
                    infoformat="application/vnd.ogc.gml" featurecount="20">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_lv_nd" name="Loves" visible="false" tiled="false"
+            <layer id="loves" name="Loves" visible="false" tiled="false"
                    searchable="true" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="love"
@@ -185,9 +185,9 @@
             </layer>
         </theme>
         <theme name="Fibrages" collapsed="true" id="fibrages" icon="fas fa-code-branch">
-            <layer id="mvs_elem_fo_cb_cl" name="Fibres" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
-                   infoformat="application/vnd.ogc.gml" featurecount="20"
+            <layer id="fibres" name="Fibres" visible="false" tiled="true"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
+                   infoformat="application/vnd.ogc.gml" featurecount="500"
                    style="fibres_etat"
                    stylesalias="Etat de fonctionnement"
                    attributefilter="true"
@@ -197,8 +197,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_cs_bp_pt_nd" name="Cassettes dans les points techniques" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="cassettes-ptech" name="Cassettes dans les points techniques" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="cassettes_point_techniques"
                    stylesalias="Cassettes dans les points techniques"
@@ -209,8 +209,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_cs_bp_lt_st_nd" name="Cassettes BPI" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="cassettes-bp-immeuble" name="Cassettes BPI" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="cassettes_BPI"
                    stylesalias="Cassettes dans les BPI"
@@ -223,8 +223,8 @@
             </layer>
         </theme>
         <theme name="Hebergement" collapsed="true" id="hebergements" icon="fas fa-server">
-            <layer id="mvs_elem_eq_ba_lt_st_nd" name="Equipements" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="equipements" name="Equipements" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="equipements"
                    stylesalias="Equipements"
@@ -235,8 +235,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_ti_ba_lt_st_nd" name="Tiroirs" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="tiroirs" name="Tiroirs" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="tiroirs"
                    stylesalias="Tiroirs"
@@ -247,8 +247,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_ba_lt_st_nd" name="Baies" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="baies" name="Baies" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="baies"
                    stylesalias="Baies"
@@ -259,8 +259,8 @@
                    attributefilterenabled="false">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="mvs_elem_lt_st_nd" name="Locaux techniques" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="locaux-techniques" name="Locaux techniques" visible="false" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="locaux_techniques"
                    stylesalias="Locaux techniques"
@@ -272,32 +272,30 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-        <theme name="FTTH" collapsed="true" id="ftth" icon="fas fa-object-group">
+        <theme name="Zonages FTTH" collapsed="true" id="ftth" icon="fas fa-object-group">
             <layer id="t_znro" name="ZNRO" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZANRO"
-                   stylesalias="ZNRO"
-            >
+                   stylesalias="ZNRO">
                 <template url="templates/global_template.mst"/>
             </layer>
             <layer id="t_zsro" name="ZSRO" visible="true" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZASRO"
-                   stylesalias="ZSRO"
-            >
+                   stylesalias="ZSRO">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="t_zpbo" name="ZPBO" visible="false" tiled="false"
-                   searchable="false" queryable="true" fields="axe" aliases="axe"
+            <layer id="t_zpbo" name="ZPBO" visible="true" tiled="false"
+                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZAPBO"
                    stylesalias="ZPBO">
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-
+         <theme id="communes_france" url="http://carto.connect-control.com/configurations/communes_france.xml"/>
 
     </themes>
 </config>
