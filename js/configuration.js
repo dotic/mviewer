@@ -56,7 +56,7 @@ var configuration = (function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const contentType = xhr.getResponseHeader('Content-Type');
-                    if (contentType === 'text/xml;charset=UTF-8') {
+                    if (contentType.substring(0, 9).toLowerCase() === 'text/xml;') {
                         const reader = new window.FileReader();
                         reader.readAsText(xhr.response);
                         reader.onloadend = function() {

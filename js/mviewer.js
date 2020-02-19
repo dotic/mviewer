@@ -1719,7 +1719,7 @@ mviewer = (function() {
                         _zoom = mapViewZoom;
                     })
                     .catch((error) => {
-                        console.log(error);
+                        console.error(error);
                     });
             }
         },
