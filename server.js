@@ -39,24 +39,38 @@ http.createServer((request, response) => {
 
     const contentType = mimeTypes[extname] || 'application/octet-stream';
 
-    console.log('Headers', request.headers);
+    let needRedirection = false;
+    if (
+        request.headers['x-forwarded-proto'] &&
+        request.headers['x-forwarded-proto'].toLowerCase() === 'http'
+    ) {
+        needRedirection = true;
+    }
 
-    fs.readFile(filePath, function(error, content) {
-        if (error) {
-            console.error('[Error] ' + request.url + ' ' + error.message);
-            if (error.code === 'ENOENT') {
-                fs.readFile('./404.html', function(error, content) {
-                    response.writeHead(404, { 'Content-Type': 'text/html' });
-                    response.end(content, 'utf-8');
-                });
+    if (needRedirection) {
+        const host = request.headers['x-forwarded-host'] || request.headers.host;
+        response.writeHead(301, {
+            Location: 'https://' + host + request.url,
+        });
+        response.end();
+    } else {
+        fs.readFile(filePath, function(error, content) {
+            if (error) {
+                console.error('[Error] ' + request.url + ' ' + error.message);
+                if (error.code === 'ENOENT') {
+                    fs.readFile('./404.html', function(error, content) {
+                        response.writeHead(404, { 'Content-Type': 'text/html' });
+                        response.end(content, 'utf-8');
+                    });
+                } else {
+                    response.writeHead(500);
+                    response.end('Erreur serveur');
+                }
             } else {
-                response.writeHead(500);
-                response.end('Erreur serveur');
+                response.writeHead(200, { 'Content-Type': contentType });
+                response.end(content, 'utf-8');
             }
-        } else {
-            response.writeHead(200, { 'Content-Type': contentType });
-            response.end(content, 'utf-8');
-        }
-    });
+        });
+    }
 }).listen(8080);
 console.log('Server running at http://127.0.0.1:8080/');
