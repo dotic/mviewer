@@ -793,8 +793,28 @@ ul#layers-container {
     transition: all 0.5s ease;
 }
 
+#pdfPopup {
+    position: fixed;
+    right: 70px;
+    float: right;
+    top: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    max-width: 300px;
+    width: 200px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    background-color: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
 #bookmark-item {
-    margin-top: 10px;
+    margin: 10px;
 }
 
 #action-bookmark {
@@ -807,7 +827,13 @@ ul#layers-container {
     color: white;
 }
 
-#bookmarks-container {
+#pdf-header-container {
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+}
+
+#inputNamePDF {
     padding: 10px 15px;
 }
 

@@ -2595,6 +2595,10 @@ mviewer = (function() {
             $('#inputNameBookmarks').toggle();
         },
 
+        toggleExportPdf: function() {
+            $('#pdfPopup').toggle();
+        },
+
         drawPosBMarks: function() {
             if (localStorage.PosBMarks) {
                 $('#bookmarks-container').empty();
@@ -2658,6 +2662,52 @@ mviewer = (function() {
 
             _map.getView().setCenter(center);
             _map.getView().setZoom(zoom);
+        },
+
+        exportToPdf: function() {
+
+            const namePdf = $('#namePDF').val();
+            var format = 'a2';
+            var resolution = 75;
+            var dim = [594, 420];
+            var width = Math.round((dim[0] * resolution) / 25.4);
+            var height = Math.round((dim[1] * resolution) / 25.4);
+            var size = _map.getSize();
+            var viewResolution = _map.getView().getResolution();
+
+            _map.once('rendercomplete', function() {
+                var mapCanvas = document.createElement('canvas');
+                mapCanvas.width = width;
+                mapCanvas.height = height;
+                var mapContext = mapCanvas.getContext('2d');
+                Array.prototype.forEach.call(document.querySelectorAll('canvas'), function(canvas) {
+                    console.log('canvas', canvas);
+                    if (canvas.width > 0) {
+                        var opacity = canvas.parentNode.style.opacity;
+                        mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
+                        var transform = canvas.style.transform;
+                        // Get the transform parameters from the style's transform matrix
+                        var matrix = [1, 0, 0, 1, 0, 0]
+                        // Apply the transform to the export map context
+                        CanvasRenderingContext2D.prototype.setTransform.apply(mapContext, matrix);
+                        mapContext.drawImage(canvas, 0, 0);
+                    }
+                }); 
+                var pdf = new jsPDF('landscape', undefined, format);
+                pdf.addImage(mapCanvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, dim[0], dim[1]);
+                pdf.save(namePdf+'.pdf');
+                // Reset original map size
+                _map.setSize(size);
+                _map.getView().setResolution(viewResolution);
+                $('#pdfPopup').toggle();
+                $('#namePDF').val('');
+            });
+
+            // Set print size
+            var printSize = [width, height];
+            _map.setSize(printSize);
+            var scaling = Math.min(width / size[0], height / size[1]);
+            _map.getView().setResolution(viewResolution / scaling);
         },
 
         toggleParameter: function(li) {
