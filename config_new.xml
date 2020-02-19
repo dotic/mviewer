@@ -291,7 +291,7 @@
                    stylesalias="ZSRO">
                 <template url="templates/global_template.mst"/>
             </layer>
-            <layer id="t_zpbo" name="ZPBO" visible="false" tiled="false"
+            <layer id="t_zpbo" name="ZPBO" visible="true" tiled="false"
                    searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZAPBO"
