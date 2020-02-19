@@ -842,11 +842,6 @@ mviewer = (function() {
         //     }
         // });
 
-        const firstTheme = reverse_themes[Object.keys(reverse_themes)[0]];
-        const layers = Object.values(firstTheme.layers);
-        const last = layers.reverse();
-        const theme = last[0];
-
         // Appelle la fonction de déplacement
         mviewer.goToLocation();
 
@@ -1693,7 +1688,6 @@ mviewer = (function() {
                 const options = { method: 'GET', headers: headers };
                 let url = configuration.getConfiguration().bboxLayerURL;
                 if (configuration.getConfiguration().filters) {
-                    console.log('filter', configuration.getConfiguration().filters);
                     url += '&CQL_FILTER=' + encodeURI(configuration.getConfiguration().filters);
                 }
 
