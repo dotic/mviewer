@@ -1678,7 +1678,7 @@ mviewer = (function() {
          *
          */
         goToLocation: function() {
-            if (configuration.getConfiguration().bboxLayerURL) {
+            if (configuration.getConfiguration().bboxLayerURL && configuration.getConfiguration().filters) {
                 const headers = new Headers();
                 headers.append(
                     'Authorization',
