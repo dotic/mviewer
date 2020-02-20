@@ -188,19 +188,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
-        <theme name="Fibrages" collapsed="true" id="fibrages" icon="fas fa-code-branch">
-            <layer id="mvs_elem_fo_cb_cl" name="Fibres" visible="false" tiled="true"
-                   searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
-                   infoformat="application/vnd.ogc.gml" featurecount="500"
-                   style="fibres_etat"
-                   stylesalias="Etat de fonctionnement"
-                   attributefilter="true"
-                   attributefield="cb_statut"
-                   attributevalues="PRE,DIA,AVP,PRO,ACT,EXE,TVX,REC,MCO"
-                   attributelabel="Filtrer par etat d'avancement"
-                   attributefilterenabled="false">
-                <template url="templates/global_template.mst"/>
-            </layer>
+        <theme name="Cassettes" collapsed="true" id="cassettes" icon="fab fa-stack-overflow">
             <layer id="mvs_elem_cs_bp_pt_nd" name="Cassettes dans les points techniques" visible="false" tiled="false"
                    searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
@@ -277,7 +265,7 @@
             </layer>
         </theme>
         <theme name="Zonages FTTH" collapsed="true" id="ftth" icon="fas fa-object-group">
-            <layer id="t_znro" name="ZNRO" visible="false" tiled="false"
+            <layer id="t_znro" name="ZNRO" visible="true" tiled="false"
                    searchable="true" searchengine="elasticsearch" queryable="true" fields="axe" aliases="axe"
                    infoformat="application/vnd.ogc.gml" featurecount="20"
                    style="ZANRO"
@@ -301,6 +289,7 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
+    <theme id="communes_france" url="http://webdiffusion.connect-control.com/configurations/communes_france.xml"/>
 
     </themes>
 </config>
