@@ -2593,6 +2593,7 @@ mviewer = (function() {
 
         toggleNameBookmarks: function() {
             $('#inputNameBookmarks').toggle();
+            $('#nameBookmark').focus();
         },
 
         drawPosBMarks: function() {
@@ -2615,14 +2616,17 @@ mviewer = (function() {
             return true;
         },
 
-        addBMark: function() {
-            var nameBookmarks = $('#nameBookmark').val();
+        addBMark: function(event) {
+            if (event) {
+                event.preventDefault();
+            }
+            const nameBookmarks = $('#nameBookmark').val();
 
             if (nameBookmarks) {
-                var center = _map.getView().getCenter();
-                var zoom = _map.getView().getZoom();
+                const center = _map.getView().getCenter();
+                const zoom = _map.getView().getZoom();
 
-                var view = {};
+                const view = {};
                 view.name = nameBookmarks;
                 view.zoom = zoom;
                 view.lat = center[0];
@@ -2636,6 +2640,7 @@ mviewer = (function() {
                 $('#nameBookmark').val('');
                 mviewer.drawPosBMarks();
             }
+            return false;
         },
 
         deleteBMarks: function() {

@@ -727,13 +727,13 @@
                                 ></a>
                             </div>
                             <div id="inputNameBookmarks" style="display: none; padding: 5px;">
-                                <form onsubmit="mviewer.addBMark()">
+                                <form onsubmit="return mviewer.addBMark(event)">
                                     <label for="nameBookmark">Nom :</label>
                                     <input type="text" id="nameBookmark" name="name" required />
                                     <button type="submit">Ajouter</button>
                                 </form>
                             </div>
-                            <div id="bookmarks-container" id="list-group"></div>
+                            <div id="bookmarks-container"></div>
                         </div>
                     </div>
                     <div
