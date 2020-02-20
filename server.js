@@ -33,7 +33,7 @@ http.createServer((request, response) => {
         '.ttf': 'application/font-ttf',
         '.eot': 'application/vnd.ms-fontobject',
         '.otf': 'application/font-otf',
-        '.svh': 'image/svg+xml',
+        '.svg': 'image/svg+xml',
         '.txt': 'text/plain',
     };
 
