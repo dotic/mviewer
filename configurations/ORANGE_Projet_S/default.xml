@@ -287,8 +287,5 @@
             </layer>
         </theme>
     <theme id="communes_france" url="http://webdiffusion.connect-control.com/configurations/communes_france.xml"/>
-
-    </themes>
-
     </themes>
 </config>
