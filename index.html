@@ -115,6 +115,14 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.3/proj4.js"></script>
+        <script type="text/javascript" src="js/shp2geojson.js/lib/jszip.js"></script>
+        <script type="text/javascript" src="js/shp2geojson.js/lib/jszip-utils.js"></script>
+        <!--[if IE]>
+            <script type="text/javascript" src="lib/jszip-utils-ie.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/shp2geojson.js/preprocess.js"></script>
+        <script type="text/javascript" src="js/shp2geojson.js/preview.js"></script>
         <script type="text/javascript" src="lib/fuse/fuse.min.js"></script>
         <script type="text/javascript" src="js/extend.js"></script>
         <script type="text/javascript" src="js/utils.js"></script>
@@ -697,6 +705,7 @@
                         <button
                             id="togglebutton"
                             class="mv-modetools btn btn-default btn-raised"
+                            title="Afficher les favoris"
                             href="#"
                             onclick="mviewer.toggleBookmarList()"
                             tabindex="108"
@@ -739,10 +748,11 @@
                         <button
                             id="exportPdf"
                             class="mv-modetools btn btn-default btn-raised"
+                            title="Exporter en PDF"
                             href="#"
                             onclick="mviewer.toggleExportPdf()"
                             tabindex="108"
-                            accesskey="8"
+                            accesskey="10"
                         >
                             <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                         </button>
@@ -754,6 +764,65 @@
                                 <label for="namePDF">Nom :</label>
                                 <input type="text" id="namePDF" name="namePDF" required />
                                 <button onclick="mviewer.exportToPdf()">Exporter</button>
+                            </div>
+                        </div>
+                        <button
+                            id="uploadZip"
+                            title="Convertir un shapefile"
+                            class="mv-modetools btn btn-default btn-raised"
+                            href="#"
+                            onclick="mviewer.toggleModalUploadZip()"
+                            tabindex="108"
+                            accesskey="12"
+                        >
+                            <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+                        </button>
+                        <div id="shp-modal" class="shp-modal" style="display: none;">
+                            <div id="shp-header-container">
+                                <span>Importer un fichier Zip</span>
+                            </div>
+                            <div class="upload-btn-wrapper">
+                                <input class="input-file" id="my-file" type="file" accept=".zip" />
+                                <label for="my-file" class="input-file-trigger" tabindex="0"
+                                    >Choisir un fichier</label
+                                >
+                            </div>
+                            <div class="field" id="dataInfo"></div>
+                            <div id="option" style="display: none;">
+                                <div class="field ui labeled input" id="epsgField">
+                                    <div class="ui label">EPSG</div>
+                                    <input
+                                        type="text"
+                                        placeholder="Default : 4326"
+                                        id="epsg"
+                                        class="v"
+                                    />
+                                </div>
+                                <div class="field ui labeled input">
+                                    <div class="ui label">Encoding</div>
+                                    <input
+                                        type="text"
+                                        placeholder="Set your desired encoding UTF-8, Big5, Big5-HKSCS ... "
+                                        id="encoding"
+                                        class="v"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field" id="buttons">
+                                <button
+                                    class="button-cancel button"
+                                    id="cancel"
+                                    onclick="mviewer.closeModalUploadZip()"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    class="button-preview button disabled"
+                                    id="preview"
+                                    onclick="mviewer.shp2geojson()"
+                                >
+                                    Preview
+                                </button>
                             </div>
                         </div>
                     </div>

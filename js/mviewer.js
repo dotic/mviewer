@@ -211,6 +211,11 @@ mviewer = (function() {
     var bmarkList = [];
 
     /**
+     * Property: zip2shp
+     */
+    var _zip2shp = null;
+
+    /**
      * Property: _marker
      * marker used to locate features on the map.
      * @type {ol.Overlay}
@@ -1561,6 +1566,19 @@ mviewer = (function() {
         return xyz;
     };
 
+    $(function(ready) {
+        $('#my-file').change(function(evt) {
+            _zip2shp = evt.target.files[0];
+            console.log(_zip2shp);
+            if (_zip2shp.size > 0) {
+                $('#dataInfo')
+                    .text(' ')
+                    .append(_zip2shp.name + ' , ' + _zip2shp.size + ' kb');
+                $('#preview').removeClass('disabled');
+                $('#option').toggle();
+            }
+        });
+    });
     /*
      * Public
      */
@@ -1678,7 +1696,10 @@ mviewer = (function() {
          *
          */
         goToLocation: function() {
-            if (configuration.getConfiguration().bboxLayerURL && configuration.getConfiguration().filters) {
+            if (
+                configuration.getConfiguration().bboxLayerURL &&
+                configuration.getConfiguration().filters
+            ) {
                 const headers = new Headers();
                 headers.append(
                     'Authorization',
@@ -2600,6 +2621,10 @@ mviewer = (function() {
             $('#pdfPopup').toggle();
         },
 
+        toggleModalUploadZip: function() {
+            $('#shp-modal').toggle();
+        },
+
         drawPosBMarks: function() {
             if (localStorage.PosBMarks) {
                 $('#bookmarks-container').empty();
@@ -2670,7 +2695,6 @@ mviewer = (function() {
         },
 
         exportToPdf: function() {
-
             const namePdf = $('#namePDF').val();
             var format = 'a2';
             var resolution = 75;
@@ -2692,15 +2716,15 @@ mviewer = (function() {
                         mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
                         var transform = canvas.style.transform;
                         // Get the transform parameters from the style's transform matrix
-                        var matrix = [1, 0, 0, 1, 0, 0]
+                        var matrix = [1, 0, 0, 1, 0, 0];
                         // Apply the transform to the export map context
                         CanvasRenderingContext2D.prototype.setTransform.apply(mapContext, matrix);
                         mapContext.drawImage(canvas, 0, 0);
                     }
-                }); 
+                });
                 var pdf = new jsPDF('landscape', undefined, format);
                 pdf.addImage(mapCanvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, dim[0], dim[1]);
-                pdf.save(namePdf+'.pdf');
+                pdf.save(namePdf + '.pdf');
                 // Reset original map size
                 _map.setSize(size);
                 _map.getView().setResolution(viewResolution);
@@ -2713,6 +2737,60 @@ mviewer = (function() {
             _map.setSize(printSize);
             var scaling = Math.min(width / size[0], height / size[1]);
             _map.getView().setResolution(viewResolution / scaling);
+        },
+
+        shp2geojson: function() {
+            const file = _zip2shp;
+            const epsg = $('#epsg').val() == '' ? 4326 : $('#epsg').val();
+            const encoding = $('#encoding').val() == '' ? 'UTF-8' : $('#encoding').val();
+
+            loadshp(
+                {
+                    url: file, // path or your upload file
+                    encoding: encoding, // default utf-8
+                    EPSG: epsg, // default 4326
+                },
+                function(geojson) {
+                    const url = URL.createObjectURL(
+                        new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
+                    );
+                    var parcellaireSource = new ol.source.Vector({
+                        format: new ol.format.GeoJSON(),
+                        url,
+                    });
+
+                    var parcellairewfs = new ol.layer.Vector({
+                        source: parcellaireSource,
+                    });
+
+                    console.log('add layer');
+                    _map.addLayer(parcellairewfs);
+
+                    parcellaireSource.once('change',function(e){
+                        if(parcellaireSource.getState() === 'ready') {
+                            var extent = parcellaireSource.getExtent();
+                            console.log(extent);
+                            _map.getView().fit(extent, _map.getSize());
+                        }
+                    });
+
+                    mviewer.closeModalUploadZip();
+                },
+            );
+        },
+
+        closeModalUploadZip: function() {
+            console.log('close')
+            if(_zip2shp) {
+                $('#my-file').val('');
+                $('#dataInfo').text('');
+                $('#epsg').text('');
+                $('#encoding').text('');
+                $('#option').toggle();
+                _zip2shp = null;
+            }
+            $('#shp-modal').toggle();
+
         },
 
         toggleParameter: function(li) {

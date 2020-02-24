@@ -813,6 +813,26 @@ ul#layers-container {
     transition: all 0.5s ease;
 }
 
+#shp-modal {
+    position: fixed;
+    right: 70px;
+    float: right;
+    top: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    max-width: 300px;
+    width: 250px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    background-color: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
 #bookmark-item {
     margin: 10px;
 }
@@ -833,8 +853,74 @@ ul#layers-container {
     color: white;
 }
 
+#shp-header-container {
+    padding: 10px 15px;
+    background-color: black;
+    color: white;
+}
+
 #inputNamePDF {
     padding: 10px 15px;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    padding: 10px;
+}
+
+.input-file-trigger {
+    display: block;
+    padding: 14px 45px;
+    background: black;
+    color: #fff;
+    font-size: 10px;
+    transition: all .4s;
+    cursor: pointer;
+}
+
+.input-file {
+    position: absolute;
+    top: 0; left: 0;
+    width: 250px;
+    padding: 14px 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#buttons {
+    padding: 10px;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-cancel {
+    margin-bottom: 10px;
+    float: left;
+    background-color: red;
+}
+
+.button-preview {
+    margin-bottom: 10px;
+    float: right;
+    background-color: blue;
+}
+
+.disabled {
+    background-color: grey !important;
+    cursor: not-allowed !important;
+  }
+
+#dataInfo {
+    padding: 10px;
 }
 
 #drawtoolsoptions {
