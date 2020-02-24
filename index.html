@@ -114,6 +114,7 @@
             type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"
         ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script type="text/javascript" src="lib/fuse/fuse.min.js"></script>
         <script type="text/javascript" src="js/extend.js"></script>
         <script type="text/javascript" src="js/utils.js"></script>
@@ -734,6 +735,26 @@
                                 </form>
                             </div>
                             <div id="bookmarks-container"></div>
+                        </div>
+                        <button
+                            id="exportPdf"
+                            class="mv-modetools btn btn-default btn-raised"
+                            href="#"
+                            onclick="mviewer.toggleExportPdf()"
+                            tabindex="108"
+                            accesskey="8"
+                        >
+                            <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        </button>
+                        <div id="pdfPopup" style="display: none;" role="group" aria-label="true">
+                            <div id="pdf-header-container">
+                                <span>Exporter en pdf</span>
+                            </div>
+                            <div id="inputNamePDF" style="padding: 5px;">
+                                <label for="namePDF">Nom :</label>
+                                <input type="text" id="namePDF" name="namePDF" required />
+                                <button onclick="mviewer.exportToPdf()">Exporter</button>
+                            </div>
                         </div>
                     </div>
                     <div
