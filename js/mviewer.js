@@ -210,6 +210,10 @@ mviewer = (function() {
      */
     var bmarkList = [];
 
+    var importList = [];
+
+    var testImport = null;
+
     /**
      * Property: zip2shp
      */
@@ -1569,7 +1573,6 @@ mviewer = (function() {
     $(function(ready) {
         $('#my-file').change(function(evt) {
             _zip2shp = evt.target.files[0];
-            console.log(_zip2shp);
             if (_zip2shp.size > 0) {
                 $('#dataInfo')
                     .text(' ')
@@ -2625,6 +2628,14 @@ mviewer = (function() {
             $('#shp-modal').toggle();
         },
 
+        toggleListImports: function() {
+            $('#list-import').toggle();
+        },
+
+        toggleImportListToolbar: function() {
+            $('#importlisttoolbar').toggle();
+        },
+
         drawPosBMarks: function() {
             if (localStorage.PosBMarks) {
                 $('#bookmarks-container').empty();
@@ -2643,6 +2654,19 @@ mviewer = (function() {
                 console.log('There is nothing saved!');
             }
             return true;
+        },
+
+        drawImportList: function() {
+            if (importList) {
+                $('#list-import-container').empty();
+                $.each(importList, function(index, value) {
+                    $('#list-import-container').append(`
+                    <div id="bookmark-item">
+                    <a href="#" onclick="mviewer.goToExtent(${value.extent})">${value.name}</a>
+                    </span>
+                </div>`);
+                });
+            }
         },
 
         addBMark: function(event) {
@@ -2672,6 +2696,19 @@ mviewer = (function() {
             return false;
         },
 
+        addImport: function(layer) {
+            if (importList.length < 1) {
+                mviewer.toggleImportListToolbar();
+            }
+            const element = {};
+            element.name = layer.name;
+            element.extent = JSON.stringify(layer.extent);
+
+            importList.push(element);
+
+            mviewer.drawImportList();
+        },
+
         deleteBMarks: function() {
             bmarkList = [];
             localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
@@ -2684,6 +2721,10 @@ mviewer = (function() {
                 localStorage.setItem('PosBMarks', JSON.stringify(bmarkList));
                 mviewer.drawPosBMarks();
             }
+        },
+
+        goToExtent(extent) {
+            _map.getView().fit(extent, _map.getSize());
         },
 
         goToPosBMarks: function(lat, lon, zoom) {
@@ -2710,7 +2751,6 @@ mviewer = (function() {
                 mapCanvas.height = height;
                 var mapContext = mapCanvas.getContext('2d');
                 Array.prototype.forEach.call(document.querySelectorAll('canvas'), function(canvas) {
-                    console.log('canvas', canvas);
                     if (canvas.width > 0) {
                         var opacity = canvas.parentNode.style.opacity;
                         mapContext.globalAlpha = opacity === '' ? 1 : Number(opacity);
@@ -2740,48 +2780,54 @@ mviewer = (function() {
         },
 
         shp2geojson: function() {
-            const file = _zip2shp;
-            const epsg = $('#epsg').val() == '' ? 4326 : $('#epsg').val();
-            const encoding = $('#encoding').val() == '' ? 'UTF-8' : $('#encoding').val();
+            if (_zip2shp) {
+                const file = _zip2shp;
+                const fileName = file.name.replace('.zip', '');
+                const epsg = $('#epsg').val() == '' ? 4326 : $('#epsg').val();
+                const encoding = $('#encoding').val() == '' ? 'UTF-8' : $('#encoding').val();
+                loadshp(
+                    {
+                        url: file, // path or your upload file
+                        encoding: encoding, // default utf-8
+                        EPSG: epsg, // default 4326
+                    },
+                    function(geojson) {
+                        if (fileName != testImport) {
+                            testImport = fileName;
+                            const url = URL.createObjectURL(
+                                new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
+                            );
+                            var parcellaireSource = new ol.source.Vector({
+                                format: new ol.format.GeoJSON(),
+                                url,
+                            });
 
-            loadshp(
-                {
-                    url: file, // path or your upload file
-                    encoding: encoding, // default utf-8
-                    EPSG: epsg, // default 4326
-                },
-                function(geojson) {
-                    const url = URL.createObjectURL(
-                        new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
-                    );
-                    var parcellaireSource = new ol.source.Vector({
-                        format: new ol.format.GeoJSON(),
-                        url,
-                    });
+                            var parcellairewfs = new ol.layer.Vector({
+                                source: parcellaireSource,
+                            });
 
-                    var parcellairewfs = new ol.layer.Vector({
-                        source: parcellaireSource,
-                    });
+                            _map.addLayer(parcellairewfs);
 
-                    console.log('add layer');
-                    _map.addLayer(parcellairewfs);
+                            mviewer.closeModalUploadZip();
 
-                    parcellaireSource.once('change',function(e){
-                        if(parcellaireSource.getState() === 'ready') {
-                            var extent = parcellaireSource.getExtent();
-                            console.log(extent);
-                            _map.getView().fit(extent, _map.getSize());
+                            parcellaireSource.once('change', function(e) {
+                                if (parcellaireSource.getState() === 'ready') {
+                                    var extent = parcellaireSource.getExtent();
+                                    _map.getView().fit(extent, _map.getSize());
+                                    const layer = {};
+                                    layer.name = fileName;
+                                    layer.extent = parcellaireSource.getExtent();
+                                    mviewer.addImport(layer);
+                                }
+                            });
                         }
-                    });
-
-                    mviewer.closeModalUploadZip();
-                },
-            );
+                    },
+                );
+            }
         },
 
         closeModalUploadZip: function() {
-            console.log('close')
-            if(_zip2shp) {
+            if (_zip2shp) {
                 $('#my-file').val('');
                 $('#dataInfo').text('');
                 $('#epsg').text('');
@@ -2790,7 +2836,6 @@ mviewer = (function() {
                 _zip2shp = null;
             }
             $('#shp-modal').toggle();
-
         },
 
         toggleParameter: function(li) {

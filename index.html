@@ -790,19 +790,19 @@
                             <div class="field" id="dataInfo"></div>
                             <div id="option" style="display: none;">
                                 <div class="field ui labeled input" id="epsgField">
-                                    <div class="ui label">EPSG</div>
+                                    <p>EPSG</p>
                                     <input
                                         type="text"
-                                        placeholder="Default : 4326"
+                                        placeholder="Défaut : 4326"
                                         id="epsg"
                                         class="v"
                                     />
                                 </div>
                                 <div class="field ui labeled input">
-                                    <div class="ui label">Encoding</div>
+                                    <p>Encoding</p>
                                     <input
                                         type="text"
-                                        placeholder="Set your desired encoding UTF-8, Big5, Big5-HKSCS ... "
+                                        placeholder="Choisissez votre encodage "
                                         id="encoding"
                                         class="v"
                                     />
@@ -823,6 +823,32 @@
                                 >
                                     Preview
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="importlisttoolbar"
+                        class="btn-group-vertical btn-group-sm"
+                        role="group"
+                        aria-label="true"
+                        style="display: none;"
+                    >
+                        <button
+                            id="importList"
+                            title="Liste des imports"
+                            class="mv-modetools btn btn-default btn-raised"
+                            href="#"
+                            tabindex="110"
+                            accesskey="14"
+                            onclick="mviewer.toggleListImports()"
+                        >
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                        </button>
+                        <div id="list-import" class="list-import" style="display: none;">
+                            <div id="list-import-header-container">
+                                <span>Liste des imports</span>
+                            </div>
+                            <div id="list-import-container">
                             </div>
                         </div>
                     </div>

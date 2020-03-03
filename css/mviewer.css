@@ -773,6 +773,12 @@ ul#layers-container {
     right: 10px;
 }
 
+#importlisttoolbar {
+    position: fixed;
+    top: 380px;
+    right: 10px;
+}
+
 #bookmarkslist {
     position: fixed;
     right: 70px;
@@ -833,6 +839,31 @@ ul#layers-container {
     transition: all 0.5s ease;
 }
 
+#list-import {
+    position: fixed;
+    right: 40px;
+    float: right;
+    top: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    max-width: 300px;
+    width: 160px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    background-color: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#importList {
+    background-color: black;
+    color: white;
+}
+
 #bookmark-item {
     margin: 10px;
 }
@@ -855,6 +886,12 @@ ul#layers-container {
 
 #shp-header-container {
     padding: 10px 15px;
+    background-color: black;
+    color: white;
+}
+
+#list-import-header-container {
+    padding: 5px;
     background-color: black;
     color: white;
 }
@@ -885,6 +922,25 @@ ul#layers-container {
     padding: 14px 0;
     opacity: 0;
     cursor: pointer;
+}
+
+#option {
+    padding: 10px;
+}
+
+.v {
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding: 3px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+
+.v:focus {
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
 }
 
 #buttons {
@@ -967,6 +1023,10 @@ ul#layers-container {
 }
 
 #bookmarktoolbar {
+    box-shadow: 0px 0px 30px 3px rgba(200, 200, 200, 0.5);
+
+
+}#importlisttoolbar {
     box-shadow: 0px 0px 30px 3px rgba(200, 200, 200, 0.5);
 }
 
@@ -1942,6 +2002,10 @@ button.btn.btn-default.btn-raised, a#exportpng, a.btn.btn-default {
 }
 
 .xs.mode-u #bookmarktoolbar {
+    top: 10px;
+}
+
+.xs.mode-u #importlisttoolbar {
     top: 10px;
 }
 
