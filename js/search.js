@@ -404,7 +404,7 @@ var search = (function () {
             var pe = ol.proj.transformExtent(currentExtent, _projection.getCode(), 'EPSG:4326');
             for (var i = 0; i < searchableLayers.length; i++) {
                 if (_elasticSearchVersion === "current") {
-                    queryLayers.push({"term": {"type": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                    queryLayers.push(searchableLayers[i].getSource().getParams()['LAYERS']);
                 } else {
                     queryLayers.push({"type": {"value": searchableLayers[i].getSource().getParams()['LAYERS']}});
                 }
@@ -413,7 +413,7 @@ var search = (function () {
                 var doctypes = _elasticSearchDocTypes.split(",");
                 for (var i = 0; i < doctypes.length; i++) {
                     if (_elasticSearchVersion === "current") {
-                        queryLayers.push({"term": {"type": searchableLayers[i].getSource().getParams()['LAYERS']}});
+                        queryLayers.push(searchableLayers[i].getSource().getParams()['LAYERS']);
                     } else {
                         queryLayers.push({"type": {"value": doctypes[i]}});
                     }
@@ -505,7 +505,7 @@ var search = (function () {
                             ],
                             "filter": [
                                 {
-                                    "bool": {"should": queryLayers},
+                                    "terms": {"type": queryLayers},
                                 },
                             ],
                         },
