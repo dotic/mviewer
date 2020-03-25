@@ -116,13 +116,13 @@
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.3/proj4.js"></script>
-        <script type="text/javascript" src="js/shp2geojson.js/lib/jszip.js"></script>
-        <script type="text/javascript" src="js/shp2geojson.js/lib/jszip-utils.js"></script>
+        <script type="text/javascript" src="lib/shp2geojson.js/lib/jszip.js"></script>
+        <script type="text/javascript" src="lib/shp2geojson.js/lib/jszip-utils.js"></script>
         <!--[if IE]>
-            <script type="text/javascript" src="lib/jszip-utils-ie.js"></script>
+            <script type="text/javascript" src="lib/shp2geojson.js/lib/jszip-utils-ie.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="js/shp2geojson.js/preprocess.js"></script>
-        <script type="text/javascript" src="js/shp2geojson.js/preview.js"></script>
+        <script type="text/javascript" src="lib/shp2geojson.js/preprocess.js"></script>
+        <script type="text/javascript" src="lib/shp2geojson.js/preview.js"></script>
         <script type="text/javascript" src="lib/fuse/fuse.min.js"></script>
         <script type="text/javascript" src="js/extend.js"></script>
         <script type="text/javascript" src="js/utils.js"></script>
@@ -461,8 +461,7 @@
                         <!-- SEARCH RESULTS  -->
                         <div id="searchresults" class="list-group">
                             <div class="searchresults-title">
-                                Résultats
-                                <button type="button" class="close">&times;</button>
+                                Résultats <button type="button" class="close">&times;</button>
                             </div>
                         </div>
                     </ul>
@@ -757,9 +756,7 @@
                             <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                         </button>
                         <div id="pdfPopup" style="display: none;" role="group" aria-label="true">
-                            <div id="pdf-header-container">
-                                <span>Exporter en pdf</span>
-                            </div>
+                            <div id="pdf-header-container"><span>Exporter en pdf</span></div>
                             <div id="inputNamePDF" style="padding: 5px;">
                                 <label for="namePDF">Nom :</label>
                                 <input type="text" id="namePDF" name="namePDF" required />
@@ -1029,9 +1026,7 @@
                             </button>
                             <h4 class="modal-title">Informations</h4>
                         </div>
-                        <div class="modal-body">
-                            <div class="popup-content"></div>
-                        </div>
+                        <div class="modal-body"><div class="popup-content"></div></div>
                     </div>
                 </div>
             </div>
