@@ -346,6 +346,7 @@ var configuration = (function() {
             var requests = [];
             var ajaxFunction = function() {
                 // Préparation des requêtes Ajax pour récupérer les thématiques externes
+
                 wmcs.forEach(function(url, idx) {
                     var wmcid = 'wmc' + idx;
                     requests.push(

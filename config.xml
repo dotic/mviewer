@@ -289,5 +289,13 @@
                 <template url="templates/global_template.mst"/>
             </layer>
         </theme>
+        <theme name="Import SHP" collapsed="false" id="shp" icon="fas fa-object-group">
+            <layer id="shp2" name="Importer un fichier zip"  visible="true"
+                queryable="true"
+                vectorlegend="true"
+                style="ZAPBO"
+                expanded="true">
+            </layer>
+        </theme>
     </themes>
 </config>

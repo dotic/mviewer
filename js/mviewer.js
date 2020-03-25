@@ -899,6 +899,8 @@ mviewer = (function() {
             mviewer.toggleLegend(false);
         }
         $('#menu').html(htmlListGroup);
+        /*         var test = $('[data-title=Importer un fichier zip]');
+        console.log(test); */
         initMenu();
         // Open theme item if set to collapsed=false
         var expanded_theme = $.grep(configuration.getConfiguration().themes.theme, function(obj) {
@@ -1582,6 +1584,7 @@ mviewer = (function() {
             }
         });
     });
+
     /*
      * Public
      */
@@ -2125,6 +2128,7 @@ mviewer = (function() {
         }, // fin function tools toolbar
 
         addLayer: function(layer) {
+            console.log('layer ', layer);
             if (!layer) {
                 return;
             }
@@ -2439,6 +2443,8 @@ mviewer = (function() {
 
                 mviewer.orderLayer(actionMove);
             }
+            console.log('overlayers', _overLayers);
+            console.log('layerID', layer.layerid);
             var oLayer = _overLayers[layer.layerid];
             oLayer.layer.setVisible(true);
             //Only for second and more loads
@@ -2463,6 +2469,7 @@ mviewer = (function() {
             }
 
             var activeStyle = false;
+            console.log('getSource', oLayer.layer.getSource().getParams());
             if (oLayer.type === 'wms' && oLayer.layer.getSource().getParams()['STYLES']) {
                 activeStyle = oLayer.layer.getSource().getParams()['STYLES'];
                 var refStyle = activeStyle;
@@ -2780,6 +2787,10 @@ mviewer = (function() {
         },
 
         shp2geojson: function() {
+            var oLayer = _overLayers['shp2'];
+            var l = oLayer.layer;
+            var source = l.getSource();
+            console.log('source', source);
             if (_zip2shp) {
                 const file = _zip2shp;
                 const fileName = file.name.replace('.zip', '');
@@ -2792,35 +2803,48 @@ mviewer = (function() {
                         EPSG: epsg, // default 4326
                     },
                     function(geojson) {
-                        if (fileName != testImport) {
-                            testImport = fileName;
-                            const url = URL.createObjectURL(
-                                new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
-                            );
-                            var parcellaireSource = new ol.source.Vector({
-                                format: new ol.format.GeoJSON(),
-                                url,
-                            });
+                        console.log(geojson);
+                        testImport = fileName;
+                        const url = URL.createObjectURL(
+                            new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
+                        );
 
-                            var parcellairewfs = new ol.layer.Vector({
-                                source: parcellaireSource,
-                            });
+                        var parcellaireSource = new ol.source.Vector({
+                            format: new ol.format.GeoJSON(),
+                            url,
+                        });
 
-                            _map.addLayer(parcellairewfs);
+                        var parcellairewfs = new ol.layer.Vector({
+                            source: parcellaireSource,
+                        });
 
-                            mviewer.closeModalUploadZip();
+                        parcellairewfs.setSource(parcellaireSource);
+                        /*  parcellairewfs.getSource().changed();
+                        console.log(parcellairewfs.getSource());
+                        console.log(parcellairewfs.getSource().getParams()); */
+                        // parcellairewfs.getSource().updateParams({
+                        //     LAYERS: 'shp2',
+                        //     STYLES: 'ZAPBO',
+                        //     FORMAT: 'image/png',
+                        // });
 
-                            parcellaireSource.once('change', function(e) {
-                                if (parcellaireSource.getState() === 'ready') {
-                                    var extent = parcellaireSource.getExtent();
-                                    _map.getView().fit(extent, _map.getSize());
-                                    const layer = {};
-                                    layer.name = fileName;
-                                    layer.extent = parcellaireSource.getExtent();
-                                    mviewer.addImport(layer);
-                                }
-                            });
-                        }
+                        _overLayers['shp2'].layer = parcellairewfs;
+                        _map.addLayer(parcellairewfs);
+
+                        mviewer.closeModalUploadZip();
+
+                        parcellaireSource.once('change', function(e) {
+                            if (parcellaireSource.getState() === 'ready') {
+                                console.log('parcellaireSource', parcellaireSource);
+                                console.log('parcellaireWfs', parcellairewfs);
+                                var extent = parcellaireSource.getExtent();
+                                _map.getView().fit(extent, _map.getSize());
+                                const layer = {};
+                                layer.name = fileName;
+                                layer.extent = extent;
+                                mviewer.addImport(layer);
+                            }
+                        });
                     },
                 );
             }
