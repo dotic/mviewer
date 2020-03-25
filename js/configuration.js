@@ -800,7 +800,7 @@ var configuration = (function() {
                                             if (oLayer.useproxy) {
                                                 src = _proxy + encodeURIComponent(src);
                                             }
-                                            if (conf.basicAuthentication) {
+                                            if (conf.basicAuthentication && oLayer.id !== 'shp2') {
                                                 _getImageFromBasicAuthURL(
                                                     src,
                                                     conf.basicAuthentication,

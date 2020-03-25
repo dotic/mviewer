@@ -2469,8 +2469,15 @@ mviewer = (function() {
             }
 
             var activeStyle = false;
-            console.log('getSource', oLayer.layer.getSource().getParams());
-            if (oLayer.type === 'wms' && oLayer.layer.getSource().getParams()['STYLES']) {
+            console.log('getSource', oLayer.layer.getSource());
+            console.log('getLayer', oLayer.layer);
+            console.log('getoLayer', oLayer);
+            if (
+                oLayer.type === 'wms' &&
+                oLayer.id !== 'shp2' &&
+                typeof oLayer.layer.getSource().getParams === 'function' &&
+                oLayer.layer.getSource().getParams()['STYLES']
+            ) {
                 activeStyle = oLayer.layer.getSource().getParams()['STYLES'];
                 var refStyle = activeStyle;
                 //update legend image if nec.
@@ -2649,7 +2656,9 @@ mviewer = (function() {
                 $.each(bmarkList, function(index, value) {
                     $('#bookmarks-container').append(`
                     <div id="bookmark-item">
-                    <a href="#" onclick="mviewer.goToPosBMarks(${value.lat}, ${value.lon}, ${value.zoom})">${value.name}</a>
+                    <a href="#" onclick="mviewer.goToPosBMarks(${
+                        value.lat
+                    }, ${value.lon}, ${value.zoom})">${value.name}</a>
                     </span>
                     <a style="margin-left: 10px;" title="Supprimer le favoris" href="#" onclick="mviewer.deleteBMark(${index})">
                         <span class="glyphicon glyphicon-trash">

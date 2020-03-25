@@ -291,7 +291,7 @@
         </theme>
         <theme name="Import SHP" collapsed="false" id="shp" icon="fas fa-object-group">
             <layer id="shp2" name="Importer un fichier zip"  visible="true"
-                queryable="true"
+                queryable="false"
                 vectorlegend="true"
                 style="ZAPBO"
                 expanded="true">
