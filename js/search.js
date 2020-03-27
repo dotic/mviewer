@@ -114,6 +114,8 @@ var search = (function () {
 
     var _elasticSearchQuerymode = null;
 
+    var _elasticSearchAuthentication = null;
+
     /**
      * Property: _fuseSearchData
      * String. data from GeoJSON layers for which the fuse search is activated
@@ -487,9 +489,9 @@ var search = (function () {
                                 "query": val,
                                 "type": "cross_fields",
                                 "fields": [
+                                    "code.search^10",
                                     "code^4",
                                     "title^3",
-                                    "data_*^2",
                                 ],
                             },
                         };
@@ -546,12 +548,20 @@ var search = (function () {
                 }
             }
             if (sendQuery) {
+                let headers;
+                if(_elasticSearchAuthentication){
+                    headers = {
+                        "Authorization": _elasticSearchAuthentication,
+                    };
+                }
+
                 // Fix IE9 "No transport error" with cors
                 jQuery.support.cors = true;
                 $.ajax({
                     type: "POST",
                     url: _elasticSearchUrl,
                     crossDomain: true,
+                    headers: headers,
                     data: JSON.stringify(queryFilter),
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
@@ -569,43 +579,7 @@ var search = (function () {
                             var icon = "img/star.svg";
                             var title = data.hits.hits[i]._source.title;
                             if (data.hits.hits[i]._source.code) {
-                                title += ' - Code : ' + data.hits.hits[i]._source.code;
-                            }
-                            if (data.hits.hits[i]._source.data_externalCode) {
-                                title += ' - Code externe : ' + data.hits.hits[i]._source.data_externalCode;
-                            }
-                            if (data.hits.hits[i]._source.data_box) {
-                                title += ' - Dans la boite : ' + data.hits.hits[i]._source.data_box;
-                            }
-                            if (data.hits.hits[i]._source.data_rack) {
-                                title += ' - Dans la baie : ' + data.hits.hits[i]._source.data_rack;
-                            }
-                            if (data.hits.hits[i]._source.data_cable) {
-                                title += ' - Cable : ' + data.hits.hits[i]._source.data_cable;
-                            }
-                            if (data.hits.hits[i]._source.data_node) {
-                                title += ' - Noeud : ' + data.hits.hits[i]._source.data_node;
-                            }
-                            if (data.hits.hits[i]._source.data_roomCode) {
-                                title += ' - Code de la chambre : ' + data.hits.hits[i]._source.data_roomCode;
-                            }
-                            if (data.hits.hits[i]._source.data_roomFace) {
-                                title += ' - Face de la chambre : ' + data.hits.hits[i]._source.data_roomFace;
-                            }
-                            if (data.hits.hits[i]._source.data_orderNumber) {
-                                title += ' - Numéro ordre : ' + data.hits.hits[i]._source.data_orderNumber;
-                            }
-                            if (data.hits.hits[i]._source.data_streetName) {
-                                title += ' - Nom de la voie : ' + data.hits.hits[i]._source.data_streetName;
-                            }
-                            if (data.hits.hits[i]._source.data_streetNumber) {
-                                title += ' - Numéro : ' + data.hits.hits[i]._source.data_streetNumber;
-                            }
-                            if (data.hits.hits[i]._source.data_titleType) {
-                                title += ' - Type : ' + data.hits.hits[i]._source.data_titleType;
-                            }
-                            if (data.hits.hits[i]._source.data_address) {
-                                title += ' - Adresse : ' + data.hits.hits[i]._source.data_address;
+                                title += ' : ' + data.hits.hits[i]._source.code;
                             }
                             if (geomtype !== 'Point') {
                                 var feature = new ol.Feature({
@@ -737,6 +711,7 @@ var search = (function () {
             _elasticSearchVersion = configuration.elasticsearch.version || "1.4";
             // common id between elasticsearch document types (_id)  and geoserver featureTypes
             _elasticSearchLinkid = configuration.elasticsearch.linkid || "featureid";
+            _elasticSearchAuthentication = configuration.ESAuthentication || null;
         }
 
         if (!_olsCompletionUrl) {

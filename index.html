@@ -141,6 +141,7 @@
                 geoserverPort,
                 workspace,
                 theme,
+                ES,
             ) {
                 $.ajax({
                     url: configFile + '?_dc=' + new Date().getTime(),
@@ -204,6 +205,10 @@
                             }
                             if (token) {
                                 _conf.basicAuthentication = 'Basic ' + token;
+                            }
+                            if (ES) {
+                                _conf.ESAuthentication =
+                                    'Basic ' + btoa(ES.username + ':' + ES.password);
                             }
                             configuration.load(_conf);
                             setTimeout(function() {
@@ -303,6 +308,10 @@
                     : username && password
                     ? window.btoa(username + ':' + password)
                     : undefined;
+                var ES = {
+                    username: API.ESUsername ? API.ESUsername : null,
+                    password: API.ESPassword ? API.ESPassword : null,
+                };
 
                 loadData(
                     configFile,
@@ -315,6 +324,7 @@
                     geoserverPort,
                     workspace,
                     theme,
+                    ES,
                 );
 
                 Sortable.create(document.getElementById('layers-container'), {
@@ -453,8 +463,7 @@
                         <!-- SEARCH RESULTS  -->
                         <div id="searchresults" class="list-group">
                             <div class="searchresults-title">
-                                Résultats
-                                <button type="button" class="close">&times;</button>
+                                Résultats <button type="button" class="close">&times;</button>
                             </div>
                         </div>
                     </ul>
@@ -747,9 +756,7 @@
                             <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                         </button>
                         <div id="pdfPopup" style="display: none;" role="group" aria-label="true">
-                            <div id="pdf-header-container">
-                                <span>Exporter en pdf</span>
-                            </div>
+                            <div id="pdf-header-container"><span>Exporter en pdf</span></div>
                             <div id="inputNamePDF" style="padding: 5px;">
                                 <label for="namePDF">Nom :</label>
                                 <input type="text" id="namePDF" name="namePDF" required />
@@ -935,9 +942,7 @@
                             </button>
                             <h4 class="modal-title">Informations</h4>
                         </div>
-                        <div class="modal-body">
-                            <div class="popup-content"></div>
-                        </div>
+                        <div class="modal-body"><div class="popup-content"></div></div>
                     </div>
                 </div>
             </div>

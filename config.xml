@@ -25,7 +25,7 @@
     <olscompletion url="http://api-adresse.data.gouv.fr/search/" type="ban"/>
     <searchparameters bbox="false" localities="true" features="true"/>
     <elasticsearch
-            url="https://search-dotic-elastic-bsadcbyu42qghzzti6dxtaz4za.eu-west-3.es.amazonaws.com/mviewer/_search"
+            url="https://batny3tsvbymym2p3q7f-elasticsearch.services.clever-cloud.com/mviewer/_search"
             geometryfield="geometry" querymode="search_as_you_type" linkid="zs_code" version="current"/>
 
     <themes mini="true">
