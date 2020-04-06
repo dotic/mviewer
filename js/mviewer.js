@@ -2128,7 +2128,6 @@ mviewer = (function() {
         }, // fin function tools toolbar
 
         addLayer: function(layer) {
-            console.log('layer ', layer);
             if (!layer) {
                 return;
             }
@@ -2443,8 +2442,6 @@ mviewer = (function() {
 
                 mviewer.orderLayer(actionMove);
             }
-            console.log('overlayers', _overLayers);
-            console.log('layerID', layer.layerid);
             var oLayer = _overLayers[layer.layerid];
             oLayer.layer.setVisible(true);
             //Only for second and more loads
@@ -2469,9 +2466,6 @@ mviewer = (function() {
             }
 
             var activeStyle = false;
-            console.log('getSource', oLayer.layer.getSource());
-            console.log('getLayer', oLayer.layer);
-            console.log('getoLayer', oLayer);
             if (
                 oLayer.type === 'wms' &&
                 oLayer.id !== 'shp2' &&
@@ -2656,9 +2650,7 @@ mviewer = (function() {
                 $.each(bmarkList, function(index, value) {
                     $('#bookmarks-container').append(`
                     <div id="bookmark-item">
-                    <a href="#" onclick="mviewer.goToPosBMarks(${
-                        value.lat
-                    }, ${value.lon}, ${value.zoom})">${value.name}</a>
+                    <a href="#" onclick="mviewer.goToPosBMarks(${value.lat}, ${value.lon}, ${value.zoom})">${value.name}</a>
                     </span>
                     <a style="margin-left: 10px;" title="Supprimer le favoris" href="#" onclick="mviewer.deleteBMark(${index})">
                         <span class="glyphicon glyphicon-trash">
@@ -2799,7 +2791,6 @@ mviewer = (function() {
             var oLayer = _overLayers['shp2'];
             var l = oLayer.layer;
             var source = l.getSource();
-            console.log('source', source);
             if (_zip2shp) {
                 const file = _zip2shp;
                 const fileName = file.name.replace('.zip', '');
@@ -2812,7 +2803,6 @@ mviewer = (function() {
                         EPSG: epsg, // default 4326
                     },
                     function(geojson) {
-                        console.log(geojson);
                         testImport = fileName;
                         const url = URL.createObjectURL(
                             new Blob([JSON.stringify(geojson)], { type: 'application/json' }),
@@ -2828,6 +2818,8 @@ mviewer = (function() {
                         });
 
                         parcellairewfs.setSource(parcellaireSource);
+                        parcellairewfs.set('mviewerid', 'shp2');
+
                         /*  parcellairewfs.getSource().changed();
                         console.log(parcellairewfs.getSource());
                         console.log(parcellairewfs.getSource().getParams()); */
@@ -2844,8 +2836,6 @@ mviewer = (function() {
 
                         parcellaireSource.once('change', function(e) {
                             if (parcellaireSource.getState() === 'ready') {
-                                console.log('parcellaireSource', parcellaireSource);
-                                console.log('parcellaireWfs', parcellairewfs);
                                 var extent = parcellaireSource.getExtent();
                                 _map.getView().fit(extent, _map.getSize());
                                 const layer = {};
